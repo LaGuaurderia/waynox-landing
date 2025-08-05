@@ -75,7 +75,7 @@ body::before {
     background-position: 0 0, 0 0, 0 0;
     pointer-events: none;
     z-index: -1;
-    animation: xBackgroundZoom 20s ease-in-out infinite;
+    animation: xBackgroundZoom 60s ease-in-out infinite;
 }
 
 .container {
