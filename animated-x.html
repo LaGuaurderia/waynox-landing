@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>X Animada - Transformación a +</title>
+    <style>
+        .animated-x-container {
+            position: relative;
+            width: 2rem;
+            height: 2rem;
+            display: inline-block;
+        }
+
+        .x-bar {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transform-origin: center;
+        }
+
+        .x-bar.diagonal-1 {
+            /* Barra diagonal / */
+            animation: rotateDiagonal1 3s ease-in-out infinite;
+        }
+
+        .x-bar.diagonal-2 {
+            /* Barra diagonal \ */
+            animation: rotateDiagonal2 3s ease-in-out infinite;
+        }
+
+        @keyframes rotateDiagonal1 {
+            0% {
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
+            40% {
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+            60% {
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(-45deg);
+            }
+        }
+
+        @keyframes rotateDiagonal2 {
+            0% {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+            40% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            60% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(45deg);
+            }
+        }
+
+        /* Estilos adicionales para personalización */
+        .animated-x-container.large {
+            width: 4rem;
+            height: 4rem;
+        }
+
+        .animated-x-container.small {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .animated-x-container .x-bar.thick {
+            height: 4px;
+        }
+
+        .animated-x-container .x-bar.thin {
+            height: 2px;
+        }
+
+        /* Variantes de color */
+        .animated-x-container.primary .x-bar {
+            background-color: #007bff;
+        }
+
+        .animated-x-container.success .x-bar {
+            background-color: #28a745;
+        }
+
+        .animated-x-container.warning .x-bar {
+            background-color: #ffc107;
+        }
+
+        .animated-x-container.danger .x-bar {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body style="background-color: #0a0a0a; color: white; font-family: Arial, sans-serif; padding: 2rem;">
+    <h1>X Animada - Transformación a +</h1>
+    
+    <!-- X básica -->
+    <div class="animated-x-container">
+        <div class="x-bar diagonal-1"></div>
+        <div class="x-bar diagonal-2"></div>
+    </div>
+
+    <h2>Variantes de tamaño:</h2>
+    
+    <!-- X pequeña -->
+    <div class="animated-x-container small">
+        <div class="x-bar diagonal-1"></div>
+        <div class="x-bar diagonal-2"></div>
+    </div>
+    
+    <!-- X grande -->
+    <div class="animated-x-container large">
+        <div class="x-bar diagonal-1 thick"></div>
+        <div class="x-bar diagonal-2 thick"></div>
+    </div>
+
+    <h2>Variantes de color:</h2>
+    
+    <!-- X azul -->
+    <div class="animated-x-container primary">
+        <div class="x-bar diagonal-1"></div>
+        <div class="x-bar diagonal-2"></div>
+    </div>
+    
+    <!-- X verde -->
+    <div class="animated-x-container success">
+        <div class="x-bar diagonal-1"></div>
+        <div class="x-bar diagonal-2"></div>
+    </div>
+    
+    <!-- X amarilla -->
+    <div class="animated-x-container warning">
+        <div class="x-bar diagonal-1"></div>
+        <div class="x-bar diagonal-2"></div>
+    </div>
+    
+    <!-- X roja -->
+    <div class="animated-x-container danger">
+        <div class="x-bar diagonal-1"></div>
+        <div class="x-bar diagonal-2"></div>
+    </div>
+</body>
+</html> 

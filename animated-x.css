@@ -1,0 +1,95 @@
+/* Fragmento CSS para X animada que se transforma en + */
+
+.animated-x-container {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+    display: inline-block;
+}
+
+.x-bar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 3px;
+    background-color: #ffffff;
+    border-radius: 2px;
+    transform-origin: center;
+}
+
+.x-bar.diagonal-1 {
+    /* Barra diagonal / */
+    animation: rotateDiagonal1 3s ease-in-out infinite;
+}
+
+.x-bar.diagonal-2 {
+    /* Barra diagonal \ */
+    animation: rotateDiagonal2 3s ease-in-out infinite;
+}
+
+@keyframes rotateDiagonal1 {
+    0% {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    40% {
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+    60% {
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(-45deg);
+    }
+}
+
+@keyframes rotateDiagonal2 {
+    0% {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+    40% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    60% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+        transform: translate(-50%, -50%) rotate(45deg);
+    }
+}
+
+/* Variantes de tamaño */
+.animated-x-container.large {
+    width: 4rem;
+    height: 4rem;
+}
+
+.animated-x-container.small {
+    width: 1rem;
+    height: 1rem;
+}
+
+.animated-x-container .x-bar.thick {
+    height: 4px;
+}
+
+.animated-x-container .x-bar.thin {
+    height: 2px;
+}
+
+/* Variantes de color */
+.animated-x-container.primary .x-bar {
+    background-color: #007bff;
+}
+
+.animated-x-container.success .x-bar {
+    background-color: #28a745;
+}
+
+.animated-x-container.warning .x-bar {
+    background-color: #ffc107;
+}
+
+.animated-x-container.danger .x-bar {
+    background-color: #dc3545;
+} 
