@@ -59,7 +59,7 @@ body {
     position: relative;
 }
 
-/* X's rotando en el background */
+/* X's con efecto de zoom en el background */
 body::before {
     content: '';
     position: fixed;
@@ -75,7 +75,7 @@ body::before {
     background-position: 0 0, 0 0, 0 0;
     pointer-events: none;
     z-index: -1;
-    animation: xBackgroundRotate 120s linear infinite;
+    animation: xBackgroundZoom 20s ease-in-out infinite;
 }
 
 .container {
@@ -1444,6 +1444,21 @@ body.light-mode .floating-card {
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes xBackgroundZoom {
+    0% {
+        background-size: 30px 30px, 60px 60px, 120px 120px;
+        opacity: 0.8;
+    }
+    50% {
+        background-size: 45px 45px, 90px 90px, 180px 180px;
+        opacity: 1;
+    }
+    100% {
+        background-size: 30px 30px, 60px 60px, 120px 120px;
+        opacity: 0.8;
     }
 }
 
