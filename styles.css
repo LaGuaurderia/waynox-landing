@@ -880,6 +880,15 @@ body.light-mode .floating-card {
     display: none;
 }
 
+/* Solución más robusta: ocultar placeholders en todas las tarjetas con imágenes */
+.project-card:nth-child(1) .project-image:has(img)::after,
+.project-card:nth-child(2) .project-image:has(img)::after,
+.project-card:nth-child(3) .project-image:has(img)::after,
+.project-card:nth-child(4) .project-image:has(img)::after,
+.project-card:nth-child(5) .project-image:has(img)::after {
+    display: none !important;
+}
+
 /* Estilos para cuando se carguen las imágenes reales */
 .project-image img {
     width: 375px;
