@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Imágenes WAYNOX</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            margin: 20px 0;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .project-image {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+        
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.1) 50%, transparent 70%);
+            animation: shimmer 2s infinite;
+        }
+        
+        .project-image::after {
+            content: '🛡️';
+            font-size: 3rem;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+        
+        .project-card:nth-child(1) .project-image::after {
+            content: '🛡️';
+        }
+        
+        .project-card:nth-child(2) .project-image::after {
+            content: '🏥';
+        }
+        
+        .project-card:nth-child(3) .project-image::after {
+            content: '💇‍♀️';
+        }
+        
+        .project-card:nth-child(4) .project-image::after {
+            content: '🍕';
+        }
+        
+        .project-card:nth-child(5) .project-image::after {
+            content: '🔧';
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .project-description {
+            color: #666;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Test de Imágenes WAYNOX</h1>
+        <p>Esta es una página de prueba para verificar que los estilos de las imágenes funcionen correctamente.</p>
+        
+        <div class="project-card">
+            <div class="project-image"></div>
+            <div class="project-content">
+                <h3 class="project-title">App para Aseguradoras</h3>
+                <p class="project-description">Sistema de reporte de accidentes con escaneo de códigos QR.</p>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-image"></div>
+            <div class="project-content">
+                <h3 class="project-title">Apps para clínicas médicas</h3>
+                <p class="project-description">Aplicaciones móviles para clínicas con gestión de citas.</p>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-image"></div>
+            <div class="project-content">
+                <h3 class="project-title">Aplicaciones de reservas para peluquerías</h3>
+                <p class="project-description">Sistema completo de reservas para peluquerías y barberos.</p>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-image"></div>
+            <div class="project-content">
+                <h3 class="project-title">Apps para restaurantes</h3>
+                <p class="project-description">Aplicaciones móviles para restaurantes con pedidos online.</p>
+            </div>
+        </div>
+        
+        <div class="project-card">
+            <div class="project-image"></div>
+            <div class="project-content">
+                <h3 class="project-title">Apps para talleres mecánicos</h3>
+                <p class="project-description">Aplicaciones móviles para talleres con gestión de citas.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
