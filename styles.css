@@ -835,6 +835,7 @@ body.light-mode .floating-card {
     color: white;
     text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     z-index: 1;
+    position: absolute;
 }
 
 /* Placeholders específicos para cada tipo de app */
@@ -858,6 +859,27 @@ body.light-mode .floating-card {
     content: '🔧';
 }
 
+/* Ocultar placeholders cuando hay imágenes reales */
+.project-image img {
+    z-index: 2;
+    position: relative;
+}
+
+.project-image::after {
+    z-index: 1;
+    position: absolute;
+}
+
+/* Ocultar placeholders cuando hay imágenes */
+.project-image:has(img)::after {
+    display: none;
+}
+
+/* Fallback para navegadores que no soportan :has() */
+.project-image img ~ .project-image::after {
+    display: none;
+}
+
 /* Estilos para cuando se carguen las imágenes reales */
 .project-image img {
     width: 375px;
@@ -868,6 +890,8 @@ body.light-mode .floating-card {
     margin: 0;
     padding: 0;
     display: block;
+    z-index: 2;
+    position: relative;
 }
 
 .project-card:hover .project-image img {
