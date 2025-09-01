@@ -1,0 +1,38 @@
+## Waynox Landing - Producción
+# Este archivo está pensado para SERVIR la carpeta /dist generada por Vite
+# No sirvas archivos .ts/.tsx en producción. Solo el bundle generado.
+
+## Tipos MIME correctos
+AddType application/javascript .js
+AddType text/javascript .mjs
+AddType text/css .css
+AddType application/wasm .wasm
+
+## Seguridad
+Header always set X-Content-Type-Options nosniff
+
+## SPA fallback (si usas rutas del lado del cliente)
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  # Si el archivo o directorio no existe, servir index.html desde dist
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+ </IfModule>
+
+## Compresión Gzip (opcional)
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css application/xml application/xhtml+xml application/rss+xml application/javascript application/json
+</IfModule>
+
+## Cache de estáticos (opcional)
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+</IfModule>

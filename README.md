@@ -1,49 +1,40 @@
-# WAYNOX - Landing Page
+# Waynox Studio – Vite + React
 
-Landing page moderna y responsiva para WAYNOX, especializada en desarrollo de aplicaciones móviles.
+Sitio corporativo en español para Waynox Studio. Stack: React + Vite, enrutado con react-router-dom, SEO con react-helmet-async.
 
-## 🎯 Características
+## Scripts
 
-- **Diseño moderno y minimalista** con animaciones suaves
-- **Totalmente responsiva** para móviles, tablets y desktop
-- **Animaciones CSS** incluyendo X's rotando en el background
-- **Microinteracciones** en botones y formularios
-- **Modo claro/oscuro** con toggle
-- **Optimizada para SEO** y rendimiento
+- `npm run dev`: entorno desarrollo
+- `npm run build`: compila a `dist/`
+- `npm run preview`: sirve build en local (por defecto en http://localhost:4173)
 
-## 📁 Estructura de archivos
+## Variables de entorno
+
+Crear `.env` (o `.env.local`):
 
 ```
-├── landing-waynox.html    # Página principal
-├── landing-waynox.css     # Estilos y animaciones
-├── landing-waynox.js      # Funcionalidades JavaScript
-└── README.md             # Este archivo
+VITE_FORMSPARK_ID=xxxxx
 ```
 
-## 🚀 Despliegue
+Si no se define, el formulario de contacto usará un fallback mock con `console.log` y un mensaje de éxito.
 
-Esta página está optimizada para despliegue estático en:
-- Netlify (recomendado)
-- Vercel
-- GitHub Pages
-- Cualquier hosting estático
+## Estructura principal
 
-## 🎨 Tecnologías
+- `src/router/AppRouter.tsx`: rutas con `BrowserRouter`
+- `src/layout/MainLayout.tsx`: layout con `Navbar` y `Footer`
+- `src/pages/*`: páginas (Home, Servicios, Proyectos, Precios, Nosotros, Blog, Contacto)
+- `src/components/*`: UI reutilizable (Button, Card, Section, forms, SEO)
+- `src/styles/globals.css`: variables de color y utilidades
 
-- HTML5
-- CSS3 (con animaciones y variables CSS)
-- JavaScript vanilla
-- Sin frameworks externos
+## Despliegue
 
-## 📱 Secciones
+- Servir contenido de `dist/` tras `npm run build`.
+- Asegurar MIME correctos: `text/javascript` para `.js`, `text/css` para `.css`, `application/wasm` para `.wasm`.
+- El `index.html` del build solo debe cargar los bundles generados; no referenciar `/src/main.tsx`.
+- Añadir cabeceras de caché apropiadas para activos estáticos.
 
-1. **Hero** - Título principal con X animada
-2. **Desarrollo End-to-End** - Proceso de trabajo
-3. **Servicios** - Ofertas de desarrollo
-4. **Especialidades** - Casos de uso específicos
-5. **Contacto** - Formulario de contacto
-6. **Footer** - Información de contacto y legal
+## Accesibilidad y performance
 
----
-
-© 2025 WAYNOX. Todos los derechos reservados. 
+- Foco visible y navegación por teclado.
+- Imágenes con `alt` y `loading="lazy"`.
+- Metadatos por página con `<SEO />`.

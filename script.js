@@ -1,641 +1,421 @@
-// Funciones de scroll suave
-function scrollToContact() {
-    const contactSection = document.getElementById('contacto');
-    contactSection.scrollIntoView({ behavior: 'smooth' });
+// ===== WAYNOX STUDIO - MAIN SCRIPT =====
+
+// Configuración global
+const CONFIG = {
+    calendlyUrl: 'https://calendly.com/waynox-studio', // Prop para conectar
+    whatsappUrl: 'https://wa.me/34621033528',
+    rgpdPrivacyUrl: '/privacidad.html',
+    formsparkEndpoint: 'https://formspark.io/your-form-id' // Prop para conectar
+};
+
+// ===== DOM READY =====
+document.addEventListener('DOMContentLoaded', function() {
+    initializeApp();
+});
+
+// ===== INITIALIZATION =====
+function initializeApp() {
+    setupMobileNavigation();
+    setupFAQ();
+    setupContactForm();
+    setupScrollAnimations();
+    setupCalendlyButtons();
+    checkCookieConsent();
+    setupFormValidation();
 }
 
-function scrollToServices() {
-    const servicesSection = document.getElementById('servicios');
-    servicesSection.scrollIntoView({ behavior: 'smooth' });
+// ===== MOBILE NAVIGATION =====
+function setupMobileNavigation() {
+    const mobileToggle = document.querySelector('.navbar-mobile-toggle');
+    const navbarNav = document.querySelector('.navbar-nav');
+    
+    if (mobileToggle && navbarNav) {
+        mobileToggle.addEventListener('click', function() {
+            navbarNav.classList.toggle('active');
+            const isActive = navbarNav.classList.contains('active');
+            mobileToggle.querySelector('span').textContent = isActive ? '✕' : '☰';
+        });
+        
+        // Cerrar menú al hacer clic en un enlace
+        const navLinks = navbarNav.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navbarNav.classList.remove('active');
+                mobileToggle.querySelector('span').textContent = '☰';
+            });
+        });
+    }
 }
 
-// Animaciones de scroll mejoradas
-function addScrollAnimations() {
+// ===== FAQ FUNCTIONALITY =====
+function setupFAQ() {
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+            toggleFAQ(this);
+        });
+    });
+}
+
+function toggleFAQ(questionElement) {
+    const answer = questionElement.nextElementSibling;
+    const toggle = questionElement.querySelector('.faq-toggle');
+    
+    if (answer.classList.contains('active')) {
+        answer.classList.remove('active');
+        toggle.textContent = '+';
+    } else {
+        // Cerrar todas las otras respuestas
+        document.querySelectorAll('.faq-answer').forEach(ans => {
+            ans.classList.remove('active');
+        });
+        document.querySelectorAll('.faq-toggle').forEach(tog => {
+            tog.textContent = '+';
+        });
+        
+        // Abrir la respuesta actual
+        answer.classList.add('active');
+        toggle.textContent = '−';
+    }
+}
+
+// ===== CONTACT FORM =====
+function setupContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', handleContactFormSubmit);
+    }
+}
+
+function handleContactFormSubmit(event) {
+    event.preventDefault();
+    
+    const form = event.target;
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalText = submitButton.textContent;
+    
+    // Validar formulario
+    if (!validateForm(form)) {
+        return;
+    }
+    
+    // Mostrar estado de carga
+    submitButton.textContent = 'Enviando...';
+    submitButton.disabled = true;
+    
+    // Recopilar datos del formulario
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+    
+    // Simular envío (aquí se conectaría con Formspark o similar)
+    setTimeout(() => {
+        showFormMessage('success', '¡Mensaje enviado con éxito! Te responderemos en menos de 24 horas.');
+        
+        // Resetear formulario
+        form.reset();
+        
+        // Restaurar botón
+        submitButton.textContent = originalText;
+        submitButton.disabled = false;
+        
+        // Scroll suave a la sección de contacto
+        document.querySelector('#contacto')?.scrollIntoView({ behavior: 'smooth' });
+        
+    }, 1500);
+}
+
+function validateForm(form) {
+    const requiredFields = form.querySelectorAll('[required]');
+    let isValid = true;
+    
+    requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+            showFieldError(field, 'Este campo es obligatorio');
+            isValid = false;
+        } else {
+            clearFieldError(field);
+        }
+        
+        // Validación específica por tipo
+        if (field.type === 'email' && field.value) {
+            if (!isValidEmail(field.value)) {
+                showFieldError(field, 'Email no válido');
+                isValid = false;
+            }
+        }
+    });
+    
+    return isValid;
+}
+
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+function showFieldError(field, message) {
+    clearFieldError(field);
+    
+    field.classList.add('error');
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'error-message';
+    errorDiv.textContent = message;
+    field.parentNode.appendChild(errorDiv);
+}
+
+function clearFieldError(field) {
+    field.classList.remove('error');
+    const existingError = field.parentNode.querySelector('.error-message');
+    if (existingError) {
+        existingError.remove();
+    }
+}
+
+function showFormMessage(type, message) {
+    // Remover mensajes existentes
+    const existingMessages = document.querySelectorAll('.form-message');
+    existingMessages.forEach(msg => msg.remove());
+    
+    const form = document.getElementById('contact-form');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `form-message ${type}`;
+    messageDiv.innerHTML = `
+        <div class="message-content">
+            <span class="message-icon">${type === 'success' ? '✅' : '❌'}</span>
+            <span>${message}</span>
+        </div>
+    `;
+    
+    form.insertBefore(messageDiv, form.firstChild);
+    
+    // Auto-ocultar después de 5 segundos
+    setTimeout(() => {
+        messageDiv.remove();
+    }, 5000);
+}
+
+// ===== SCROLL ANIMATIONS =====
+function setupScrollAnimations() {
     const observerOptions = {
         threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
+        rootMargin: '0px 0px -50px 0px'
     };
-
+    
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                
-                // Efecto de stagger para elementos hijos
-                const children = entry.target.querySelectorAll('.stagger-in');
-                children.forEach((child, index) => {
-                    setTimeout(() => {
-                        child.classList.add('visible');
-                    }, index * 100);
-                });
-            }
-        });
-    }, observerOptions);
-
-    // Elementos a animar con diferentes tipos de animación
-    const elementsToAnimate = document.querySelectorAll(
-        '.fade-in, .slide-in-left, .slide-in-right, .scale-in, .rotate-in, .stagger-in'
-    );
-
-    elementsToAnimate.forEach(element => {
-        observer.observe(element);
-    });
-}
-
-// Manejo del formulario de contacto
-function handleContactForm() {
-    const form = document.getElementById('contactForm');
-    
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Obtener datos del formulario
-        const formData = new FormData(form);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const country = formData.get('country');
-        const message = formData.get('message');
-        
-        // Validación básica
-        if (!name || !email || !country || !message) {
-            showNotification('Por favor, completa todos los campos', 'error');
-            return;
-        }
-        
-        // Simular envío
-        showNotification('Enviando mensaje...', 'info');
-        
-        setTimeout(() => {
-            showNotification('¡Mensaje enviado con éxito! Te contactaremos pronto.', 'success');
-            form.reset();
-        }, 2000);
-    });
-}
-
-// Sistema de notificaciones
-function showNotification(message, type = 'info') {
-    // Crear elemento de notificación
-    const notification = document.createElement('div');
-    notification.className = `notification notification-${type}`;
-    notification.innerHTML = `
-        <div class="notification-content">
-            <span class="notification-message">${message}</span>
-            <button class="notification-close" onclick="this.parentElement.parentElement.remove()">×</button>
-        </div>
-    `;
-    
-    // Estilos de la notificación
-    notification.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: ${type === 'success' ? '#10b981' : type === 'error' ? '#ef4444' : '#3b82f6'};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        z-index: 10000;
-        transform: translateX(100%);
-        transition: transform 0.3s ease;
-        max-width: 400px;
-    `;
-    
-    // Agregar al DOM
-    document.body.appendChild(notification);
-    
-    // Animar entrada
-    setTimeout(() => {
-        notification.style.transform = 'translateX(0)';
-    }, 100);
-    
-    // Auto-remover después de 5 segundos
-    setTimeout(() => {
-        notification.style.transform = 'translateX(100%)';
-        setTimeout(() => {
-            if (notification.parentElement) {
-                notification.remove();
-            }
-        }, 300);
-    }, 5000);
-}
-
-// Navegación activa
-function updateActiveNavigation() {
-    const sections = document.querySelectorAll('section[id]');
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    const observerOptions = {
-        threshold: 0.3,
-        rootMargin: '-100px 0px -100px 0px'
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const currentId = entry.target.getAttribute('id');
-                
-                // Remover clase activa de todos los enlaces
-                navLinks.forEach(link => {
-                    link.classList.remove('active');
-                });
-                
-                // Agregar clase activa al enlace correspondiente
-                const activeLink = document.querySelector(`.nav-link[href="#${currentId}"]`);
-                if (activeLink) {
-                    activeLink.classList.add('active');
-                }
             }
         });
     }, observerOptions);
     
-    sections.forEach(section => {
-        observer.observe(section);
-    });
+    // Observar elementos con animaciones
+    const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-up-delayed, .fade-in-up-delayed-2');
+    animatedElements.forEach(el => observer.observe(el));
 }
 
-// Efectos de hover en las tarjetas
-function addCardHoverEffects() {
-    const cards = document.querySelectorAll('.process-card, .service-card, .project-card');
+// ===== CALENDLY INTEGRATION =====
+function setupCalendlyButtons() {
+    const calendlyButtons = document.querySelectorAll('#calendly-btn, #calendly-contact-btn');
     
-    cards.forEach(card => {
-        card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-            // Agregar efecto de brillo
-            this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-            this.style.boxShadow = '';
-        });
-        
-        // Efecto de clic
-        card.addEventListener('mousedown', function() {
-            this.style.transform = 'translateY(-5px) scale(0.98)';
-        });
-        
-        card.addEventListener('mouseup', function() {
-            this.style.transform = 'translateY(-10px) scale(1.02)';
-        });
-    });
-}
-
-// Animación de contador para estadísticas (si se agregan)
-function animateCounters() {
-    const counters = document.querySelectorAll('.counter');
-    
-    const observerOptions = {
-        threshold: 0.5
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const target = parseInt(counter.getAttribute('data-target'));
-                const duration = 2000; // 2 segundos
-                const increment = target / (duration / 16); // 60fps
-                let current = 0;
-                
-                const updateCounter = () => {
-                    current += increment;
-                    if (current < target) {
-                        counter.textContent = Math.floor(current);
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        counter.textContent = target;
-                    }
-                };
-                
-                updateCounter();
-                observer.unobserve(counter);
-            }
-        });
-    }, observerOptions);
-    
-    counters.forEach(counter => {
-        observer.observe(counter);
-    });
-}
-
-// Smooth scroll para enlaces internos
-function addSmoothScroll() {
-    const internalLinks = document.querySelectorAll('a[href^="#"]');
-    
-    internalLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
+    calendlyButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
             e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
+            openCalendly();
         });
     });
 }
 
-// Efecto parallax sutil para el hero
-function addParallaxEffect() {
-    const hero = document.querySelector('.hero');
-    const floatingCards = document.querySelectorAll('.floating-card');
+function openCalendly() {
+    if (CONFIG.calendlyUrl && CONFIG.calendlyUrl !== 'https://calendly.com/waynox-studio') {
+        window.open(CONFIG.calendlyUrl, '_blank');
+    } else {
+        // Fallback: mostrar mensaje o redirigir a contacto
+        alert('Próximamente: sistema de reservas de citas. Por favor, usa el formulario de contacto o WhatsApp.');
+    }
+}
+
+// ===== COOKIE CONSENT =====
+function checkCookieConsent() {
+    const consent = localStorage.getItem('cookie-consent');
+    if (consent === 'accepted') {
+        hideCookieBanner();
+    }
+}
+
+function acceptCookies() {
+    localStorage.setItem('cookie-consent', 'accepted');
+    hideCookieBanner();
     
-    window.addEventListener('scroll', () => {
-        const scrolled = window.pageYOffset;
-        const rate = scrolled * -0.5;
-        
-        floatingCards.forEach((card, index) => {
-            const speed = 0.5 + (index * 0.1);
-            card.style.transform = `translateY(${rate * speed}px)`;
-        });
-    });
+    // Aquí se podrían cargar analytics o cookies de terceros
+    console.log('Cookies aceptadas');
 }
 
-// Validación de formulario en tiempo real
-function addFormValidation() {
-    const inputs = document.querySelectorAll('.form-group input, .form-group textarea, .form-group select');
+function hideCookieBanner() {
+    const banner = document.getElementById('cookie-banner');
+    if (banner) {
+        banner.classList.add('hidden');
+    }
+}
+
+// ===== FORM VALIDATION ENHANCEMENT =====
+function setupFormValidation() {
+    const inputs = document.querySelectorAll('.form-input, .form-select, .form-textarea');
     
     inputs.forEach(input => {
+        // Validación en tiempo real
         input.addEventListener('blur', function() {
             validateField(this);
         });
         
         input.addEventListener('input', function() {
             if (this.classList.contains('error')) {
-                validateField(this);
+                clearFieldError(this);
             }
         });
     });
 }
 
 function validateField(field) {
-    const value = field.value.trim();
-    let isValid = true;
-    let errorMessage = '';
+    if (field.hasAttribute('required') && !field.value.trim()) {
+        showFieldError(field, 'Este campo es obligatorio');
+        return false;
+    }
     
-    // Remover clases de error previas
-    field.classList.remove('error', 'success');
-    
-    // Validaciones específicas
-    if (field.type === 'email') {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(value)) {
-            isValid = false;
-            errorMessage = 'Por favor, ingresa un email válido';
+    if (field.type === 'email' && field.value) {
+        if (!isValidEmail(field.value)) {
+            showFieldError(field, 'Email no válido');
+            return false;
         }
     }
     
-    if (field.required && !value) {
-        isValid = false;
-        errorMessage = 'Este campo es obligatorio';
+    if (field.type === 'tel' && field.value) {
+        if (!isValidPhone(field.value)) {
+            showFieldError(field, 'Teléfono no válido');
+            return false;
+        }
     }
     
-    if (field.type === 'textarea' && value.length < 10) {
-        isValid = false;
-        errorMessage = 'El mensaje debe tener al menos 10 caracteres';
-    }
-    
-    // Aplicar resultado
-    if (isValid) {
-        field.classList.add('success');
-        removeFieldError(field);
-    } else {
-        field.classList.add('error');
-        showFieldError(field, errorMessage);
-    }
+    clearFieldError(field);
+    return true;
 }
 
-function showFieldError(field, message) {
-    removeFieldError(field);
-    
-    const errorDiv = document.createElement('div');
-    errorDiv.className = 'field-error';
-    errorDiv.textContent = message;
-    errorDiv.style.cssText = `
-        color: #ef4444;
-        font-size: 0.8rem;
-        margin-top: 0.5rem;
-        animation: fadeIn 0.3s ease;
-    `;
-    
-    field.parentNode.appendChild(errorDiv);
+function isValidPhone(phone) {
+    const phoneRegex = /^[\+]?[0-9\s\-\(\)]{9,}$/;
+    return phoneRegex.test(phone);
 }
 
-function removeFieldError(field) {
-    const existingError = field.parentNode.querySelector('.field-error');
-    if (existingError) {
-        existingError.remove();
-    }
-}
-
-// Efectos de microinteracciones para botones
-function addButtonMicrointeractions() {
-    const buttons = document.querySelectorAll('.cta-button, .submit-button, .project-link');
-    
-    buttons.forEach(button => {
-        // Efecto de ripple al hacer clic
-        button.addEventListener('click', function(e) {
-            const ripple = document.createElement('span');
-            const rect = this.getBoundingClientRect();
-            const size = Math.max(rect.width, rect.height);
-            const x = e.clientX - rect.left - size / 2;
-            const y = e.clientY - rect.top - size / 2;
-            
-            ripple.style.cssText = `
-                position: absolute;
-                width: ${size}px;
-                height: ${size}px;
-                left: ${x}px;
-                top: ${y}px;
-                background: rgba(255, 255, 255, 0.3);
-                border-radius: 50%;
-                transform: scale(0);
-                animation: ripple 0.6s linear;
-                pointer-events: none;
-            `;
-            
-            this.appendChild(ripple);
-            
-            setTimeout(() => {
-                ripple.remove();
-            }, 600);
-        });
-        
-        // Efecto de presión al hacer clic
-        button.addEventListener('mousedown', function() {
-            this.style.transform = 'scale(0.98)';
-        });
-        
-        button.addEventListener('mouseup', function() {
-            this.style.transform = '';
-        });
-        
-        button.addEventListener('mouseleave', function() {
-            this.style.transform = '';
-        });
-    });
-}
-
-// Efectos de microinteracciones para enlaces
-function addLinkMicrointeractions() {
-    const links = document.querySelectorAll('.nav-link, .footer-link, .social-link');
+// ===== SMOOTH SCROLLING =====
+function setupSmoothScrolling() {
+    const links = document.querySelectorAll('a[href^="#"]');
     
     links.forEach(link => {
-        // Efecto de presión al hacer clic
-        link.addEventListener('mousedown', function() {
-            this.style.transform = 'scale(0.95)';
-        });
-        
-        link.addEventListener('mouseup', function() {
-            this.style.transform = '';
-        });
-        
-        link.addEventListener('mouseleave', function() {
-            this.style.transform = '';
-        });
-    });
-}
-
-// Efectos de microinteracciones para tarjetas flotantes
-function addFloatingCardMicrointeractions() {
-    const floatingCards = document.querySelectorAll('.floating-card');
-    
-    floatingCards.forEach(card => {
-        // Efecto de presión al hacer clic
-        card.addEventListener('mousedown', function() {
-            this.style.transform = 'translateY(-5px) scale(0.98)';
-        });
-        
-        card.addEventListener('mouseup', function() {
-            this.style.transform = 'translateY(-10px) scale(1.05)';
-        });
-        
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = '';
-        });
-    });
-}
-
-// Efectos de microinteracciones para elementos de contacto
-function addContactItemMicrointeractions() {
-    const contactItems = document.querySelectorAll('.contact-item');
-    
-    contactItems.forEach(item => {
-        // Efecto de presión al hacer clic
-        item.addEventListener('mousedown', function() {
-            this.style.transform = 'translateX(2px) scale(0.98)';
-        });
-        
-        item.addEventListener('mouseup', function() {
-            this.style.transform = 'translateX(5px)';
-        });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = '';
-        });
-    });
-}
-
-// Funcionalidad de cambio de tema
-function addThemeToggle() {
-    const themeToggle = document.getElementById('themeToggle');
-    const themeIcon = themeToggle.querySelector('.theme-icon');
-    
-    // Verificar tema guardado
-    const savedTheme = localStorage.getItem('waynox-theme');
-    if (savedTheme === 'light') {
-        document.body.classList.add('light-mode');
-        themeIcon.textContent = '☀️';
-    }
-    
-    themeToggle.addEventListener('click', function() {
-        const isLightMode = document.body.classList.toggle('light-mode');
-        
-        // Cambiar icono
-        themeIcon.textContent = isLightMode ? '☀️' : '🌙';
-        
-        // Guardar preferencia
-        localStorage.setItem('waynox-theme', isLightMode ? 'light' : 'dark');
-        
-        // Efecto de transición
-        themeIcon.style.transform = 'rotate(360deg)';
-        setTimeout(() => {
-            themeIcon.style.transform = 'rotate(0deg)';
-        }, 300);
-    });
-}
-
-// Navegación fluida mejorada
-function addSmoothNavigation() {
-    const navLinks = document.querySelectorAll('.nav-link');
-    
-    navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
             
             const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
+            const targetElement = document.querySelector(targetId);
             
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80; // Ajuste para navbar
-                
+            if (targetElement) {
+                const offsetTop = targetElement.offsetTop - 80; // Ajustar por navbar
                 window.scrollTo({
                     top: offsetTop,
                     behavior: 'smooth'
                 });
-                
-                // Efecto de ripple en el enlace
-                const ripple = document.createElement('span');
-                const rect = this.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.cssText = `
-                    position: absolute;
-                    width: ${size}px;
-                    height: ${size}px;
-                    left: ${x}px;
-                    top: ${y}px;
-                    background: rgba(59, 130, 246, 0.3);
-                    border-radius: 50%;
-                    transform: scale(0);
-                    animation: ripple 0.6s linear;
-                    pointer-events: none;
-                `;
-                
-                this.appendChild(ripple);
-                
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
             }
         });
     });
 }
 
-// Inicialización cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', function() {
-    // Inicializar todas las funcionalidades
-    addScrollAnimations();
-    handleContactForm();
-    updateActiveNavigation();
-    addCardHoverEffects();
-    animateCounters();
-    addSmoothNavigation();
-    addParallaxEffect();
-    addFormValidation();
-    addButtonMicrointeractions();
-    addLinkMicrointeractions();
-    addFloatingCardMicrointeractions();
-    addContactItemMicrointeractions();
-    addThemeToggle();
-    
-    // Agregar estilos adicionales para notificaciones y microinteracciones
-    const style = document.createElement('style');
-    style.textContent = `
-        .nav-link.active {
-            color: #3b82f6 !important;
-            font-weight: 600;
+// ===== UTILITY FUNCTIONS =====
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
         }
-        
-        .form-group input.success,
-        .form-group textarea.success,
-        .form-group select.success {
-            border-color: #10b981 !important;
-        }
-        
-        .form-group input.error,
-        .form-group textarea.error,
-        .form-group select.error {
-            border-color: #ef4444 !important;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
+    };
+}
+
+// ===== PERFORMANCE OPTIMIZATION =====
+const optimizedScrollHandler = throttle(() => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+}, 100);
+
+window.addEventListener('scroll', optimizedScrollHandler);
+
+// ===== ACCESSIBILITY ENHANCEMENTS =====
+function setupAccessibility() {
+    // Navegación por teclado
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            // Cerrar menús móviles
+            const navbarNav = document.querySelector('.navbar-nav');
+            if (navbarNav && navbarNav.classList.contains('active')) {
+                navbarNav.classList.remove('active');
+                document.querySelector('.navbar-mobile-toggle span').textContent = '☰';
             }
         }
-        
-        /* Efectos de microinteracciones adicionales */
-        .cta-button, .submit-button, .project-link {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .cta-button:active, .submit-button:active, .project-link:active {
-            transform: scale(0.98) !important;
-            transition: transform 0.1s ease !important;
-        }
-        
-        .nav-link:active, .footer-link:active, .social-link:active {
-            transform: scale(0.95) !important;
-            transition: transform 0.1s ease !important;
-        }
-        
-        .floating-card:active {
-            transform: translateY(-5px) scale(0.98) !important;
-            transition: transform 0.1s ease !important;
-        }
-        
-        .contact-item:active {
-            transform: translateX(2px) scale(0.98) !important;
-            transition: transform 0.1s ease !important;
-        }
-        
-        /* Efectos de hover mejorados */
-        .process-card:hover, .service-card:hover, .project-card:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3) !important;
-        }
-        
-        /* Animación de validación de formulario */
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            animation: focusPulse 0.3s ease;
-        }
-        
-        @keyframes focusPulse {
-            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
-        }
-        
-        /* Efecto de brillo en hover */
-        .cta-button:hover::after,
-        .submit-button:hover::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shine 0.8s ease;
-        }
-        
-        @keyframes shine {
-            to {
-                left: 100%;
-            }
-        }
-    `;
-    document.head.appendChild(style);
+    });
     
-    console.log('WAYNOX Landing Page inicializada correctamente con microinteracciones');
+    // Skip links para navegación por teclado
+    const skipLink = document.createElement('a');
+    skipLink.href = '#main-content';
+    skipLink.textContent = 'Saltar al contenido principal';
+    skipLink.className = 'skip-link sr-only';
+    document.body.insertBefore(skipLink, document.body.firstChild);
+}
+
+// ===== ERROR HANDLING =====
+window.addEventListener('error', function(e) {
+    console.error('Error en la aplicación:', e.error);
+    // Aquí se podría enviar a un servicio de monitoreo de errores
 });
 
-// Función para abrir la página
-function openLandingPage() {
-    window.open('landing-waynox.html', '_blank');
-} 
+// ===== ANALYTICS READY (para futuras integraciones) =====
+function trackEvent(category, action, label) {
+    // Preparado para Google Analytics, Mixpanel, etc.
+    if (typeof gtag !== 'undefined') {
+        gtag('event', action, {
+            event_category: category,
+            event_label: label
+        });
+    }
+    
+    console.log(`Evento: ${category} - ${action} - ${label}`);
+}
+
+// ===== EXPORT FUNCTIONS FOR GLOBAL USE =====
+window.WaynoxStudio = {
+    openCalendly,
+    acceptCookies,
+    trackEvent,
+    toggleFAQ
+};
+
+// ===== INITIALIZE ACCESSIBILITY =====
+setupAccessibility();
+setupSmoothScrolling(); 

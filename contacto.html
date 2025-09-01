@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Waynox Studio</title>
+    <meta name="description" content="Contacta con Waynox Studio para tu proyecto digital. Formulario de contacto, WhatsApp y agendar llamada gratuita de 15 minutos.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Contacto - Waynox Studio">
+    <meta property="og:description" content="Contacta con Waynox Studio para tu proyecto digital. Formulario de contacto, WhatsApp y agendar llamada gratuita de 15 minutos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://waynox.es/contacto">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="/" class="navbar-logo">
+                Waynox <span>Studio</span>
+            </a>
+            
+            <div class="navbar-nav">
+                <a href="/servicios.html" class="nav-link">Servicios</a>
+                <a href="/proyectos.html" class="nav-link">Proyectos</a>
+                <a href="/contacto.html" class="nav-link active">Contacto</a>
+                <div class="navbar-cta">
+                    <a href="/#presupuesto" class="btn btn-primary">Calcula tu presupuesto</a>
+                </div>
+            </div>
+            
+            <button class="navbar-mobile-toggle" aria-label="Menú móvil">
+                <span>☰</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title fade-in-up">
+                    Hablemos de tu proyecto
+                </h1>
+                <p class="hero-subtitle fade-in-up-delayed">
+                    Cuéntanos tu idea y te orientamos sin compromiso
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <div class="contact-layout">
+                <!-- Contact Form -->
+                <div class="contact-form-section">
+                    <h2>Cuéntanos tu proyecto</h2>
+                    <p class="mb-lg">Completa el formulario y te responderemos en menos de 24 horas laborables.</p>
+                    
+                    <form class="contact-form" id="contact-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name" class="form-label">Nombre / Empresa *</label>
+                                <input type="text" id="name" name="name" class="form-input" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email" class="form-label">Email *</label>
+                                <input type="email" id="email" name="email" class="form-input" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="phone" class="form-label">Teléfono (opcional)</label>
+                                <input type="tel" id="phone" name="phone" class="form-input">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="project-type" class="form-label">Tipo de proyecto *</label>
+                                <select id="project-type" name="project-type" class="form-select" required>
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="app">App móvil</option>
+                                    <option value="web">Web</option>
+                                    <option value="both">App + Web</option>
+                                    <option value="ux-ui">UX/UI Design</option>
+                                    <option value="api">API/Integración</option>
+                                    <option value="unknown">No lo sé</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="objective" class="form-label">Objetivo principal *</label>
+                                <select id="objective" name="objective" class="form-select" required>
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="captacion">Captación de clientes</option>
+                                    <option value="reservas">Sistema de reservas</option>
+                                    <option value="catalogo">Catálogo de productos</option>
+                                    <option value="ecommerce">E-commerce</option>
+                                    <option value="productividad">Productividad interna</option>
+                                    <option value="other">Otro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="budget" class="form-label">Presupuesto aproximado *</label>
+                                <select id="budget" name="budget" class="form-select" required>
+                                    <option value="">Selecciona una opción</option>
+                                    <option value="under-1k">Menos de 1.000€</option>
+                                    <option value="1k-3k">1.000€ - 3.000€</option>
+                                    <option value="3k-6k">3.000€ - 6.000€</option>
+                                    <option value="6k-15k">6.000€ - 15.000€</option>
+                                    <option value="over-15k">Más de 15.000€</option>
+                                    <option value="unknown">No lo sé</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="timeline" class="form-label">¿Cuándo necesitas el proyecto? *</label>
+                            <select id="timeline" name="timeline" class="form-select" required>
+                                <option value="">Selecciona una opción</option>
+                                <option value="asap">Lo antes posible</option>
+                                <option value="1-month">En 1 mes</option>
+                                <option value="2-3-months">En 2-3 meses</option>
+                                <option value="3-6-months">En 3-6 meses</option>
+                                <option value="6-plus-months">En más de 6 meses</option>
+                                <option value="unknown">No lo sé</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Cuéntanos más sobre tu proyecto *</label>
+                            <textarea id="message" name="message" class="form-textarea" rows="5" required 
+                                placeholder="Describe tu idea, objetivos, público objetivo, funcionalidades principales, referencias de apps/webs que te gusten..."></textarea>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                            <a href="https://wa.me/34621033528" class="btn btn-secondary" target="_blank">
+                                💬 WhatsApp
+                            </a>
+                        </div>
+                        
+                        <div class="form-notice">
+                            <small>
+                                Al enviar este formulario, aceptas nuestra 
+                                <a href="/privacidad.html">Política de Privacidad</a>.
+                            </small>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Contact Info & Calendly -->
+                <div class="contact-info-section">
+                    <div class="contact-info-card">
+                        <h3>Información de contacto</h3>
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <strong>Email</strong>
+                                <a href="mailto:hola@waynox.es">hola@waynox.es</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <div>
+                                <strong>WhatsApp</strong>
+                                <a href="https://wa.me/34621033528" target="_blank">+34 621 03 35 28</a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <strong>Ubicación</strong>
+                                <span>Barcelona, España</span>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <span class="contact-icon">⏰</span>
+                            <div>
+                                <strong>Horario</strong>
+                                <span>Lun-Vie: 9:00 - 18:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="calendly-card">
+                        <h3>Agenda una llamada gratuita</h3>
+                        <p>Reserva 15 minutos para hablar de tu proyecto sin compromiso.</p>
+                        <div class="calendly-placeholder">
+                            <div class="calendly-icon">📅</div>
+                            <p>Calendly embebido aquí</p>
+                            <small>Prop: calendlyUrl</small>
+                        </div>
+                        <a href="#" class="btn btn-primary" id="calendly-btn">Abrir Calendly</a>
+                    </div>
+                    
+                    <div class="response-time-card">
+                        <h3>¿Cuándo respondemos?</h3>
+                        <div class="response-time">
+                            <span class="time-icon">⚡</span>
+                            <div>
+                                <strong>Menos de 24 horas</strong>
+                                <p>En días laborables</p>
+                            </div>
+                        </div>
+                        <p class="response-note">
+                            Si es urgente, usa WhatsApp para una respuesta inmediata.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section">
+        <div class="container">
+            <div class="text-center mb-xl">
+                <h2>Preguntas frecuentes sobre contacto</h2>
+                <p>Resolvemos tus dudas sobre cómo trabajar con nosotros</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        ¿Cuánto cuesta la consulta inicial?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        La consulta inicial es completamente gratuita. Queremos entender tu proyecto antes de hacer cualquier propuesta comercial.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        ¿Qué información necesito para la primera llamada?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Solo necesitas tener una idea clara de lo que quieres lograr. Nosotros te ayudamos a definir los detalles técnicos y la estrategia.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        ¿Trabajáis con clientes internacionales?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Sí, trabajamos con clientes de todo el mundo. Tenemos experiencia en diferentes mercados y regulaciones.
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        ¿Podemos hacer la reunión por videollamada?
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        Por supuesto. Usamos Google Meet, Zoom o la plataforma que prefieras. También podemos hacer llamadas telefónicas tradicionales.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section">
+        <div class="container">
+            <div class="cta-section text-center">
+                <h2>¿Tienes prisa?</h2>
+                <p class="mb-lg">Usa WhatsApp para una respuesta inmediata</p>
+                <div class="cta-actions">
+                    <a href="https://wa.me/34621033528" class="btn btn-primary" target="_blank">
+                        💬 Hablar por WhatsApp
+                    </a>
+                    <a href="/#presupuesto" class="btn btn-secondary">Ver precios</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Waynox Studio</h3>
+                    <p>Consultora tecnológica + socio creativo joven.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Enlaces</h3>
+                    <a href="/servicios.html">Servicios</a>
+                    <a href="/proyectos.html">Proyectos</a>
+                    <a href="/contacto.html">Contacto</a>
+                    <a href="/privacidad.html">Privacidad</a>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <a href="mailto:hola@waynox.es">hola@waynox.es</a>
+                    <a href="https://wa.me/34621033528" target="_blank">WhatsApp</a>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Waynox Studio. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>
