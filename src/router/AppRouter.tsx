@@ -1,13 +1,15 @@
 import React from 'react'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import MainLayout from '../layout/MainLayout'
-import Home from '../pages/Home'
-import Servicios from '../pages/Servicios'
-import Proyectos from '../pages/Proyectos'
-import Precios from '../pages/Precios'
-import Nosotros from '../pages/Nosotros'
-import Blog from '../pages/Blog'
-import Contacto from '../pages/Contacto'
+import MainLayout from '@/layout/MainLayout'
+import Home from '@/pages/Home'
+import Servicios from '@/pages/Servicios'
+import Proyectos from '@/pages/Proyectos'
+import Precios from '@/pages/Precios'
+import Nosotros from '@/pages/Nosotros'
+import Blog from '@/pages/Blog'
+import Contacto from '@/pages/Contacto'
+import Privacidad from '@/pages/Privacidad'
+import Terminos from '@/pages/Terminos'
 
 const router = createBrowserRouter([
   {
@@ -21,6 +23,8 @@ const router = createBrowserRouter([
       { path: 'nosotros', element: <Nosotros /> },
       { path: 'blog', element: <Blog /> },
       { path: 'contacto', element: <Contacto /> },
+      { path: 'privacidad', element: <Privacidad /> },
+      { path: 'terminos', element: <Terminos /> },
     ],
   },
 ])

@@ -1,25 +1,47 @@
-/* Variables de tema Waynox */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Variables de tema Waynox - Consultora Tech */
 :root {
-  --color-bg: #ffffff;
-  --color-bg-soft: #F5F7FB;
-  --color-text: #111111;
-  --color-text-muted: #444444;
+  /* Colores principales */
+  --color-bg: #111111;
+  --color-bg-soft: #222222;
+  --color-text: #ffffff;
+  --color-text-muted: #F5F7FB;
   --color-accent: #1E90FF;
-  --color-border: #E5E7EB;
-
-  --radius-sm: 6px;
-  --radius-md: 10px;
+  --color-border: #444444;
+  --color-border-hover: #1E90FF;
+  
+  /* Colores de estado */
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  
+  /* Espaciado y tipografía */
+  --radius-sm: 8px;
+  --radius-md: 12px;
   --radius-lg: 16px;
+  --radius-xl: 20px;
 
-  --container-max: 1200px;
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 10px rgba(0,0,0,0.08);
-  --shadow-lg: 0 10px 30px rgba(0,0,0,0.12);
+  /* Container y sombras */
+  --container-max: 1280px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.12);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.15);
+  --shadow-accent: 0 10px 30px rgba(30,144,255,0.15);
 }
 
 /* Reset ligero + tipografía */
-* { box-sizing: border-box; }
-html, body, #root { height: 100%; }
+* { 
+  box-sizing: border-box; 
+}
+
+html, body, #root { 
+  height: 100%; 
+}
+
 body {
   margin: 0;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
@@ -27,48 +49,137 @@ body {
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
 }
 
-a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; }
-button { font-family: inherit; }
+a { 
+  color: inherit; 
+  text-decoration: none; 
+}
 
-/* Utilidades */
-.container { width: 100%; max-width: var(--container-max); margin: 0 auto; padding: 0 20px; }
-.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-.visually-hidden { position: absolute !important; clip: rect(1px, 1px, 1px, 1px); padding: 0 !important; border: 0 !important; height: 1px !important; width: 1px !important; overflow: hidden; }
+img { 
+  max-width: 100%; 
+  display: block; 
+}
+
+button { 
+  font-family: inherit; 
+}
+
+/* Eliminar estilos de bullets heredados */
+ul, ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+/* Utilidades de accesibilidad */
+.sr-only { 
+  position: absolute; 
+  width: 1px; 
+  height: 1px; 
+  padding: 0; 
+  margin: -1px; 
+  overflow: hidden; 
+  clip: rect(0,0,0,0); 
+  white-space: nowrap; 
+  border: 0; 
+}
+
+.visually-hidden { 
+  position: absolute !important; 
+  clip: rect(1px, 1px, 1px, 1px); 
+  padding: 0 !important; 
+  border: 0 !important; 
+  height: 1px !important; 
+  width: 1px !important; 
+  overflow: hidden; 
+}
 
 /* Focus visible accesible */
-:focus-visible { outline: 3px solid var(--color-accent); outline-offset: 2px; border-radius: 4px; }
+:focus-visible { 
+  outline: 3px solid var(--color-accent); 
+  outline-offset: 2px; 
+  border-radius: var(--radius-sm); 
+}
 
-/* Botones base */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: var(--radius-md); padding: 10px 16px; font-weight: 600; border: 1px solid transparent; transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .05s ease; cursor: pointer; }
-.btn:hover { transform: translateY(-1px); }
-.btn:active { transform: translateY(0); }
-.btn-primary { background: var(--color-accent); color: #fff; }
-.btn-primary:hover { filter: brightness(0.95); }
-.btn-ghost { background: transparent; color: var(--color-text); border-color: var(--color-border); }
-.btn-ghost:hover { background: var(--color-bg-soft); }
-.btn-link { background: transparent; color: var(--color-accent); padding-left: 0; padding-right: 0; }
+/* Navbar responsive */
+.navbar { 
+  position: sticky; 
+  top: 0; 
+  z-index: 50; 
+  background: rgba(17,17,17,0.95); 
+  backdrop-filter: saturate(180%) blur(10px); 
+  border-bottom: 1px solid var(--color-border); 
+}
 
-/* Tarjetas y secciones */
-.card { background: #fff; border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); }
-.section { padding: 64px 0; }
-.section-muted { background: var(--color-bg-soft); }
+.navbar-inner { 
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  padding: 14px 0; 
+}
 
-/* Navbar & Footer */
-.navbar { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.85); backdrop-filter: saturate(180%) blur(10px); border-bottom: 1px solid var(--color-border); }
-.navbar-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
-.nav-links { display: none; gap: 20px; }
-.nav-link { color: var(--color-text-muted); font-weight: 600; }
-.nav-link.active { color: var(--color-text); }
-.nav-cta { margin-left: 8px; }
-@media (min-width: 768px) { .nav-links { display: flex; } .menu-btn { display: none; } }
+.nav-links { 
+  display: none; 
+  gap: 20px; 
+}
 
-.footer { border-top: 1px solid var(--color-border); padding: 32px 0; background: #fff; color: var(--color-text-muted); }
+.nav-link { 
+  color: var(--color-text-muted); 
+  font-weight: 600; 
+}
+
+.nav-link.active { 
+  color: var(--color-text); 
+}
+
+.nav-cta { 
+  margin-left: 8px; 
+}
+
+@media (min-width: 768px) { 
+  .nav-links { 
+    display: flex; 
+  } 
+  
+  .menu-btn { 
+    display: none; 
+  } 
+}
+
+/* Footer */
+.footer { 
+  border-top: 1px solid var(--color-border); 
+  padding: 32px 0; 
+  background: var(--color-bg); 
+  color: var(--color-text-muted); 
+}
+
+/* Container responsive */
+.container { 
+  width: 100%; 
+  max-width: var(--container-max); 
+  margin: 0 auto; 
+  padding: 0 20px; 
+}
 
 /* Animaciones básicas */
-.fade-in { opacity: 0; transform: translateY(8px); animation: fadeIn .4s ease forwards; }
-@keyframes fadeIn { to { opacity: 1; transform: none; } }
+.fade-in { 
+  opacity: 0; 
+  transform: translateY(8px); 
+  animation: fadeIn .4s ease forwards; 
+}
+
+@keyframes fadeIn { 
+  to { 
+    opacity: 1; 
+    transform: none; 
+  } 
+}
 
 

@@ -32,9 +32,9 @@ export const Button: React.FC<ButtonProps> = ({
   )
 
   const variantClasses = {
-    primary: 'bg-[#A3B18A] text-white hover:bg-[#8FA375] focus:ring-[#A3B18A]',
-    ghost: 'bg-transparent border border-[#B4A89F] text-[#5E5E5E] hover:bg-[#B4A89F] hover:text-white focus:ring-[#B4A89F]',
-    link: 'bg-transparent text-[#A3B18A] hover:text-[#8FA375] underline-offset-4 hover:underline focus:ring-[#A3B18A]'
+    primary: 'bg-[#1E90FF] text-white hover:bg-[#1E90FF] hover:brightness-110 focus:ring-[#1E90FF]',
+    ghost: 'bg-transparent text-white border border-[#444] hover:border-[#1E90FF] hover:bg-[#222] focus:ring-[#1E90FF]',
+    link: 'bg-transparent text-[#1E90FF] hover:text-[#1E90FF] hover:brightness-110 underline-offset-4 hover:underline focus:ring-[#1E90FF]'
   }
 
   const sizeClasses = {
@@ -50,7 +50,7 @@ export const Button: React.FC<ButtonProps> = ({
       initial="initial"
       whileHover="hover"
       whileTap="tap"
-      {...props}
+      {...(props as any)}
     >
       {children}
     </motion.button>

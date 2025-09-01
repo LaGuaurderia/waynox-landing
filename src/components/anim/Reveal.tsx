@@ -83,7 +83,7 @@ export const Reveal: React.FC<RevealProps> = ({
       variants={getVariants()}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, threshold, rootMargin }}
+      viewport={{ once, rootMargin }}
     >
       {children}
     </motion.div>

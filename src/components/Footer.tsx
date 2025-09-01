@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Logo from './Logo'
 
 const Footer: React.FC = () => {
@@ -7,9 +8,9 @@ const Footer: React.FC = () => {
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 16, flexWrap: 'wrap' }}>
         <Logo />
         <nav aria-label="Legal" style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-          <a className="nav-link" href="/privacidad.html">Privacidad</a>
-          <a className="nav-link" href="/">Términos</a>
-          <a className="nav-link" href="/contacto">Contacto</a>
+          <Link className="nav-link" to="/privacidad">Privacidad</Link>
+          <Link className="nav-link" to="/terminos">Términos</Link>
+          <Link className="nav-link" to="/contacto">Contacto</Link>
         </nav>
         <div style={{ color: 'var(--color-text-muted)' }}>
           © {new Date().getFullYear()} Waynox Studio

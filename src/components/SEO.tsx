@@ -15,7 +15,7 @@ export const SEOProvider: React.FC<{ children: React.ReactNode }> = ({ children 
 )
 
 const SEO: React.FC<SEOProps> = ({ title, description, image, url }) => {
-  const fullTitle = title ? `${title} · Waynox Studio` : 'Waynox Studio'
+  const fullTitle = title || 'Waynox Studio'
   const desc = description ?? 'Desarrollo de apps Flutter y webs Next.js para pymes y startups.'
   const img = image ?? '/favicon.ico'
   const pageUrl = url ?? 'https://waynox.studio'
