@@ -1,9 +1,8 @@
+@import './transitions.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Importar estilos de transiciones */
-@import './transitions.css';
 
 /* Variables de tema Waynox - Marca Azul Eléctrico, Negro y Blanco */
 :root {

@@ -21,18 +21,17 @@ export const CareCard: React.FC<CareCardProps> = ({ plan, delay = 0 }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true }}
-      className="rounded-2xl p-6 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(0,191,255,0.15)] group h-full flex flex-col"
+      className="group rounded-xl p-3 transition-all duration-200 border border-neutral-200 dark:border-neutral-800 hover:!border-[#00BFFF] hover:shadow-lg hover:shadow-[#00BFFF]/20 h-full flex flex-col"
       style={{
-        backgroundColor: 'var(--color-bg-soft)',
-        border: '1px solid var(--color-border)'
+        backgroundColor: 'var(--color-bg-soft)'
       }}
     >
       {/* Header */}
       <div 
-        className="text-center mb-6 pb-6"
+        className="text-center mb-3 pb-3"
         style={{ borderBottomColor: 'var(--color-border)' }}
       >
-        <div className="flex items-center justify-center mb-3">
+        <div className="flex items-center justify-center mb-1">
           <ShieldIcon 
             className="w-8 h-8 mr-2" 
             style={{ color: 'var(--color-accent)' }}
@@ -62,7 +61,7 @@ export const CareCard: React.FC<CareCardProps> = ({ plan, delay = 0 }) => {
       </div>
 
       {/* SLA destacado */}
-      <div className="mb-6">
+      <div className="mb-3">
         <div 
           className="inline-flex items-center space-x-2 rounded-full px-4 py-2"
           style={{
@@ -84,7 +83,7 @@ export const CareCard: React.FC<CareCardProps> = ({ plan, delay = 0 }) => {
       </div>
 
       {/* Características */}
-      <div className="space-y-3 flex-1">
+      <div className="space-y-1 flex-1">
         {plan.features.map((feature, index) => (
           <div key={index} className="flex items-start space-x-3">
             <CheckIcon 
@@ -103,7 +102,7 @@ export const CareCard: React.FC<CareCardProps> = ({ plan, delay = 0 }) => {
 
       {/* CTA */}
       <div 
-        className="mt-6 pt-6"
+        className="mt-3 pt-3"
         style={{ borderTopColor: 'var(--color-border)' }}
       >
         <button 

@@ -3,24 +3,20 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { 
   PriceCard, 
   CareCard, 
-  Notes, 
   FAQ, 
   ToggleTabs,
   FloatingCTA,
   TierGrid, 
-  MaintenanceGrid,
-  PricingInfo
+  MaintenanceGrid
 } from '../components/pricing'
 import { 
   mobileAppPlans, 
   maintenancePlans, 
-  contractNotes, 
   faqItems 
 } from '../data/mobileAppPlans'
 import { 
   webPlans, 
-  webMaintenancePlans, 
-  webContractNotes 
+  webMaintenancePlans
 } from '../data/webPlans'
 import { 
   CalculatorIcon,
@@ -30,6 +26,8 @@ import SEO from '../components/SEO'
 import { Button } from '../components/Button'
 
 type TabType = 'mobile' | 'web'
+
+
 
 const Tarifas: React.FC = () => {
   const [activeTab, setActiveTab] = useState<TabType>('mobile')
@@ -69,19 +67,22 @@ const Tarifas: React.FC = () => {
           >
             Tarifas y Planes 2025
           </motion.h1>
-          <motion.p 
-            className="text-lg lg:text-xl text-brand-gray max-w-3xl mx-auto"
+          <motion.p
+            className="group mt-4 text-lg lg:text-xl text-brand-gray text-center max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Paquetes cerrados con tiempos realistas y soporte continuo
+            <span className="relative inline-block transition-colors duration-200 group-hover:text-[#0EA5E9]">
+              Paquetes cerrados con tiempos realistas y soporte continuo
+              <span className="pointer-events-none absolute left-0 -bottom-1 h-px w-0 bg-[#0EA5E9] transition-all duration-200 ease-out group-hover:w-full" />
+            </span>
           </motion.p>
         </div>
       </section>
 
       {/* Tabs Navigation */}
-      <section className="bg-brand-black-soft py-6">
+      <section className="bg-brand-black pt-2 pb-2">
         <div className="container mx-auto px-4">
           <ToggleTabs activeTab={activeTab} onTabChange={handleTabChange} />
         </div>
@@ -98,14 +99,16 @@ const Tarifas: React.FC = () => {
             transition={{ duration: 0.3 }}
           >
             {/* Apps Móviles Section */}
-            <section className="bg-brand-black text-[var(--color-text)] py-16 lg:py-24">
+            <section className="bg-brand-black text-[var(--color-text)] pt-8 pb-16 lg:pt-12 lg:pb-24">
               <div className="container mx-auto px-4">
                 {/* Header */}
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl lg:text-4xl font-bold mb-8">
+                  <h2 className="text-3xl lg:text-4xl font-bold mb-4">
                     Apps móviles (Flutter / PWA) — Tarifas 2025
                   </h2>
-                  <PricingInfo />
+                  <p className="text-sm text-brand-gray">
+                    Pago: 40% inicio · 60% entrega
+                  </p>
                 </div>
 
                 {/* Plans Grid */}
@@ -130,7 +133,7 @@ const Tarifas: React.FC = () => {
                 </div>
 
                 {/* Maintenance Section */}
-                <div className="mb-20">
+                <div className="mb-8">
                   <h3 className="text-2xl lg:text-3xl font-bold text-center mb-12">
                     Mantenimiento mensual
                   </h3>
@@ -145,8 +148,7 @@ const Tarifas: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Notes Section */}
-                <Notes items={contractNotes} title="Notas importantes" />
+
               </div>
             </section>
           </motion.div>
@@ -161,14 +163,16 @@ const Tarifas: React.FC = () => {
             transition={{ duration: 0.3 }}
           >
             {/* Web Section */}
-            <section className="bg-brand-black text-[var(--color-text)] py-16 lg:py-24">
+            <section className="bg-brand-black text-[var(--color-text)] pt-8 pb-16 lg:pt-12 lg:pb-24">
               <div className="container mx-auto px-4">
                 {/* Header */}
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl lg:text-4xl font-bold mb-8">
+                  <h2 className="text-3xl lg:text-4xl font-bold mb-4">
                     Web (Next.js / SEO) — Tarifas 2025
                   </h2>
-                  <PricingInfo />
+                  <p className="text-sm text-brand-gray">
+                    Pago: 40% inicio · 60% entrega
+                  </p>
                 </div>
 
                 {/* Plans Grid */}
@@ -193,7 +197,7 @@ const Tarifas: React.FC = () => {
                 </div>
 
                 {/* Maintenance Section */}
-                <div className="mb-20">
+                <div className="mb-8">
                   <h3 className="text-2xl lg:text-3xl font-bold text-center mb-12">
                     Mantenimiento mensual
                   </h3>
@@ -208,8 +212,7 @@ const Tarifas: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Notes Section */}
-                <Notes items={webContractNotes} title="Notas importantes" />
+
               </div>
             </section>
           </motion.div>
@@ -217,7 +220,7 @@ const Tarifas: React.FC = () => {
       </AnimatePresence>
 
       {/* FAQ Section */}
-      <section className="bg-brand-black-soft text-[var(--color-text)] py-16 lg:py-24">
+      <section className="bg-brand-black-soft text-[var(--color-text)] pt-8 pb-16 lg:pt-12 lg:pb-24">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4">
@@ -254,8 +257,7 @@ const Tarifas: React.FC = () => {
                 className="border-2 border-brand-gray text-[var(--color-text)] hover:border-brand-blue hover:text-brand-blue font-semibold py-4 px-8 rounded-2xl text-lg transition-all duration-200"
                 size="lg"
               >
-                <MessageCircleIcon className="w-5 h-5 mr-2" />
-                Habla con un experto
+                Contáctanos
               </Button>
             </div>
           </motion.div>

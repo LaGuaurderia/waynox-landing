@@ -61,7 +61,7 @@ export const PriceCard: React.FC<PriceCardProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2, delay }}
       viewport={{ once: true }}
-      className={`relative h-full flex flex-col rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/60 dark:bg-neutral-900/40 p-6 text-neutral-800 dark:text-neutral-200`}
+      className={`group relative h-full flex flex-col rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/60 dark:bg-neutral-900/40 p-6 text-neutral-800 dark:text-neutral-200 transition-all duration-200 hover:!border-[#00BFFF] hover:shadow-lg hover:shadow-[#00BFFF]/20`}
     >
       {featured && (
         <div className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -77,7 +77,7 @@ export const PriceCard: React.FC<PriceCardProps> = ({
           <IconComponent className="w-5 h-5 text-primary-600 dark:text-primary-400" />
           <Badge className="px-2 py-0.5 text-xs">{plan}</Badge>
         </div>
-        <div className="mt-3 flex items-end gap-2">
+        <div className="mt-3 flex items-center gap-2">
           <span className="text-2xl font-bold text-primary-600 dark:text-primary-400 break-words">{price}</span>
           <span className="text-xs text-neutral-600 dark:text-neutral-400">+ IVA</span>
         </div>

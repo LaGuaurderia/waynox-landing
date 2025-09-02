@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { InfoIcon, AlertTriangleIcon, CheckCircleIcon, ShieldIcon, ClockIcon, HeartIcon } from 'lucide-react'
+import { InfoIcon, AlertTriangleIcon, CheckCircleIcon } from 'lucide-react'
 
 interface InfoNoteProps {
   title: string
@@ -89,12 +89,6 @@ export const InfoNote: React.FC<InfoNoteProps> = ({
 }
 
 export const PricingInfo: React.FC<PricingInfoProps> = ({ className = '' }) => {
-  const features = [
-    { icon: ShieldIcon, text: 'Planes cerrados' },
-    { icon: ClockIcon, text: 'Tiempos realistas' },
-    { icon: HeartIcon, text: 'Soporte continuo' }
-  ]
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -103,34 +97,6 @@ export const PricingInfo: React.FC<PricingInfoProps> = ({ className = '' }) => {
       viewport={{ once: true }}
       className={`text-center ${className}`}
     >
-      <div className="flex flex-wrap justify-center items-center gap-6 mb-4">
-        {features.map((feature, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
-            viewport={{ once: true }}
-            className="flex items-center space-x-2 px-4 py-2 rounded-full"
-            style={{
-              backgroundColor: 'rgba(0, 191, 255, 0.1)',
-              border: '1px solid var(--color-accent)'
-            }}
-          >
-            <feature.icon 
-              className="w-4 h-4" 
-              style={{ color: 'var(--color-accent)' }}
-            />
-            <span 
-              className="text-sm font-medium"
-              style={{ color: 'var(--color-text)' }}
-            >
-              {feature.text}
-            </span>
-          </motion.div>
-        ))}
-      </div>
-      
       <div 
         className="inline-flex items-center space-x-2 px-6 py-3 rounded-xl font-semibold"
         style={{
