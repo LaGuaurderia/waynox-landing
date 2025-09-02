@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { NavLink, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import React, { useEffect, useState, useRef } from 'react'
+import { NavLink, useLocation, useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import Logo from './Logo'
 import Button from './Button'
+import ThemeToggle from './ThemeToggle'
 import { navbarVariants } from '../lib/motionPresets'
 
 const links = [
   { to: '/', label: 'Inicio' },
-  { to: '/servicios', label: 'Servicios' },
-  { to: '/proyectos', label: 'Proyectos' },
-  { to: '/precios', label: 'Precios' },
+  { to: '/tarifas', label: 'Tarifas' },
   { to: '/nosotros', label: 'Nosotros' },
   { to: '/blog', label: 'Blog' },
   { to: '/contacto', label: 'Contacto' },
@@ -18,17 +17,44 @@ const links = [
 export const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [scrollProgress, setScrollProgress] = useState(0)
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
+
   const location = useLocation()
+  const navigate = useNavigate()
+  const navbarRef = useRef<HTMLElement>(null)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+
 
   useEffect(() => {
-    const handler = () => setIsScrolled(window.scrollY > 16)
+    const handler = () => {
+      const scrolled = window.scrollY > 16
+      setIsScrolled(scrolled)
+      
+      // Calcular progreso del scroll
+      const scrollTop = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      const progress = (scrollTop / docHeight) * 100
+      setScrollProgress(progress)
+    }
+    
     window.addEventListener('scroll', handler)
     return () => window.removeEventListener('scroll', handler)
   }, [])
 
   useEffect(() => {
-    if (open) document.body.style.overflow = 'hidden'
-    else document.body.style.overflow = ''
+    if (open) {
+      document.body.style.overflow = 'hidden'
+      // Enfocar el primer enlace del menú móvil
+      const firstLink = menuRef.current?.querySelector('a')
+      if (firstLink) {
+        setTimeout(() => firstLink.focus(), 100)
+      }
+    } else {
+      document.body.style.overflow = ''
+      setActiveDropdown(null)
+    }
   }, [open])
 
   // Cerrar menú al cambiar de ruta
@@ -36,140 +62,170 @@ export const Navbar: React.FC = () => {
     setOpen(false)
   }, [location.pathname])
 
+  // Navegación por teclado
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && open) {
+        setOpen(false)
+      }
+      
+      if (e.key === 'Tab' && open) {
+        const focusableElements = menuRef.current?.querySelectorAll(
+          'a, button, [tabindex]:not([tabindex="-1"])'
+        )
+        if (focusableElements) {
+          const firstElement = focusableElements[0] as HTMLElement
+          const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement
+          
+          if (e.shiftKey && document.activeElement === firstElement) {
+            e.preventDefault()
+            lastElement.focus()
+          } else if (!e.shiftKey && document.activeElement === lastElement) {
+            e.preventDefault()
+            firstElement.focus()
+          }
+        }
+      }
+    }
+
+    if (open) {
+      document.addEventListener('keydown', handleKeyDown)
+      return () => document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [open])
+
+  const handleDropdownToggle = (label: string) => {
+    setActiveDropdown(activeDropdown === label ? null : label)
+  }
+
   return (
-    <motion.header 
-      className="navbar fixed top-0 left-0 right-0 z-50 transition-all duration-300"
-      role="navigation" 
-      aria-label="Principal"
-      variants={navbarVariants}
-      animate={isScrolled ? 'scrolled' : 'top'}
-      initial="top"
-    >
-      <div className="container navbar-inner">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-        >
-          <Logo />
-        </motion.div>
+    <>
+      {/* Indicador de progreso */}
+      <motion.div
+        className="fixed top-0 left-0 w-full h-1 bg-brand-blue z-50 origin-left"
+        style={{ scaleX: scrollProgress / 100 }}
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: scrollProgress / 100 }}
+        transition={{ duration: 0.1 }}
+      />
+      
+      <header 
+        ref={navbarRef}
+        className="navbar fixed top-0 left-0 right-0 z-40 transition-all duration-300"
+        role="navigation" 
+        aria-label="Principal"
+      >
+        <div className="navbar-inner">
+          {/* Logo - Centrado */}
+          <div className="logo-container">
+            <Logo />
+          </div>
 
-        <nav className="nav-links hidden md:flex" aria-label="Enlaces principales">
-          {links.map((link, index) => (
-            <motion.div
-              key={link.to}
-              className="relative"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.1,
-                ease: [0.25, 0.46, 0.45, 0.94]
-              }}
-            >
-              <NavLink 
-                to={link.to} 
-                className={({ isActive }) => `nav-link relative ${isActive ? 'active' : ''}`}
+          {/* Navegación central - Solo visible en desktop */}
+          <nav className="nav-links" aria-label="Enlaces principales">
+            {links.map((link, index) => (
+              <div
+                key={link.to}
+                className="relative"
               >
-                {link.label}
-                {link.to === location.pathname && (
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#A3B18A]"
-                    layoutId="navbar-indicator"
-                    initial={false}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  />
-                )}
-              </NavLink>
-            </motion.div>
-          ))}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ 
-              duration: 0.6, 
-              delay: links.length * 0.1,
-              ease: [0.25, 0.46, 0.45, 0.94]
-            }}
-          >
-            <Button className="nav-cta" onClick={() => (window.location.href = '/precios')}>
-              Calcula tu presupuesto
-            </Button>
-          </motion.div>
-        </nav>
+                <NavLink 
+                  to={link.to} 
+                  className={({ isActive }) => `nav-link flex items-center justify-center px-6 py-4 rounded-lg transition-all duration-300 ${isActive ? 'active text-brand-blue bg-brand-blue/10' : 'text-brand-gray-light hover:text-black hover:bg-gray-100'}`}
+                  aria-label={`Ir a ${link.label}`}
+                >
+                  {link.label}
+                  {link.to === location.pathname && (
+                    <div
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-blue"
+                    />
+                  )}
+                </NavLink>
+              </div>
+            ))}
+          </nav>
 
-        <motion.button 
-          className="menu-btn md:hidden" 
-          aria-expanded={open} 
-          aria-controls="mobile-menu" 
-          aria-label="Abrir menú" 
-          onClick={() => setOpen((v) => !v)}
-          whileTap={{ scale: 0.95 }}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M3 6H21" stroke="#111" strokeWidth="2" strokeLinecap="round"/>
-            <path d="M3 12H21" stroke="#111" strokeWidth="2" strokeLinecap="round"/>
-            <path d="M3 18H21" stroke="#111" strokeWidth="2" strokeLinecap="round"/>
-          </svg>
-        </motion.button>
-      </div>
+          {/* Lado derecho - CTA y toggle de tema */}
+          <div className="nav-right">
+            {/* Botón CTA - Solo visible en desktop */}
+            <div className="hidden md:block">
+              <Button className="nav-cta" onClick={() => navigate('/tarifas')}>
+                Calcula tu presupuesto
+              </Button>
+            </div>
 
-      <AnimatePresence>
+            {/* Toggle de tema */}
+            <ThemeToggle />
+
+            {/* Botón de menú móvil */}
+            <button 
+              className="menu-btn md:hidden p-3 rounded-lg hover:bg-brand-black-soft/50 transition-colors duration-300" 
+              aria-expanded={open} 
+              aria-controls="mobile-menu" 
+              aria-label={open ? "Cerrar menú" : "Abrir menú"}
+              onClick={() => setOpen((v) => !v)}
+            >
+              <div className={`transition-transform duration-300 ${open ? 'rotate-180' : ''}`}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3 6H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M3 12H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </div>
+            </button>
+          </div>
+        </div>
+
+        {/* Menú móvil */}
         {open && (
-          <motion.div 
+          <div 
+            ref={menuRef}
             id="mobile-menu" 
             role="dialog" 
             aria-modal="true" 
-            className="container bg-white/95 backdrop-blur-sm border-t border-gray-100"
+            aria-label="Menú de navegación"
+            className="container bg-brand-black-soft/95 backdrop-blur-sm border-t border-brand-gray"
             style={{ paddingBottom: 16 }}
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <div className="card" style={{ padding: 16, marginTop: 8 }}>
+            <div className="card" style={{ padding: 20, marginTop: 12 }}>
+              {/* Breadcrumb móvil */}
+              <div className="mb-6 p-4 bg-brand-black/50 rounded-lg border border-brand-gray/30">
+                <div className="text-sm text-brand-gray-light mb-1">Estás en:</div>
+                <div className="text-black font-medium text-lg">
+                  {links.find(l => l.to === location.pathname)?.label || 'Inicio'}
+                </div>
+              </div>
+              
               {links.map((link, index) => (
-                <motion.div
+                <div
                   key={link.to}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ 
-                    duration: 0.4, 
-                    delay: index * 0.1,
-                    ease: [0.25, 0.46, 0.45, 0.94]
-                  }}
                 >
                   <NavLink 
                     to={link.to} 
-                    className={({ isActive }) => `nav-link block py-3 ${isActive ? 'active' : ''}`} 
+                    className={({ isActive }) => `nav-link-mobile flex items-center justify-center py-5 px-6 rounded-lg transition-all duration-300 ${isActive ? 'active bg-brand-blue/20 text-brand-blue border border-brand-blue/30' : 'hover:bg-brand-black/30 hover:text-white'}`} 
                     onClick={() => setOpen(false)}
+                    aria-label={`Ir a ${link.label}`}
                   >
-                    {link.label}
+                    <span className="text-base font-medium">{link.label}</span>
+                    {link.to === location.pathname && (
+                      <span className="ml-3 text-brand-blue text-lg">●</span>
+                    )}
                   </NavLink>
-                </motion.div>
+                </div>
               ))}
-              <motion.div 
-                style={{ marginTop: 12 }}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.4, 
-                  delay: links.length * 0.1,
-                  ease: [0.25, 0.46, 0.45, 0.94]
-                }}
-              >
-                <Button onClick={() => { setOpen(false); window.location.href = '/precios' }}>
+              
+              <div style={{ marginTop: 20 }}>
+                <Button 
+                  onClick={() => { setOpen(false); navigate('/tarifas') }}
+                  className="w-full justify-center py-4 text-base"
+                >
                   Calcula tu presupuesto
                 </Button>
-              </motion.div>
+              </div>
             </div>
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
-    </motion.header>
+      </header>
+    </>
   )
 }
 

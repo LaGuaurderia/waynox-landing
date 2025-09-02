@@ -1,30 +1,36 @@
 import React from 'react'
-import Section from '../components/Section'
-import Card from '../components/Card'
-import Button from '../components/Button'
 import SEO from '../components/SEO'
+import {
+  HeroAbout,
+  MissionValues,
+  TeamGrid,
+  ProcessInline,
+  WhyUs,
+  Timeline,
+  TechBadges,
+  SocialProof,
+  CTAWide,
+  FAQ
+} from '../components/about'
 
 const Nosotros: React.FC = () => {
   return (
     <>
-      <SEO title="Nosotros" description="Quiénes somos y cómo trabajamos" />
-      <Section>
-        <div className="container" style={{ display: 'grid', gap: 24, gridTemplateColumns: '1fr 1fr' }}>
-          <div>
-            <h1>Sobre nosotros</h1>
-            <p style={{ color: 'var(--color-text-muted)' }}>Equipo ágil con foco en resultados. Diseñamos y desarrollamos productos digitales eficientes.</p>
-            <ul>
-              <li>Transparencia</li>
-              <li>Eficiencia</li>
-              <li>Soporte</li>
-            </ul>
-            <Button onClick={() => (window.location.href = '/contacto')}>Hablemos</Button>
-          </div>
-          <Card>
-            <div style={{ height: 260, background: 'var(--color-bg-soft)' }} aria-hidden="true" />
-          </Card>
-        </div>
-      </Section>
+      <SEO 
+        title="Nosotros | Waynox Studio" 
+        description="Conoce nuestro equipo, misión y valores. Desarrollamos apps y webs que venden con estrategia, diseño y código. Entregas realistas en 4-8 semanas." 
+      />
+      
+      <HeroAbout />
+      <MissionValues />
+      <TeamGrid />
+      <ProcessInline />
+      <WhyUs />
+      <Timeline />
+      <TechBadges />
+      <SocialProof />
+      <FAQ />
+      <CTAWide />
     </>
   )
 }

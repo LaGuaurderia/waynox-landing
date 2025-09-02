@@ -60,7 +60,7 @@ export const StickyTOC: React.FC<StickyTOCProps> = ({ items, className = '' }) =
       className={`hidden lg:block ${className}`}
     >
       <div className="sticky top-24 space-y-2">
-        <h3 className="text-lg font-semibold text-[#F5F7FB] mb-4 px-4">
+        <h3 className="text-lg font-semibold text-brand-white mb-4 px-4">
           Navegación
         </h3>
         
@@ -68,15 +68,15 @@ export const StickyTOC: React.FC<StickyTOCProps> = ({ items, className = '' }) =
           <motion.button
             key={item.id}
             onClick={() => scrollToSection(item.id)}
-            className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-200 hover:bg-[#333] hover:border-[#1E90FF] ${
+            className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl text-left transition-all duration-200 hover:bg-brand-black-soft hover:border-brand-blue ${
               activeSection === item.id
-                ? 'bg-[#1E90FF] bg-opacity-20 border border-[#1E90FF] text-[#1E90FF]'
-                : 'text-[#F5F7FB] border border-transparent hover:text-white'
+                ? 'bg-brand-blue bg-opacity-20 border border-brand-blue text-brand-blue'
+                : 'text-brand-white border border-transparent hover:text-brand-white'
             }`}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            <div className="w-5 h-5 flex-shrink-0">
+            <div className="w-5 h-5 flex-shrink-0 text-brand-blue">
               {item.icon}
             </div>
             <span className="text-sm font-medium">{item.label}</span>

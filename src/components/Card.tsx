@@ -39,8 +39,8 @@ export const Card: React.FC<CardProps> = ({
   return (
     <motion.div
       className={clsx(
-        'bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300',
-        'hover:shadow-xl transform-gpu',
+        'bg-[var(--color-bg)] text-[var(--color-text)] border border-[var(--color-border)] rounded-xl shadow-md overflow-hidden transition-all duration-300',
+        'hover:shadow-xl transform-gpu hover:border-[var(--color-border-hover)]',
         className
       )}
       variants={variants}

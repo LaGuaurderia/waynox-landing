@@ -6,21 +6,22 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx}",
     "./examples/**/*.{js,ts,jsx,tsx}"
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
-        // Paleta consultora tech
-        'tech': {
-          bg: '#111111',
-          'bg-soft': '#222222',
-          'text': '#ffffff',
-          'text-muted': '#F5F7FB',
-          'accent': '#1E90FF',
-          'border': '#444444',
-          'border-hover': '#1E90FF',
+        // Paleta de marca Waynox - Azul eléctrico, Negro y Blanco
+        'brand': {
+          'blue': '#00BFFF',      // Azul eléctrico
+          'blue-dark': '#0099CC', // Azul eléctrico más oscuro para hover
+          'black': '#000000',     // Negro puro
+          'black-soft': '#111111', // Negro suave
+          'white': '#FFFFFF',     // Blanco puro
+          'gray': '#666666',      // Gris medio para texto secundario
+          'gray-light': '#CCCCCC', // Gris claro para bordes
         },
         // Estados
         'success': '#10B981',
@@ -84,8 +85,8 @@ export default {
         '8xl': '1440px',
       },
       boxShadow: {
-        'accent': '0 10px 30px rgba(30,144,255,0.15)',
-        'accent-lg': '0 20px 40px rgba(30,144,255,0.2)',
+        'accent': '0 10px 30px rgba(0,191,255,0.15)',
+        'accent-lg': '0 20px 40px rgba(0,191,255,0.2)',
       }
     },
   },

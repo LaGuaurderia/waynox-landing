@@ -32,9 +32,9 @@ export const Button: React.FC<ButtonProps> = ({
   )
 
   const variantClasses = {
-    primary: 'bg-[#1E90FF] text-white hover:bg-[#1E90FF] hover:brightness-110 focus:ring-[#1E90FF]',
-    ghost: 'bg-transparent text-white border border-[#444] hover:border-[#1E90FF] hover:bg-[#222] focus:ring-[#1E90FF]',
-    link: 'bg-transparent text-[#1E90FF] hover:text-[#1E90FF] hover:brightness-110 underline-offset-4 hover:underline focus:ring-[#1E90FF]'
+    primary: 'bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] focus:ring-[var(--color-accent)]',
+    ghost: 'bg-transparent text-[var(--color-text)] border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:bg-[var(--color-bg-soft)] focus:ring-[var(--color-accent)]',
+    link: 'bg-transparent text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] underline-offset-4 hover:underline focus:ring-[var(--color-accent)]'
   }
 
   const sizeClasses = {

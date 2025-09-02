@@ -53,10 +53,10 @@ export const AnchorNav: React.FC<AnchorNavProps> = ({ items, className = '' }) =
       transition={{ duration: 0.5 }}
       className={`hidden lg:block fixed left-6 top-1/2 transform -translate-y-1/2 z-40 ${className}`}
     >
-      <div className="bg-white/95 backdrop-blur-sm border border-[#D3E0D1] rounded-2xl p-4 shadow-xl">
+              <div className="bg-brand-white/95 backdrop-blur-sm border border-brand-gray rounded-2xl p-4 shadow-xl">
         <div className="flex items-center space-x-2 mb-4">
-          <AnchorIcon className="w-5 h-5 text-[#A3B18A]" />
-          <span className="text-[#5E5E5E] text-sm font-medium">Navegación</span>
+                      <AnchorIcon className="w-5 h-5 text-brand-blue" />
+                      <span className="text-brand-black text-sm font-medium">Navegación</span>
         </div>
         
         <ul className="space-y-2 list-none m-0 p-0" style={{ listStyle: 'none', padding: 0, margin: 0 }}>
@@ -66,8 +66,8 @@ export const AnchorNav: React.FC<AnchorNavProps> = ({ items, className = '' }) =
                 onClick={() => scrollToSection(item.id)}
                 className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all duration-200 ${
                   activeSection === item.id
-                    ? 'bg-[#A3B18A] text-white'
-                    : 'text-[#5E5E5E] hover:bg-[#D3E0D1] hover:text-[#5E5E5E]'
+                    ? 'bg-brand-blue text-white'
+                    : 'text-brand-black hover:bg-brand-gray-light hover:text-brand-black'
                 }`}
               >
                 <div className="flex items-center space-x-2">

@@ -32,15 +32,13 @@ export const mobileAppPlans: MobileAppPlan[] = [
     scope: '1 flujo (reservas simple o catálogo), hasta 3 pantallas',
     features: [
       '1 ronda de cambios (máx. 10 puntos)',
-      'Analítica básica',
-      'Diseño responsive',
-      'Testing básico'
+      'Analítica básica'
     ],
     integrations: [],
     backend: 'Sin backend complejo (o Firebase sencillo)',
     publication: 'PWA (para stores ver Pro/Deluxe)',
     ctaText: 'Solicitar App Lite',
-    ctaLink: '/contacto'
+    ctaLink: '/contacto?plan=app-lite'
   },
   {
     plan: 'Start',
@@ -50,14 +48,13 @@ export const mobileAppPlans: MobileAppPlan[] = [
     features: [
       '1 integración (Calendly / Sheets / Brevo)',
       'Analítica básica',
-      'Diseño base personalizado',
-      '2 rondas de cambios'
+      'Diseño base'
     ],
     integrations: ['Calendly', 'Google Sheets', 'Brevo'],
     backend: 'Firebase (Firestore + Auth)',
     publication: 'PWA + Android APK',
     ctaText: 'Solicitar App Start',
-    ctaLink: '/contacto'
+    ctaLink: '/contacto?plan=app-start'
   },
   {
     plan: 'Pro',
@@ -67,14 +64,13 @@ export const mobileAppPlans: MobileAppPlan[] = [
     features: [
       '2–3 integraciones',
       'Analítica por eventos',
-      'Notificaciones push',
-      '3 rondas de cambios'
+      'Publicación en stores: Google Play incluida; Apple Developer (99 $/año) a cargo del cliente'
     ],
     integrations: ['Calendly', 'Google Sheets', 'Brevo', 'Stripe', 'WhatsApp API'],
     backend: 'Firebase + Backend personalizado',
     publication: 'Google Play incluida; Apple Developer (99 $/año) a cargo del cliente',
     ctaText: 'Solicitar App Pro',
-    ctaLink: '/contacto',
+    ctaLink: '/contacto?plan=app-pro',
     featured: true
   },
   {
@@ -93,7 +89,7 @@ export const mobileAppPlans: MobileAppPlan[] = [
     backend: 'Backend escalable + Firebase',
     publication: 'Google Play + App Store (cuentas incluidas)',
     ctaText: 'Solicitar App Deluxe',
-    ctaLink: '/contacto'
+    ctaLink: '/contacto?plan=app-deluxe'
   }
 ]
 

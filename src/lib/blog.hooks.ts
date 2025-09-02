@@ -1,0 +1,26 @@
+import { useMemo } from 'react';
+import { useParams } from 'react-router-dom';
+import { blogPosts } from './blog.data';
+import { getRelatedPosts } from './blog.utils';
+import { BlogPostMeta } from './blog.types';
+
+export const useBlogPost = () => {
+  const { slug } = useParams<{ slug: string }>();
+  
+  const post = useMemo(() => {
+    return blogPosts.find(p => p.slug === slug);
+  }, [slug]);
+
+  const relatedPosts = useMemo(() => {
+    if (!post) return [];
+    return getRelatedPosts(post, blogPosts, 3);
+  }, [post]);
+
+  return { post, relatedPosts, slug };
+};
+
+export const useBlogFilters = () => {
+  // Aquí podrías implementar lógica para persistir filtros en localStorage
+  // o sincronizar con la URL
+  return {};
+};

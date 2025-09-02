@@ -1,19 +1,27 @@
 import React from 'react'
-import clsx from 'clsx'
+import { motion } from 'framer-motion'
 
 type BadgeProps = {
   children: React.ReactNode
   className?: string
+  style?: React.CSSProperties
 }
 
-const Badge: React.FC<BadgeProps> = ({ children, className }) => {
+export const Badge: React.FC<BadgeProps> = ({ children, className = '', style = {} }) => {
   return (
-    <span className={clsx(
-      'inline-block px-3 py-1 text-xs font-semibold rounded-full bg-[#1E90FF] text-white border border-transparent',
-      className
-    )}>
+    <motion.span
+      className={`inline-block px-3 py-1 text-xs font-semibold rounded-full border border-transparent ${className}`}
+      style={{
+        backgroundColor: 'var(--color-accent)',
+        color: 'white',
+        ...style
+      }}
+      initial={{ opacity: 0, scale: 0.8 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.2 }}
+    >
       {children}
-    </span>
+    </motion.span>
   )
 }
 

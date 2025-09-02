@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import ScrollToTop from '../router/ScrollToTop'
+import PageTransition from '../components/PageTransition'
 import { useSmoothScroll } from '../lib/hooks/useSmoothScroll'
 
 export const Container: React.FC<{ children: React.ReactNode }> = ({ children }) => (
@@ -12,26 +13,38 @@ export const Container: React.FC<{ children: React.ReactNode }> = ({ children })
 
 const MainLayout: React.FC = () => {
   const location = useLocation()
+  const [scrollProgress, setScrollProgress] = useState(0)
   
   // Inicializar scroll suave
   useSmoothScroll()
 
+  // Indicador de scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight = document.documentElement.scrollHeight - window.innerHeight
+      const progress = (window.scrollY / totalHeight) * 100
+      setScrollProgress(progress)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <div className="min-h-screen bg-[#E9E5D6]">
+      {/* Indicador de scroll visual */}
+      <motion.div
+        className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 z-50 origin-left"
+        style={{ scaleX: scrollProgress / 100 }}
+        transition={{ duration: 0.1 }}
+      />
+      
       <ScrollToTop />
       <Navbar />
-      <main className="pt-20"> {/* Añadir padding-top para el navbar fijo */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={location.pathname}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            <Outlet />
-          </motion.div>
-        </AnimatePresence>
+      <main className="pt-24">
+        <PageTransition pathname={location.pathname}>
+          <Outlet />
+        </PageTransition>
       </main>
       <Footer />
     </div>

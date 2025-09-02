@@ -29,7 +29,7 @@ export const Reveal: React.FC<RevealProps> = ({
     return <div className={className}>{children}</div>
   }
 
-  // Variants basados en la dirección
+  // Variants basados en la dirección con animaciones más llamativas
   const getVariants = (): Variants => {
     const baseVariants = {
       hidden: {
@@ -38,7 +38,7 @@ export const Reveal: React.FC<RevealProps> = ({
       visible: {
         opacity: 1,
         transition: {
-          duration: 0.6,
+          duration: 0.8,
           delay,
           ease: [0.25, 0.46, 0.45, 0.94],
         },
@@ -49,29 +49,33 @@ export const Reveal: React.FC<RevealProps> = ({
       case 'up':
         return {
           ...baseVariants,
-          hidden: { ...baseVariants.hidden, y: 20 },
-          visible: { ...baseVariants.visible, y: 0 },
+          hidden: { ...baseVariants.hidden, y: 60, scale: 0.9 },
+          visible: { ...baseVariants.visible, y: 0, scale: 1 },
         }
       case 'down':
         return {
           ...baseVariants,
-          hidden: { ...baseVariants.hidden, y: -20 },
-          visible: { ...baseVariants.visible, y: 0 },
+          hidden: { ...baseVariants.hidden, y: -60, scale: 0.9 },
+          visible: { ...baseVariants.visible, y: 0, scale: 1 },
         }
       case 'left':
         return {
           ...baseVariants,
-          hidden: { ...baseVariants.hidden, x: -30 },
-          visible: { ...baseVariants.visible, x: 0 },
+          hidden: { ...baseVariants.hidden, x: -80, scale: 0.9 },
+          visible: { ...baseVariants.visible, x: 0, scale: 1 },
         }
       case 'right':
         return {
           ...baseVariants,
-          hidden: { ...baseVariants.hidden, x: 30 },
-          visible: { ...baseVariants.visible, x: 0 },
+          hidden: { ...baseVariants.hidden, x: 80, scale: 0.9 },
+          visible: { ...baseVariants.visible, x: 0, scale: 1 },
         }
       case 'none':
-        return baseVariants
+        return {
+          ...baseVariants,
+          hidden: { ...baseVariants.hidden, scale: 0.8 },
+          visible: { ...baseVariants.visible, scale: 1 },
+        }
       default:
         return fadeInUp
     }
@@ -83,7 +87,8 @@ export const Reveal: React.FC<RevealProps> = ({
       variants={getVariants()}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, rootMargin }}
+      viewport={{ once, rootMargin, threshold }}
+      style={{ willChange: 'opacity, transform' }}
     >
       {children}
     </motion.div>

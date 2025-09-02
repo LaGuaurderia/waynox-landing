@@ -29,8 +29,8 @@ export const FAQ: React.FC<FAQProps> = ({ items, title = "Preguntas Frecuentes" 
     >
       {title && (
         <div className="flex items-center space-x-3 mb-6">
-          <HelpCircleIcon className="w-6 h-6 lg:w-8 lg:h-8 text-[#1E90FF]" />
-          <h2 className="text-xl lg:text-2xl font-bold text-white">{title}</h2>
+          <HelpCircleIcon className="w-6 h-6 lg:w-8 lg:h-8 text-brand-blue" />
+          <h2 className="text-xl lg:text-2xl font-bold text-black">{title}</h2>
         </div>
       )}
       
@@ -42,20 +42,20 @@ export const FAQ: React.FC<FAQProps> = ({ items, title = "Preguntas Frecuentes" 
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: index * 0.1 }}
             viewport={{ once: true }}
-            className="border border-[#444] rounded-lg overflow-hidden bg-[#222] shadow-sm hover:border-[#1E90FF] transition-colors duration-200"
+            className="border border-brand-gray rounded-lg overflow-hidden bg-brand-black-soft shadow-sm hover:border-brand-blue transition-colors duration-200"
           >
             <button
               onClick={() => toggleItem(index)}
-              className="w-full px-4 lg:px-6 py-4 text-left flex items-center justify-between hover:bg-[#333] transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-[#1E90FF] focus:ring-opacity-50"
+                              className="w-full px-4 lg:px-6 py-4 text-left flex items-center justify-between hover:bg-brand-gray transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-brand-blue focus:ring-opacity-50"
               aria-expanded={openIndex === index}
               aria-controls={`faq-answer-${index}`}
             >
-              <span className="text-white font-medium pr-4 text-sm lg:text-base">{item.question}</span>
+              <span className="text-black font-medium pr-4 text-sm lg:text-base">{item.question}</span>
               <motion.div
                 animate={{ rotate: openIndex === index ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
               >
-                <ChevronDownIcon className="w-4 h-4 lg:w-5 lg:h-5 text-[#1E90FF] flex-shrink-0" />
+                <ChevronDownIcon className="w-4 h-4 lg:w-5 lg:h-5 text-brand-blue flex-shrink-0" />
               </motion.div>
             </button>
             
@@ -72,7 +72,7 @@ export const FAQ: React.FC<FAQProps> = ({ items, title = "Preguntas Frecuentes" 
                   aria-labelledby={`faq-question-${index}`}
                 >
                   <div className="px-4 lg:px-6 pb-4">
-                    <p className="text-[#F5F7FB] leading-relaxed text-sm lg:text-base">{item.answer}</p>
+                    <p className="text-brand-white leading-relaxed text-sm lg:text-base">{item.answer}</p>
                   </div>
                 </motion.div>
               )}

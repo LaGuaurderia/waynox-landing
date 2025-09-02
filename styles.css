@@ -3,10 +3,10 @@
 /* CSS Variables / Design Tokens */
 :root {
   /* Colors */
-  --bg: #0B0B0B;
-  --bg-2: #1F1F1F;
-  --text: #FFFFFF;
-  --muted: #6B7280;
+  --bg: #FFFFFF;
+  --bg-2: #F8F9FA;
+  --text: #000000;
+  --muted: #333333;
   --line: #E5E7EB;
   --accent: #0EA5E9;
   --accent-hover: #0284C7;

@@ -38,5 +38,7 @@ export default defineConfig(({ mode }) => {
     optimizeDeps: {
       include: ['framer-motion'],
     },
+    // Soporte para MDX
+    assetsInclude: ['**/*.mdx'],
   }
 })

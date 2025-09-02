@@ -12,15 +12,15 @@ export const useSmoothScroll = () => {
       return // No inicializar Lenis si se prefiere movimiento reducido
     }
 
-    // Inicializar Lenis
+    // Inicializar Lenis con configuración más visible
     lenisRef.current = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing suave
+      duration: 1.8, // Duración más larga para que sea más visible
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -8 * t)), // Easing más suave y visible
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      wheelMultiplier: 0.8, // Reducir para que sea más suave
+      touchMultiplier: 1.5,
       infinite: false,
     })
 
@@ -35,7 +35,7 @@ export const useSmoothScroll = () => {
 
     requestAnimationFrame(raf)
 
-    // Configurar scroll suave para anchors
+    // Configurar scroll suave para anchors con efecto más visible
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement
       const anchor = target.closest('a[href^="#"]')
@@ -47,8 +47,8 @@ export const useSmoothScroll = () => {
           const targetElement = document.querySelector(href)
           if (targetElement && lenisRef.current) {
             lenisRef.current.scrollTo(targetElement as HTMLElement, {
-              duration: 1.5,
-              easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+              duration: 2.0, // Duración más larga para el efecto
+              easing: (t) => Math.min(1, 1.001 - Math.pow(2, -8 * t))
             })
           }
         }
@@ -56,6 +56,25 @@ export const useSmoothScroll = () => {
     }
 
     document.addEventListener('click', handleAnchorClick)
+
+    // Añadir efecto visual al scroll
+    const addScrollEffects = () => {
+      const sections = document.querySelectorAll('section, .section')
+      sections.forEach((section) => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('section-visible')
+            }
+          })
+        }, { threshold: 0.1 })
+        
+        observer.observe(section)
+      })
+    }
+
+    // Ejecutar después de que el DOM esté listo
+    setTimeout(addScrollEffects, 100)
 
     return () => {
       if (lenisRef.current) {

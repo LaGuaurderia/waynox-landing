@@ -22,15 +22,27 @@ Sitio corporativo en español para Waynox Studio. Stack: React + Vite, enrutado 
 - `npm run lint`: análisis de código
 - `npm run type-check`: verificación de tipos TypeScript
 
+### 🎨 Generador de Portadas de Blog
+
+- `npm run covers:one -- --slug=nombre-post`: Generar portada para un post específico
+- `npm run covers:all`: Generar portadas para todos los posts
+- `npm run covers:force`: Regenerar todas las portadas existentes
+- `npm run covers:dry`: Modo dry-run (solo mostrar prompts)
+
+📖 **Documentación completa**: Ver `README_GENERADOR_PORTADAS.md`
+
 ## Variables de entorno
 
 Crear `.env` (o `.env.local`):
 
 ```
 VITE_FORMSPARK_ID=xxxxx
+OPENAI_API_KEY=tu_api_key_aqui
 ```
 
 Si no se define, el formulario de contacto usará un fallback mock con `console.log` y un mensaje de éxito.
+
+**Nota**: Para el generador de portadas, es obligatorio configurar `OPENAI_API_KEY`. Ver `README_GENERADOR_PORTADAS.md` para más detalles.
 
 ## Estructura principal
 

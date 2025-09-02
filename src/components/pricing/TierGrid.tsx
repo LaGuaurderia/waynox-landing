@@ -15,7 +15,7 @@ export const TierGrid: React.FC<TierGridProps> = ({ plans }) => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true }}
-        className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 lg:gap-8"
+        className="grid grid-cols-1 gap-6 max-w-4xl mx-auto"
       >
         {plans.map((plan, index) => (
           <motion.div
