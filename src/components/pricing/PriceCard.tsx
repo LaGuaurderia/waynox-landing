@@ -57,254 +57,87 @@ export const PriceCard: React.FC<PriceCardProps> = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
+      transition={{ duration: 0.2, delay }}
       viewport={{ once: true }}
-      className={`relative p-6 rounded-2xl border-2 transition-all duration-300 ${
-        featured 
-          ? 'border-brand-blue bg-brand-black-soft shadow-[0_10px_30px_rgba(0,191,255,0.15)]' 
-          : 'border-brand-gray bg-brand-black hover:border-brand-blue hover:bg-brand-black-soft hover:shadow-[0_10px_30px_rgba(0,191,255,0.1)]'
-      }`}
-      style={{
-        backgroundColor: 'var(--color-bg-soft)',
-        borderColor: featured ? 'var(--color-accent)' : 'var(--color-border)',
-        color: 'var(--color-text)'
-      }}
+      className={`relative h-full flex flex-col rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/60 dark:bg-neutral-900/40 p-6 text-neutral-800 dark:text-neutral-200`}
     >
       {featured && (
-        <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-          <Badge 
-            className="px-4 py-1 text-sm font-semibold"
-            style={{
-              backgroundColor: 'var(--color-accent)',
-              color: 'white'
-            }}
-          >
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+          <Badge className="px-3 py-1 rounded-full text-xs bg-primary-600 text-white dark:bg-primary-400 dark:text-black shadow">
             Más Popular
           </Badge>
         </div>
       )}
 
-      {/* Header compacto horizontal */}
-      <div 
-        className="flex items-center justify-between mb-6 pb-4"
-        style={{ borderBottomColor: 'var(--color-border)' }}
-      >
-        <div className="flex items-center space-x-4">
-          <IconComponent 
-            className="w-8 h-8" 
-            style={{ color: 'var(--color-accent)' }}
-          />
+      {/* Header */}
+      <div className="min-h-[110px] pb-4 mb-4 border-b border-neutral-200 dark:border-neutral-800 text-balance">
+        <div className="flex items-center gap-3">
+          <IconComponent className="w-5 h-5 text-primary-600 dark:text-primary-400" />
+          <Badge className="px-2 py-0.5 text-xs">{plan}</Badge>
+        </div>
+        <div className="mt-3 flex items-end gap-2">
+          <span className="text-2xl font-bold text-primary-600 dark:text-primary-400 break-words">{price}</span>
+          <span className="text-xs text-neutral-600 dark:text-neutral-400">+ IVA</span>
+        </div>
+      </div>
+
+      {/* Meta */}
+      <div className="grid grid-cols-2 gap-y-2 text-sm min-h-[120px] text-neutral-600 dark:text-neutral-400">
+        <div className="inline-flex items-start gap-2 leading-6">
+          <ClockIcon className="w-4 h-4 mt-0.5" />
           <div>
-            <Badge 
-              className="border px-3 py-1 text-sm font-semibold mb-1"
-              style={{
-                backgroundColor: 'var(--color-border)',
-                borderColor: 'var(--color-border)',
-                color: 'var(--color-text)'
-              }}
-            >
-              {plan}
-            </Badge>
-            <div 
-              className="text-2xl font-bold"
-              style={{ color: 'var(--color-text)' }}
-            >
-              {price}
-            </div>
-            <span 
-              className="text-xs"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              + IVA
-            </span>
+            <div className="text-xs font-medium text-neutral-800 dark:text-neutral-200">Entrega</div>
+            <div className="text-xs break-words">{delivery}</div>
           </div>
         </div>
-        
-        <div className="text-right">
+        <div className="inline-flex items-start gap-2 leading-6">
+          <LayersIcon className="w-4 h-4 mt-0.5" />
+          <div>
+            <div className="text-xs font-medium text-neutral-800 dark:text-neutral-200">Alcance</div>
+            <div className="text-xs break-words">{scope}</div>
+          </div>
+        </div>
+        <div className="inline-flex items-start gap-2 leading-6">
+          <ServerIcon className="w-4 h-4 mt-0.5" />
+          <div>
+            <div className="text-xs font-medium text-neutral-800 dark:text-neutral-200">Backend</div>
+            <div className="text-xs break-words">{backend}</div>
+          </div>
+        </div>
+        <div className="inline-flex items-start gap-2 leading-6">
+          <StoreIcon className="w-4 h-4 mt-0.5" />
+          <div>
+            <div className="text-xs font-medium text-neutral-800 dark:text-neutral-200">Publicación</div>
+            <div className="text-xs break-words">{publication}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Features */}
+      <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-800 min-h-[140px] text-sm">
+        <div className="text-xs font-medium text-neutral-800 dark:text-neutral-200 mb-2">Incluye</div>
+        <ul className="space-y-2 marker:text-primary-600">
+          {features.slice(0, 4).map((feature, index) => (
+            <li key={index} className="inline-flex items-center gap-2 text-sm leading-6">
+              <CheckIcon className="w-4 h-4" />
+              <span className="text-neutral-600 dark:text-neutral-400 break-words line-clamp-2">{feature}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* CTA */}
+      <div className="mt-auto pt-4">
+        <div className="flex flex-col sm:flex-row gap-3">
           <Button
             onClick={() => window.location.href = ctaLink}
-            className="font-semibold py-2 px-4 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-            style={{
-              backgroundColor: 'var(--color-accent)',
-              color: 'white'
-            }}
+            className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-4 py-2 rounded-xl bg-primary-600 text-white hover:brightness-95 transition-colors"
             size="md"
           >
             {ctaText}
           </Button>
-        </div>
-      </div>
-
-      {/* Contenido en grid compacto */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
-        {/* Entrega */}
-        <div className="flex items-start space-x-2">
-          <ClockIcon 
-            className="w-4 h-4 mt-0.5 flex-shrink-0" 
-            style={{ color: 'var(--color-accent)' }}
-          />
-          <div>
-            <span 
-              className="font-medium text-xs"
-              style={{ color: 'var(--color-text)' }}
-            >
-              Entrega:
-            </span>
-            <span 
-              className="text-xs block"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              {delivery}
-            </span>
-          </div>
-        </div>
-
-        {/* Alcance */}
-        <div className="flex items-start space-x-2">
-          <LayersIcon 
-            className="w-4 h-4 mt-0.5 flex-shrink-0" 
-            style={{ color: 'var(--color-accent)' }}
-          />
-          <div>
-            <span 
-              className="font-medium text-xs"
-              style={{ color: 'var(--color-text)' }}
-            >
-              Alcance:
-            </span>
-            <span 
-              className="text-xs block"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              {scope}
-            </span>
-          </div>
-        </div>
-
-        {/* Backend */}
-        <div className="flex items-start space-x-2">
-          <ServerIcon 
-            className="w-4 h-4 mt-0.5 flex-shrink-0" 
-            style={{ color: 'var(--color-accent)' }}
-          />
-          <div>
-            <span 
-              className="font-medium text-xs"
-              style={{ color: 'var(--color-text)' }}
-            >
-              Backend:
-            </span>
-            <span 
-              className="text-xs block"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              {backend}
-            </span>
-          </div>
-        </div>
-
-        {/* Publicación */}
-        <div className="flex items-start space-x-2">
-          <StoreIcon 
-            className="w-4 h-4 mt-0.5 flex-shrink-0" 
-            style={{ color: 'var(--color-accent)' }}
-          />
-          <div>
-            <span 
-              className="font-medium text-xs"
-              style={{ color: 'var(--color-text)' }}
-            >
-              Publicación:
-            </span>
-            <span 
-              className="text-xs block"
-              style={{ color: 'var(--color-text-muted)' }}
-            >
-              {publication}
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Características e integraciones en una fila */}
-      <div 
-        className="mt-4 pt-4"
-        style={{ borderTopColor: 'var(--color-border)' }}
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {/* Características */}
-          <div>
-            <span 
-              className="font-medium text-xs block mb-2"
-              style={{ color: 'var(--color-text)' }}
-            >
-              Incluye:
-            </span>
-            <div className="space-y-1">
-              {features.slice(0, 3).map((feature, index) => (
-                <div key={index} className="flex items-center space-x-2">
-                  <CheckIcon 
-                    className="w-3 h-3 flex-shrink-0" 
-                    style={{ color: 'var(--color-accent)' }}
-                  />
-                  <span 
-                    className="text-xs"
-                    style={{ color: 'var(--color-text-muted)' }}
-                  >
-                    {feature}
-                  </span>
-                </div>
-              ))}
-              {features.length > 3 && (
-                <span 
-                  className="text-xs"
-                  style={{ color: 'var(--color-text-muted)' }}
-                >
-                  +{features.length - 3} más
-                </span>
-              )}
-            </div>
-          </div>
-
-          {/* Integraciones */}
-          <div>
-            <span 
-              className="font-medium text-xs block mb-2"
-              style={{ color: 'var(--color-text)' }}
-            >
-              Integraciones:
-            </span>
-            {integrations.length > 0 ? (
-              <div className="space-y-1">
-                {integrations.slice(0, 2).map((integration, index) => (
-                  <span 
-                    key={index} 
-                    className="text-xs block"
-                    style={{ color: 'var(--color-text-muted)' }}
-                  >
-                    {integration}
-                  </span>
-                ))}
-                {integrations.length > 2 && (
-                  <span 
-                    className="text-xs"
-                    style={{ color: 'var(--color-text-muted)' }}
-                  >
-                    +{integrations.length - 2} más
-                  </span>
-                )}
-              </div>
-            ) : (
-              <span 
-                className="text-xs"
-                style={{ color: 'var(--color-text-muted)' }}
-              >
-                Sin integraciones
-              </span>
-            )}
-          </div>
         </div>
       </div>
     </motion.div>

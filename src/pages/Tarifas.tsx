@@ -59,10 +59,10 @@ const Tarifas: React.FC = () => {
       />
       
       {/* Hero Section */}
-      <section className="bg-brand-black text-[var(--color-text)] py-20 lg:py-32">
+      <section className="bg-brand-black text-[var(--color-text)] py-14 lg:py-20">
         <div className="container mx-auto px-4 text-center">
           <motion.h1 
-            className="text-4xl lg:text-6xl font-bold mb-6"
+            className="text-3xl lg:text-4xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
@@ -70,44 +70,18 @@ const Tarifas: React.FC = () => {
             Tarifas y Planes 2025
           </motion.h1>
           <motion.p 
-            className="text-xl lg:text-2xl text-brand-gray max-w-3xl mx-auto mb-12"
+            className="text-lg lg:text-xl text-brand-gray max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             Paquetes cerrados con tiempos realistas y soporte continuo
           </motion.p>
-          
-          {/* CTA Global */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
-          >
-            <Button
-              onClick={scrollToContact}
-              className="bg-brand-blue hover:bg-brand-blue-dark text-[var(--color-text)] font-semibold py-4 px-8 rounded-2xl text-lg transition-all duration-200 hover:scale-105"
-              size="lg"
-            >
-              <CalculatorIcon className="w-5 h-5 mr-2" />
-              Calcula tu presupuesto
-            </Button>
-            <Button
-              onClick={scrollToContact}
-              variant="ghost"
-              className="border-2 border-brand-gray text-[var(--color-text)] hover:border-brand-blue hover:text-brand-blue font-semibold py-4 px-8 rounded-2xl text-lg transition-all duration-200"
-              size="lg"
-            >
-              <MessageCircleIcon className="w-5 h-5 mr-2" />
-              Consulta personalizada
-            </Button>
-          </motion.div>
         </div>
       </section>
 
       {/* Tabs Navigation */}
-      <section className="bg-brand-black-soft py-12">
+      <section className="bg-brand-black-soft py-6">
         <div className="container mx-auto px-4">
           <ToggleTabs activeTab={activeTab} onTabChange={handleTabChange} />
         </div>
@@ -135,7 +109,7 @@ const Tarifas: React.FC = () => {
                 </div>
 
                 {/* Plans Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-20">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20 auto-rows-fr">
                   {mobileAppPlans.map((plan, index) => (
                     <PriceCard
                       key={plan.plan}
@@ -198,7 +172,7 @@ const Tarifas: React.FC = () => {
                 </div>
 
                 {/* Plans Grid */}
-                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6 mb-20">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-20 auto-rows-fr">
                   {webPlans.map((plan, index) => (
                     <PriceCard
                       key={plan.plan}
@@ -273,15 +247,7 @@ const Tarifas: React.FC = () => {
             <p className="text-xl text-brand-gray mb-8">
               Nuestros expertos están listos para ayudarte a elegir el plan perfecto y comenzar el desarrollo
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                onClick={scrollToContact}
-                className="bg-brand-blue hover:bg-brand-blue-dark text-[var(--color-text)] font-semibold py-4 px-8 rounded-2xl text-lg transition-all duration-200 hover:scale-105"
-                size="lg"
-              >
-                <CalculatorIcon className="w-5 h-5 mr-2" />
-                Calcula tu presupuesto
-              </Button>
+            <div className="flex justify-center">
               <Button
                 onClick={scrollToContact}
                 variant="ghost"
