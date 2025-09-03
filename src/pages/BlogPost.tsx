@@ -80,74 +80,45 @@ const BlogPost: React.FC = () => {
         <PostHeader post={post} />
 
         {/* Contenido principal */}
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+        <div className="flex flex-col lg:flex-row gap-12">
           {/* Contenido del post */}
           <motion.div
-            ref={contentRef}
-            className="lg:col-span-3 prose prose-invert prose-lg max-w-none"
+            className="lg:flex-1 lg:max-w-4xl prose prose-invert prose-lg max-w-none"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
           >
             {/* Aquí iría el contenido MDX renderizado */}
-            <div className="bg-gray-800 rounded-lg p-8 border border-gray-700">
-              <h2>Contenido del artículo</h2>
-              <p>
-                Este es un placeholder para el contenido MDX del artículo "{post.title}".
-                En una implementación real, aquí se renderizaría el contenido MDX compilado.
-              </p>
-              
-              <h3>Características del artículo</h3>
-              <ul>
-                <li><strong>Categoría:</strong> {post.category}</li>
-                <li><strong>Autor:</strong> {post.author}</li>
-                <li><strong>Fecha:</strong> {post.date}</li>
-                <li><strong>Tiempo de lectura:</strong> {post.readingTime}</li>
-              </ul>
-
-              <h3>Tags</h3>
-              <p>Este artículo está etiquetado con: {post.tags.join(', ')}</p>
-
-              <h3>Descripción</h3>
-              <p>{post.description}</p>
-
-              <h3>Contenido de ejemplo</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor 
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis 
-                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-
-              <h4>Subtítulo de ejemplo</h4>
-              <p>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore 
-                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt 
-                in culpa qui officia deserunt mollit anim id est laborum.
-              </p>
-
-              <h3>Lista de elementos</h3>
-              <ul>
-                <li>Primer elemento de la lista</li>
-                <li>Segundo elemento con más texto para probar el wrapping</li>
-                <li>Tercer elemento</li>
-              </ul>
-
-              <h3>Código de ejemplo</h3>
-              <pre className="bg-gray-900 p-4 rounded-lg overflow-x-auto">
-                <code>
-{`// Ejemplo de código
-function saludar(nombre) {
-  return \`¡Hola \${nombre}!\`;
-}
-
-console.log(saludar('Mundo'));`}
-                </code>
-              </pre>
-            </div>
+            <div 
+              ref={contentRef}
+              className="prose prose-invert prose-lg max-w-none"
+              dangerouslySetInnerHTML={{ 
+                __html: post.content
+                  .replace(/^# (.*$)/gim, (match, title) => {
+                    const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                    return `<h1 id="${id}" class="text-3xl font-bold mb-6">${title}</h1>`;
+                  })
+                  .replace(/^## (.*$)/gim, (match, title) => {
+                    const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                    return `<h2 id="${id}" class="text-2xl font-bold mb-4 mt-8">${title}</h2>`;
+                  })
+                  .replace(/^### (.*$)/gim, (match, title) => {
+                    const id = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+                    return `<h3 id="${id}" class="text-xl font-bold mb-3 mt-6">${title}</h3>`;
+                  })
+                  .replace(/\*\*(.*?)\*\*/gim, '<strong>$1</strong>')
+                  .replace(/^\- (.*$)/gim, '<li class="mb-2">$1</li>')
+                  .replace(/!\[([^\]]*)\]\(([^)]+)\)/gim, '<img src="$2" alt="$1" class="max-w-64 mx-auto rounded-lg shadow-lg my-6" />')
+                  .replace(/\n\n/g, '</p><p class="mb-4">')
+                  .replace(/^(?!<[h|l])/gim, '<p class="mb-4">')
+                  .replace(/<li class="mb-2">/g, '<ul class="list-disc pl-6 mb-4"><li class="mb-2">')
+                  .replace(/(<li class="mb-2">.*<\/li>)(?!.*<li)/g, '$1</ul>')
+              }}
+            />
           </motion.div>
 
           {/* Sidebar con índice */}
-          <div className="lg:col-span-1">
+          <div className="lg:w-80 lg:flex-shrink-0 order-first lg:order-last">
             <TableOfContents contentRef={contentRef} />
           </div>
         </div>

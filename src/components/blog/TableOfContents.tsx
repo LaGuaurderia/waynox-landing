@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { List } from 'lucide-react';
 
@@ -15,6 +15,7 @@ interface TableOfContentsProps {
 const TableOfContents: React.FC<TableOfContentsProps> = ({ contentRef }) => {
   const [headings, setHeadings] = useState<TOCItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
+  const tocRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (!contentRef.current) return;
@@ -39,13 +40,25 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ contentRef }) => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
+        // Encontrar la entrada que está más visible
+        let mostVisible = null;
+        let maxRatio = 0;
+
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveId(entry.target.id);
+          if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+            maxRatio = entry.intersectionRatio;
+            mostVisible = entry.target;
           }
         });
+
+        if (mostVisible) {
+          setActiveId(mostVisible.id);
+        }
       },
-      { rootMargin: '-20% 0px -80% 0px' }
+      { 
+        rootMargin: '-10% 0px -70% 0px',
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+      }
     );
 
     headings.forEach(({ id }) => {
@@ -55,6 +68,37 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ contentRef }) => {
 
     return () => observer.disconnect();
   }, [headings]);
+
+  // Función adicional para detectar scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 150; // Offset para el navbar
+      
+      let currentSection = '';
+      headings.forEach(({ id }) => {
+        const element = document.getElementById(id);
+        if (element) {
+          const elementTop = element.offsetTop;
+          const elementBottom = elementTop + element.offsetHeight;
+          
+          if (scrollPosition >= elementTop && scrollPosition < elementBottom) {
+            currentSection = id;
+          }
+        }
+      });
+      
+      if (currentSection && currentSection !== activeId) {
+        setActiveId(currentSection);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Llamar una vez al cargar
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [headings, activeId]);
+
+
 
   const generateId = (text: string): string => {
     return text
@@ -66,7 +110,13 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ contentRef }) => {
   const scrollToHeading = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const elementPosition = element.offsetTop;
+      const offsetPosition = elementPosition - 100; // Ajuste para el navbar
+      
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -74,7 +124,8 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ contentRef }) => {
 
   return (
     <motion.div
-      className="lg:block hidden sticky top-8 max-h-screen overflow-y-auto"
+      ref={tocRef}
+      className="block"
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: 0.3 }}

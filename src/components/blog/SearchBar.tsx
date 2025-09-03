@@ -19,14 +19,14 @@ const SearchBar: React.FC<SearchBarProps> = ({
     <div className="relative mb-6">
       <motion.div
         className={`
-          relative flex items-center bg-gray-800 rounded-lg border-2 transition-all duration-200
-          ${isFocused ? 'border-blue-500 bg-gray-700' : 'border-gray-600'}
+          relative flex items-center bg-gray-100 dark:bg-gray-800 rounded-lg border-2 transition-all duration-200
+          ${isFocused ? 'border-blue-500 bg-gray-200 dark:bg-gray-700' : 'border-gray-300 dark:border-gray-600'}
         `}
         whileFocus={{ scale: 1.02 }}
       >
         <Search 
           className={`w-5 h-5 ml-4 transition-colors duration-200 ${
-            isFocused ? 'text-blue-400' : 'text-gray-400'
+            isFocused ? 'text-blue-500' : 'text-gray-500 dark:text-gray-400'
           }`} 
         />
         
@@ -37,13 +37,13 @@ const SearchBar: React.FC<SearchBarProps> = ({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           placeholder={placeholder}
-          className="flex-1 px-4 py-3 bg-transparent text-white placeholder-gray-400 outline-none"
+          className="flex-1 px-4 py-3 bg-transparent text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 outline-none"
         />
         
         {value && (
           <motion.button
             onClick={() => onChange('')}
-            className="p-2 mr-2 text-gray-400 hover:text-white transition-colors duration-200"
+            className="p-2 mr-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-white transition-colors duration-200"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
             initial={{ opacity: 0, scale: 0 }}
@@ -58,7 +58,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
       {/* Indicador de resultados */}
       {value && (
         <motion.div
-          className="absolute -bottom-8 left-0 text-sm text-gray-400"
+          className="absolute -bottom-8 left-0 text-sm text-gray-500 dark:text-gray-400"
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
         >

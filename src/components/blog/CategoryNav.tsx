@@ -23,7 +23,7 @@ const CategoryNav: React.FC<CategoryNavProps> = ({
             px-6 py-3 rounded-full font-medium transition-all duration-200
             ${selectedCategory === 'Todos'
               ? 'bg-blue-600 text-white shadow-lg scale-105'
-              : 'bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white'
+              : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white'
             }
           `}
           whileHover={{ scale: 1.05 }}
@@ -41,19 +41,14 @@ const CategoryNav: React.FC<CategoryNavProps> = ({
               px-6 py-3 rounded-full font-medium transition-all duration-200
               ${selectedCategory === category.id
                 ? 'text-white shadow-lg scale-105'
-                : 'text-gray-300 hover:text-white'
+                : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 hover:text-gray-900 dark:hover:text-white'
               }
             `}
             style={{
-              backgroundColor: selectedCategory === category.id 
-                ? category.color 
-                : 'rgb(55 65 81)' // gray-700
+              backgroundColor: selectedCategory === category.id ? category.color : undefined
             }}
             whileHover={{ 
-              scale: 1.05,
-              backgroundColor: selectedCategory === category.id 
-                ? category.color 
-                : 'rgb(75 85 99)' // gray-600
+              scale: 1.05
             }}
             whileTap={{ scale: 0.95 }}
           >

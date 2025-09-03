@@ -10,6 +10,7 @@ import BlogPost from '../pages/BlogPost'
 import Contacto from '../pages/Contacto'
 import Terminos from '../pages/Terminos'
 import Privacidad from '../pages/Privacidad'
+import Admin from '../pages/Admin'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: 'blog', element: <Blog /> },
       { path: 'blog/:slug', element: <BlogPost /> },
       { path: 'contacto', element: <Contacto /> },
+      { path: 'admin', element: <Admin /> },
       { path: 'terminos', element: <Terminos /> },
       { path: 'privacidad', element: <Privacidad /> },
     ],

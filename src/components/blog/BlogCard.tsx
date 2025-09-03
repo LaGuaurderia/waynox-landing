@@ -13,7 +13,7 @@ interface BlogCardProps {
 const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
   return (
     <motion.article
-      className="group bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300"
+      className="group bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
@@ -44,12 +44,12 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
         </div>
 
         {/* Título */}
-        <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-200">
+        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-200">
           {post.title}
         </h3>
 
         {/* Metadatos */}
-        <div className="flex items-center gap-4 text-sm text-gray-400 mb-3">
+        <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mb-3">
           <span>{formatDate(post.date)}</span>
           <span>•</span>
           <span>{post.author}</span>
@@ -58,7 +58,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
         </div>
 
         {/* Descripción */}
-        <p className="text-gray-300 mb-4 line-clamp-3">
+        <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
           {post.description}
         </p>
 
@@ -68,7 +68,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
             <TagBadge key={tag} tag={tag} />
           ))}
           {post.tags.length > 3 && (
-            <span className="text-gray-500 text-xs">+{post.tags.length - 3} más</span>
+            <span className="text-gray-500 dark:text-gray-400 text-xs">+{post.tags.length - 3} más</span>
           )}
         </div>
 

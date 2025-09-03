@@ -1,14 +1,21 @@
 import { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
-import { blogPosts } from './blog.data';
+import { blogPosts, getArticleContent } from './blog.data';
 import { getRelatedPosts } from './blog.utils';
-import { BlogPostMeta } from './blog.types';
+import { BlogPostMeta, BlogPost } from './blog.types';
 
 export const useBlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   
-  const post = useMemo(() => {
-    return blogPosts.find(p => p.slug === slug);
+  const post = useMemo((): BlogPost | undefined => {
+    const meta = blogPosts.find(p => p.slug === slug);
+    if (!meta) return undefined;
+    
+    const content = getArticleContent(slug || '');
+    return {
+      ...meta,
+      content
+    };
   }, [slug]);
 
   const relatedPosts = useMemo(() => {

@@ -27,6 +27,7 @@
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "dotenv": "^17.2.1",
+    "firebase": "^12.2.1",
     "framer-motion": "^10.16.4",
     "fuse.js": "^7.1.0",
     "gray-matter": "^4.0.3",

@@ -11,6 +11,7 @@ import {
   EmptyState,
   TagBadge,
 } from '../components/blog';
+import { AnimatedBlogTitle } from '../components/anim';
 import { blogPosts, blogCategories, getAllTags } from '../lib/blog.data';
 import { BlogPostMeta, BlogFilters } from '../lib/blog.types';
 import { generateBlogMeta } from '../lib/og.utils';
@@ -98,7 +99,7 @@ const Blog: React.FC = () => {
 
   return (
     <>
-      <SEO title="Blog" description="Artículos sobre desarrollo web y móvil" />
+      <SEO title="Waynox Lab" description="Aprende, crea y automatiza sin saber de código" />
       
       <Section className="pt-8">
         <div className="container">
@@ -108,11 +109,13 @@ const Blog: React.FC = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-12"
           >
-            <h1 style={{ color: 'var(--color-text)' }} className="text-4xl font-bold mb-4">
-              Blog de Waynox Studio
-            </h1>
+            <AnimatedBlogTitle 
+              className="text-4xl font-bold mb-4"
+              delay={0.2}
+              staggerDelay={0.08}
+            />
             <p style={{ color: 'var(--color-text-muted)' }} className="text-lg">
-              Artículos sobre desarrollo, tecnología y mejores prácticas
+              Aprende, crea y automatiza sin saber de código
             </p>
           </motion.div>
 

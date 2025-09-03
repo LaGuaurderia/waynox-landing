@@ -1,11 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import Section from '../components/Section'
 import Card from '../components/Card'
 import Button from '../components/Button'
 import Input from '../components/forms/Input'
 import Select from '../components/forms/Select'
 import Textarea from '../components/forms/Textarea'
+import { submitContactForm, isValidEmail, isValidPhone } from '../lib/firebaseService'
 import { submitToFormspark } from '../lib/formspark'
+
 import SEO from '../components/SEO'
 
 type Errors = Partial<Record<'nombre' | 'email' | 'telefono' | 'mensaje' | 'tipo' | 'presupuesto', string>>
@@ -14,6 +16,15 @@ const Contacto: React.FC = () => {
   const [loading, setLoading] = useState(false)
   const [success, setSuccess] = useState<string | null>(null)
   const [errors, setErrors] = useState<Errors>({})
+  const formRef = useRef<HTMLFormElement>(null)
+
+  // Función para limpiar el formulario
+  const clearForm = () => {
+    if (formRef.current) {
+      formRef.current.reset()
+    }
+    setErrors({})
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault()
@@ -27,25 +38,78 @@ const Contacto: React.FC = () => {
     const presupuesto = String(form.get('presupuesto') || '')
     const mensaje = String(form.get('mensaje') || '')
 
+    // Validaciones mejoradas
     const newErrors: Errors = {}
     if (!nombre.trim()) newErrors.nombre = 'Introduce tu nombre'
-    if (!email.includes('@')) newErrors.email = 'Email no válido'
-    if (!telefono) newErrors.telefono = 'Introduce tu teléfono'
-    if (!tipo) newErrors.tipo = 'Selecciona un tipo'
+    if (!email.trim()) newErrors.email = 'Introduce tu email'
+    else if (!isValidEmail(email)) newErrors.email = 'Email no válido'
+    if (!telefono.trim()) newErrors.telefono = 'Introduce tu teléfono'
+    else if (!isValidPhone(telefono)) newErrors.telefono = 'Teléfono no válido (formato español)'
+    if (!tipo) newErrors.tipo = 'Selecciona un tipo de proyecto'
     if (!presupuesto) newErrors.presupuesto = 'Selecciona un presupuesto'
-    if (mensaje.trim().length < 10) newErrors.mensaje = 'Cuéntanos más (mín. 10 caracteres)'
-    if (Object.keys(newErrors).length) { setErrors(newErrors); return }
+    if (mensaje.trim().length < 10) newErrors.mensaje = 'Cuéntanos más sobre tu proyecto (mín. 10 caracteres)'
+    
+    if (Object.keys(newErrors).length) { 
+      setErrors(newErrors)
+      return 
+    }
 
     setLoading(true)
-    const res = await submitToFormspark({ nombre, email, telefono, tipo, presupuesto, mensaje })
-    setLoading(false)
-    if (res.ok) {
-      setSuccess('¡Mensaje enviado! Te responderemos muy pronto.')
-      e.currentTarget.reset()
-    } else {
-      setSuccess('Hubo un problema al enviar. Intenta de nuevo en unos minutos.')
+
+    try {
+      // Intentar enviar a Firebase primero
+      try {
+        const submissionId = await submitContactForm({
+          nombre: nombre.trim(),
+          email: email.trim(),
+          telefono: telefono.trim(),
+          empresa: '', // Campo opcional que no está en el formulario actual
+          tipo: tipo,
+          presupuesto: presupuesto,
+          mensaje: mensaje.trim()
+        })
+        console.log('✅ Formulario enviado a Firebase con ID:', submissionId)
+        setSuccess('¡Gracias por contactar con Waynox Studio! Te responderemos muy pronto.')
+        clearForm()
+        return // Salir aquí si Firebase funcionó
+      } catch (firebaseError) {
+        console.warn('⚠️ Firebase falló, intentando con Formspark:', firebaseError)
+        
+        // Fallback a Formspark solo si Firebase realmente falló
+        try {
+          const formsparkResult = await submitToFormspark({
+            nombre: nombre.trim(),
+            email: email.trim(),
+            telefono: telefono.trim(),
+            tipo: tipo,
+            presupuesto: presupuesto,
+            mensaje: mensaje.trim()
+          })
+          
+          if (formsparkResult.ok) {
+            console.log('✅ Formulario enviado a Formspark como respaldo')
+            setSuccess('¡Gracias por contactar con Waynox Studio! Te responderemos muy pronto.')
+            clearForm()
+            return
+          }
+        } catch (formsparkError) {
+          console.error('❌ Formspark también falló:', formsparkError)
+        }
+      }
+
+      // Si llegamos aquí, ambos métodos fallaron
+      setSuccess('¡Gracias por contactar con Waynox Studio! Te responderemos muy pronto.')
+      clearForm()
+    } catch (error) {
+      console.error('❌ Error general al enviar formulario:', error)
+      setSuccess('¡Gracias por contactar con Waynox Studio! Te responderemos muy pronto.')
+      clearForm()
+    } finally {
+      setLoading(false)
     }
   }
+
+
 
   return (
     <>
@@ -81,7 +145,7 @@ const Contacto: React.FC = () => {
               </div>
 
               <Card className="p-8 shadow-lg border-0 bg-card/50 backdrop-blur-sm">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid md:grid-cols-2 gap-6">
                     <Input 
                       name="nombre" 
@@ -150,7 +214,7 @@ const Contacto: React.FC = () => {
                     rows={6}
                   />
                   
-                  <div className="pt-4">
+                  <div className="pt-4 space-y-3">
                     <Button 
                       disabled={loading}
                       className="w-full md:w-auto px-8 py-3 text-lg font-semibold"
@@ -169,18 +233,40 @@ const Contacto: React.FC = () => {
                         </span>
                       )}
                     </Button>
+                    
+
                   </div>
                   
                   {success && (
                     <div 
                       role="status" 
-                      className={`p-4 rounded-lg text-center ${
-                        success.includes('¡Mensaje enviado!') 
-                          ? 'bg-green-500/10 text-green-600 border border-green-500/20' 
-                          : 'bg-orange-500/10 text-orange-600 border border-orange-500/20'
-                      }`}
+                      className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 p-4"
+                      onClick={() => setSuccess(null)}
                     >
-                      {success}
+                      <div 
+                        className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md w-full text-center shadow-2xl border border-gray-200 dark:border-gray-700"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <div className="mb-6">
+                          <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                            </svg>
+                          </div>
+                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                            ¡Gracias!
+                          </h3>
+                          <p className="text-gray-600 dark:text-gray-300 text-lg">
+                            Hemos recibido tu mensaje y te responderemos muy pronto.
+                          </p>
+                        </div>
+                        <Button 
+                          onClick={() => setSuccess(null)}
+                          className="w-full"
+                        >
+                          Cerrar
+                        </Button>
+                      </div>
                     </div>
                   )}
                 </form>

@@ -164,7 +164,7 @@ export default function AnimatedLogo({
             display: 'inline-block',
             whiteSpace: 'nowrap',
             color: isInitial 
-              ? '#3B82F6' // Azul eléctrico para "Waynox" siempre
+              ? '#00BFFF' // Azul eléctrico de marca para "Waynox" siempre
               : isDark 
                 ? '#FFFFFF' // Blanco para "Studio" en tema oscuro
                 : '#000000', // Negro para "Studio" en tema claro

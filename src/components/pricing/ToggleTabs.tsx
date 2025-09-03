@@ -69,7 +69,7 @@ export const ToggleTabs: React.FC<ToggleTabsProps> = ({ activeTab, onTabChange }
                 className={`relative px-8 py-4 rounded-xl font-semibold transition-all duration-300 flex items-center space-x-3 ${
                   isActive
                     ? 'text-white'
-                    : 'text-brand-gray hover:text-white'
+                    : 'text-brand-gray hover:text-gray-800 dark:hover:text-white'
                 }`}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
