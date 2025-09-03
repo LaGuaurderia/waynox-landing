@@ -34,6 +34,8 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
+      // Asegurar que los archivos estáticos se copien correctamente
+      copyPublicDir: true,
     },
     optimizeDeps: {
       include: ['framer-motion'],

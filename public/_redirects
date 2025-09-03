@@ -1,0 +1,4 @@
+# Redirecciones para Netlify
+
+# Redirigir todas las rutas no encontradas al index.html para SPA
+/*    /index.html   200
