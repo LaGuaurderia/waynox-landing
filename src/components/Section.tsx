@@ -11,7 +11,7 @@ export const Section: React.FC<SectionProps> = ({ children, className, muted, id
   return (
     <section 
       id={id} 
-      className={`section py-8 ${muted ? 'section-muted' : ''} ${className ?? ''}`}
+      className={`section ${muted ? 'section-muted' : ''} ${className ?? ''}`}
       style={{
         backgroundColor: 'var(--color-bg)',
         color: 'var(--color-text)',

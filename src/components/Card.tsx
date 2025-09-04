@@ -47,20 +47,20 @@ export const Card: React.FC<CardProps> = ({
       initial="hidden"
       whileInView="visible"
       whileHover="hover"
-      viewport={{ once: true, threshold: 0.1 }}
+      viewport={{ once: true }}
     >
       {image && (
         <div className="relative overflow-hidden">
           <motion.img
             src={image}
             alt={imageAlt}
-            className="w-full h-48 object-cover"
+            className="w-full h-40 sm:h-48 object-cover"
             whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           />
         </div>
       )}
-      <div className="p-6">
+      <div className="p-4 sm:p-6">
         {children}
       </div>
     </motion.div>

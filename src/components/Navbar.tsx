@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Logo from './Logo'
 import Button from './Button'
 import ThemeToggle from './ThemeToggle'
-import { navbarVariants } from '../lib/motionPresets'
 
 const links = [
   { to: '/', label: 'Inicio' },
@@ -16,7 +15,6 @@ const links = [
 
 export const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 
@@ -29,9 +27,6 @@ export const Navbar: React.FC = () => {
 
   useEffect(() => {
     const handler = () => {
-      const scrolled = window.scrollY > 16
-      setIsScrolled(scrolled)
-      
       // Calcular progreso del scroll
       const scrollTop = window.scrollY
       const docHeight = document.documentElement.scrollHeight - window.innerHeight
@@ -94,9 +89,6 @@ export const Navbar: React.FC = () => {
     }
   }, [open])
 
-  const handleDropdownToggle = (label: string) => {
-    setActiveDropdown(activeDropdown === label ? null : label)
-  }
 
   return (
     <>
@@ -116,21 +108,21 @@ export const Navbar: React.FC = () => {
         aria-label="Principal"
       >
         <div className="navbar-inner">
-          {/* Logo - Centrado */}
+          {/* Logo */}
           <div className="logo-container">
             <Logo />
           </div>
 
           {/* Navegación central - Solo visible en desktop */}
           <nav className="nav-links" aria-label="Enlaces principales">
-            {links.map((link, index) => (
+            {links.map((link) => (
               <div
                 key={link.to}
                 className="relative"
               >
                 <NavLink 
                   to={link.to} 
-                  className={({ isActive }) => `nav-link flex items-center justify-center px-6 py-4 rounded-lg transition-all duration-300 ${isActive ? 'active text-brand-blue bg-brand-blue/10' : 'text-brand-gray-light hover:text-black hover:bg-gray-100'}`}
+                  className={({ isActive }) => `nav-link flex items-center justify-center px-4 lg:px-6 py-3 lg:py-4 rounded-lg transition-all duration-300 text-sm lg:text-base ${isActive ? 'active text-brand-blue bg-brand-blue/10' : 'text-brand-gray-light hover:text-black hover:bg-gray-100'}`}
                   aria-label={`Ir a ${link.label}`}
                 >
                   {link.label}
@@ -148,7 +140,7 @@ export const Navbar: React.FC = () => {
           <div className="nav-right">
             {/* Botón CTA - Solo visible en desktop */}
             <div className="hidden md:block">
-              <Button className="nav-cta" onClick={() => navigate('/tarifas')}>
+              <Button className="nav-cta text-sm lg:text-base px-4 lg:px-6 py-2 lg:py-3" onClick={() => navigate('/tarifas')}>
                 Calcula tu presupuesto
               </Button>
             </div>
@@ -158,14 +150,14 @@ export const Navbar: React.FC = () => {
 
             {/* Botón de menú móvil */}
             <button 
-              className="menu-btn md:hidden p-3 rounded-lg hover:bg-brand-black-soft/50 transition-colors duration-300" 
+              className="menu-btn md:hidden p-2 lg:p-3 rounded-lg hover:bg-brand-black-soft/50 transition-colors duration-300" 
               aria-expanded={open} 
               aria-controls="mobile-menu" 
               aria-label={open ? "Cerrar menú" : "Abrir menú"}
               onClick={() => setOpen((v) => !v)}
             >
               <div className={`transition-transform duration-300 ${open ? 'rotate-180' : ''}`}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="lg:w-6 lg:h-6">
                   <path d="M3 6H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                   <path d="M3 12H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
                   <path d="M3 18H21" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
@@ -186,37 +178,37 @@ export const Navbar: React.FC = () => {
             className="container bg-brand-black-soft/95 backdrop-blur-sm border-t border-brand-gray"
             style={{ paddingBottom: 16 }}
           >
-            <div className="card" style={{ padding: 20, marginTop: 12 }}>
+            <div className="card" style={{ padding: 16, marginTop: 12 }}>
               {/* Breadcrumb móvil */}
-              <div className="mb-6 p-4 bg-brand-black/50 rounded-lg border border-brand-gray/30">
-                <div className="text-sm text-brand-gray-light mb-1">Estás en:</div>
-                <div className="text-black font-medium text-lg">
+              <div className="mb-4 p-3 bg-brand-black/50 rounded-lg border border-brand-gray/30">
+                <div className="text-xs text-brand-gray-light mb-1">Estás en:</div>
+                <div className="text-black font-medium text-base">
                   {links.find(l => l.to === location.pathname)?.label || 'Inicio'}
                 </div>
               </div>
               
-              {links.map((link, index) => (
+              {links.map((link) => (
                 <div
                   key={link.to}
                 >
                   <NavLink 
                     to={link.to} 
-                    className={({ isActive }) => `nav-link-mobile flex items-center justify-center py-5 px-6 rounded-lg transition-all duration-300 ${isActive ? 'active bg-brand-blue/20 text-brand-blue border border-brand-blue/30' : 'hover:bg-brand-black/30 hover:text-white'}`} 
+                    className={({ isActive }) => `nav-link-mobile flex items-center justify-center py-4 px-4 rounded-lg transition-all duration-300 ${isActive ? 'active bg-brand-blue/20 text-brand-blue border border-brand-blue/30' : 'hover:bg-brand-black/30 hover:text-white'}`} 
                     onClick={() => setOpen(false)}
                     aria-label={`Ir a ${link.label}`}
                   >
-                    <span className="text-base font-medium">{link.label}</span>
+                    <span className="text-sm font-medium">{link.label}</span>
                     {link.to === location.pathname && (
-                      <span className="ml-3 text-brand-blue text-lg">●</span>
+                      <span className="ml-3 text-brand-blue text-base">●</span>
                     )}
                   </NavLink>
                 </div>
               ))}
               
-              <div style={{ marginTop: 20 }}>
+              <div style={{ marginTop: 16 }}>
                 <Button 
                   onClick={() => { setOpen(false); navigate('/tarifas') }}
-                  className="w-full justify-center py-4 text-base"
+                  className="w-full justify-center py-3 text-sm"
                 >
                   Calcula tu presupuesto
                 </Button>

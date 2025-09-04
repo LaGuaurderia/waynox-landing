@@ -5,11 +5,10 @@ import cover11Img from '../../images/1.1.png'
 import cover12Img from '../../images/1.2.png'
 import cover13Img from '../../images/1.3.png'
 import Section from '../components/Section'
-import Button from '../components/Button'
 import Card from '../components/Card'
 import SEO from '../components/SEO'
-import { Reveal, Parallax, StaggeredHeading } from '../components/anim'
-import { staggerContainer, fadeInUp } from '../lib/motionPresets'
+import { Reveal, Parallax } from '../components/anim'
+import { staggerContainer } from '../lib/motionPresets'
 
 
 const Home: React.FC = () => {
@@ -23,14 +22,14 @@ const Home: React.FC = () => {
           <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-accent)]/20 to-[var(--color-accent-hover)]/10" />
         </Parallax>
 
-        <div className="relative z-10 flex flex-col items-center gap-6 text-center">
-          <div>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-[var(--color-text)] leading-tight text-center">
+        <div className="relative z-10 flex flex-col items-center gap-4 sm:gap-6 text-center px-4">
+          <div className="max-w-4xl mx-auto">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] leading-tight text-center">
               Del boceto al código
             </h1>
 
             <motion.p
-              className="group mt-4 text-xl text-neutral-700 dark:text-neutral-300 text-center"
+              className="group mt-3 sm:mt-4 text-lg sm:text-xl text-neutral-700 dark:text-neutral-300 text-center max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -41,11 +40,7 @@ const Home: React.FC = () => {
                 <span className="pointer-events-none absolute left-0 -bottom-1 h-px w-0 bg-[#0EA5E9] transition-all duration-200 ease-out group-hover:w-full" />
               </span>
             </motion.p>
-
-            
           </div>
-
-          
         </div>
       </Section>
 
@@ -75,7 +70,7 @@ const Home: React.FC = () => {
         </Reveal>
 
         <motion.div
-          className="mt-6 sm:mt-8 md:mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-2"
+          className="mt-6 sm:mt-8 md:mt-10 grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -156,7 +151,7 @@ const Home: React.FC = () => {
           <span className="inline-block h-px w-4/5 bg-neutral-200 dark:bg-neutral-800" />
         </div>
 
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+        <div className="mt-6 sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-6 sm:gap-y-8">
           {[
             { n: '01', t: 'Descubrimiento', d: 'Definimos objetivos y hoja de ruta.' },
             { n: '02', t: 'Diseño', d: 'Experiencia visual y funcional clara.' },
@@ -215,7 +210,7 @@ const Home: React.FC = () => {
             <span className="inline-block h-px w-4/5 bg-neutral-200 dark:bg-neutral-800" />
           </div>
 
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+          <div className="mt-6 sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-6 sm:gap-y-8">
             {[ 
               { n: '01', t: 'Claridad en los plazos', d: 'Procesos y fechas transparentes.' },
               { n: '02', t: 'Compromiso con tus resultados', d: 'Enfoque en métricas y negocio.' },
@@ -266,7 +261,7 @@ const Home: React.FC = () => {
         </Reveal>
         
         <motion.div 
-          className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-2"
+          className="mt-6 grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
