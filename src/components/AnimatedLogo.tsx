@@ -11,6 +11,7 @@ type AnimatedLogoProps = {
 };
 
 const FULL_TEXT = "Waynox Studio";
+const MOBILE_TEXT = "Waynox";
 
 export default function AnimatedLogo({
   className = "",
@@ -22,6 +23,7 @@ export default function AnimatedLogo({
   const [showCursor, setShowCursor] = React.useState(true);
   const [reduced, setReduced] = React.useState(false);
   const [isDark, setIsDark] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
 
   // Detectar tema actual
   React.useEffect(() => {
@@ -51,10 +53,23 @@ export default function AnimatedLogo({
     return () => mq.removeEventListener?.("change", onChange);
   }, []);
 
+  // Detectar si es móvil
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   // Animación de escritura
   React.useEffect(() => {
+    const targetText = isMobile ? MOBILE_TEXT : FULL_TEXT;
+    
     if (reduced) {
-      setCurrentText(FULL_TEXT);
+      setCurrentText(targetText);
       return;
     }
 
@@ -77,8 +92,8 @@ export default function AnimatedLogo({
         if (isDeleting || isPaused || !isMounted) return;
         
         // Escribiendo hacia adelante
-        if (currentIndex < FULL_TEXT.length) {
-          setCurrentText(FULL_TEXT.slice(0, currentIndex + 1));
+        if (currentIndex < targetText.length) {
+          setCurrentText(targetText.slice(0, currentIndex + 1));
           currentIndex++;
         } else {
           // Completado, pausar antes de borrar
@@ -109,7 +124,7 @@ export default function AnimatedLogo({
         // Borrando hacia atrás
         if (currentIndex > 0) {
           currentIndex--;
-          setCurrentText(FULL_TEXT.slice(0, currentIndex));
+          setCurrentText(targetText.slice(0, currentIndex));
         } else {
           // Completamente borrado, reiniciar
           clearInterval(typingInterval);
@@ -143,7 +158,7 @@ export default function AnimatedLogo({
       clearInterval(typingInterval);
       clearInterval(cursorInterval);
     };
-  }, [speed, reduced]);
+  }, [speed, reduced, isMobile]);
 
   const chars = Array.from(currentText);
 
@@ -152,7 +167,7 @@ export default function AnimatedLogo({
     return chars.map((ch, i) => {
       const isSpace = ch === " ";
       const isLastChar = i === chars.length - 1;
-      const isInitial = i < 7; // "Waynox" son las primeras 7 letras
+      const isInitial = i < 7; // "Waynox" son las primeras 7 letras (tanto en móvil como desktop)
       
       return (
         <span
@@ -165,9 +180,11 @@ export default function AnimatedLogo({
             whiteSpace: 'nowrap',
             color: isInitial 
               ? '#00BFFF' // Azul eléctrico de marca para "Waynox" siempre
-              : isDark 
-                ? '#FFFFFF' // Blanco para "Studio" en tema oscuro
-                : '#000000', // Negro para "Studio" en tema claro
+              : isMobile 
+                ? '#00BFFF' // En móvil, todo en azul para "Waynox" solo
+                : isDark 
+                  ? '#FFFFFF' // Blanco para "Studio" en tema oscuro (solo desktop)
+                  : '#000000', // Negro para "Studio" en tema claro (solo desktop)
             flexShrink: 0
           }}
         >
@@ -175,7 +192,7 @@ export default function AnimatedLogo({
         </span>
       );
     });
-  }, [chars, currentText.length, isDark]);
+  }, [chars, currentText.length, isDark, isMobile]);
 
   return (
     <div
@@ -220,7 +237,7 @@ export default function AnimatedLogo({
       </span>
 
       {/* Nombre accesible estático para lectores de pantalla */}
-      <span className="sr-only">{FULL_TEXT}</span>
+      <span className="sr-only">{isMobile ? MOBILE_TEXT : FULL_TEXT}</span>
     </div>
   );
 }
