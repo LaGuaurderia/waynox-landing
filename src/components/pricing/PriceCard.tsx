@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Button } from '../Button'
 import Badge from '../Badge'
 import { 
   CheckIcon, 
@@ -10,7 +9,9 @@ import {
   StoreIcon,
   ZapIcon,
   DatabaseIcon,
-  GlobeIcon
+  GlobeIcon,
+  ChevronDownIcon,
+  ChevronUpIcon
 } from 'lucide-react'
 
 type PlanType = 'Lite' | 'Start' | 'Pro' | 'Deluxe' | 'Landing' | 'eCommerce'
@@ -19,13 +20,11 @@ interface PriceCardProps {
   plan: PlanType
   price: string
   delivery: string
-  scope: string
+  scope?: string
   features: string[]
   integrations: string[]
   backend: string
-  publication: string
-  ctaText: string
-  ctaLink: string
+  publication?: string
   delay?: number
   featured?: boolean
 }
@@ -45,15 +44,16 @@ export const PriceCard: React.FC<PriceCardProps> = ({
   delivery,
   scope,
   features,
-  integrations,
   backend,
   publication,
-  ctaText,
-  ctaLink,
   delay = 0,
   featured = false
 }) => {
+  const [showAllFeatures, setShowAllFeatures] = useState(false)
   const IconComponent = planIcons[plan] || ClockIcon
+  
+  const displayedFeatures = showAllFeatures ? features : features.slice(0, 3)
+  const hasMoreFeatures = features.length > 3
 
   return (
     <motion.div
@@ -78,68 +78,76 @@ export const PriceCard: React.FC<PriceCardProps> = ({
           <Badge className="px-2 py-0.5 text-xs">{plan}</Badge>
         </div>
         <div className="mt-3 flex items-center gap-2">
-          <span className="text-2xl font-bold text-primary-600 dark:text-primary-400 break-words">{price}</span>
-          <span className="text-xs text-neutral-600 dark:text-neutral-400">+ IVA</span>
+          <span 
+            className="text-2xl font-bold text-primary-600 dark:text-primary-400 break-words"
+            dangerouslySetInnerHTML={{ __html: price }}
+          />
         </div>
       </div>
 
       {/* Meta */}
-      <div className="grid grid-cols-2 gap-y-2 text-sm min-h-[120px] text-neutral-600 dark:text-neutral-400">
-        <div className="inline-flex items-start gap-2 leading-6">
-          <ClockIcon className="w-4 h-4 mt-0.5" />
-          <div>
+      <div className="space-y-3 text-sm text-neutral-600 dark:text-neutral-400">
+        <div className="flex items-center justify-center gap-2">
+          <ClockIcon className="w-4 h-4" />
+          <div className="text-center">
             <div className="text-xs font-medium text-neutral-800 dark:text-neutral-200">Entrega</div>
             <div className="text-xs break-words">{delivery}</div>
           </div>
         </div>
-        <div className="inline-flex items-start gap-2 leading-6">
-          <LayersIcon className="w-4 h-4 mt-0.5" />
-          <div>
-            <div className="text-xs font-medium text-neutral-800 dark:text-neutral-200">Alcance</div>
-            <div className="text-xs break-words">{scope}</div>
+        {scope && (
+          <div className="flex items-center justify-center gap-2">
+            <LayersIcon className="w-4 h-4" />
+            <div className="text-center">
+              <div className="text-xs font-medium text-neutral-800 dark:text-neutral-200">Alcance</div>
+              <div className="text-xs break-words">{scope}</div>
+            </div>
           </div>
-        </div>
-        <div className="inline-flex items-start gap-2 leading-6">
-          <ServerIcon className="w-4 h-4 mt-0.5" />
-          <div>
-            <div className="text-xs font-medium text-neutral-800 dark:text-neutral-200">Backend</div>
-            <div className="text-xs break-words">{backend}</div>
+        )}
+        {publication && (
+          <div className="flex items-center justify-center gap-2">
+            <StoreIcon className="w-4 h-4" />
+            <div className="text-center">
+              <div className="text-xs font-medium text-neutral-800 dark:text-neutral-200">Publicación</div>
+              <div className="text-xs break-words">{publication}</div>
+            </div>
           </div>
-        </div>
-        <div className="inline-flex items-start gap-2 leading-6">
-          <StoreIcon className="w-4 h-4 mt-0.5" />
-          <div>
-            <div className="text-xs font-medium text-neutral-800 dark:text-neutral-200">Publicación</div>
-            <div className="text-xs break-words">{publication}</div>
-          </div>
-        </div>
+        )}
       </div>
 
       {/* Features */}
-      <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-800 min-h-[140px] text-sm">
+      <div className="mt-4 pt-4 border-t border-neutral-200 dark:border-neutral-800 text-sm">
         <div className="text-xs font-medium text-neutral-800 dark:text-neutral-200 mb-2">Incluye</div>
         <ul className="space-y-2 marker:text-primary-600">
-          {features.slice(0, 4).map((feature, index) => (
-            <li key={index} className="inline-flex items-center gap-2 text-sm leading-6">
-              <CheckIcon className="w-4 h-4" />
-              <span className="text-neutral-600 dark:text-neutral-400 break-words line-clamp-2">{feature}</span>
-            </li>
-          ))}
+          {displayedFeatures.map((feature, index) => {
+            const isIdealFor = feature.startsWith('Ideal para:')
+            return (
+              <li key={index} className={`${isIdealFor ? 'flex' : 'inline-flex'} items-start gap-2 text-sm leading-6`}>
+                {!isIdealFor && <CheckIcon className="w-4 h-4 mt-0.5 flex-shrink-0" />}
+                <span className={`text-neutral-600 dark:text-neutral-400 break-words ${isIdealFor ? 'italic' : ''}`}>{feature}</span>
+              </li>
+            )
+          })}
         </ul>
+        {hasMoreFeatures && (
+          <button
+            onClick={() => setShowAllFeatures(!showAllFeatures)}
+            className="mt-3 flex items-center gap-1 text-xs text-[#00BFFF] hover:text-[#0099CC] transition-colors"
+          >
+            {showAllFeatures ? (
+              <>
+                <ChevronUpIcon className="w-3 h-3" />
+                Leer menos
+              </>
+            ) : (
+              <>
+                <ChevronDownIcon className="w-3 h-3" />
+                Leer más
+              </>
+            )}
+          </button>
+        )}
       </div>
 
-      {/* CTA */}
-      <div className="mt-auto pt-4">
-        <div className="flex flex-col sm:flex-row gap-3">
-          <Button
-            onClick={() => window.location.href = ctaLink}
-            className="w-full sm:w-auto inline-flex justify-center items-center gap-2 px-4 py-2 rounded-xl bg-primary-600 text-white hover:brightness-95 transition-colors"
-            size="md"
-          >
-            {ctaText}
-          </Button>
-        </div>
-      </div>
     </motion.div>
   )
 }

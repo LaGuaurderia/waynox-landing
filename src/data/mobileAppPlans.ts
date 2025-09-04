@@ -2,13 +2,11 @@ export interface MobileAppPlan {
   plan: 'Lite' | 'Start' | 'Pro' | 'Deluxe'
   price: string
   delivery: string
-  scope: string
+  scope?: string
   features: string[]
   integrations: string[]
   backend: string
-  publication: string
-  ctaText: string
-  ctaLink: string
+  publication?: string
   featured?: boolean
 }
 
@@ -27,69 +25,73 @@ export interface FAQItem {
 export const mobileAppPlans: MobileAppPlan[] = [
   {
     plan: 'Lite',
-    price: 'desde 549,99 €',
-    delivery: '1–2 semanas',
-    scope: '1 flujo (reservas simple o catálogo), hasta 3 pantallas',
+    price: 'desde 549,99 € <span class="text-xs">+ IVA</span>',
+    delivery: 'hasta 1 semana',
     features: [
-      '1 ronda de cambios (máx. 10 puntos)',
-      'Analítica básica'
+      'App sencilla con navegación básica y hasta 3 pantallas (ejemplo: catálogo o reservas simples)',
+      'Sin base de datos compleja (o Firebase muy básico)',
+      'Publicación como App Web (PWA)',
+      '1 ronda de cambios (máx. 10 ajustes)',
+      'Analítica básica (saber cuántos usan tu app)',
+      'No incluye el coste de las cuentas de Google Play ni Apple Developer (a cargo del cliente)',
+      'Ideal para: pequeños negocios que buscan una app rápida, simple y funcional para empezar'
     ],
     integrations: [],
-    backend: 'Sin backend complejo (o Firebase sencillo)',
-    publication: 'PWA (para stores ver Pro/Deluxe)',
-    ctaText: 'Solicitar App Lite',
-    ctaLink: '/contacto?plan=app-lite'
+    backend: 'Sin backend complejo (o Firebase muy básico)'
   },
   {
     plan: 'Start',
-    price: '1.200–2.500 €',
-    delivery: '2–4 semanas',
-    scope: '5–7 pantallas, login básico, Firestore',
+    price: '1.200–2.500 € <span class="text-xs">+ IVA</span>',
+    delivery: '1–2 semanas',
     features: [
-      '1 integración (Calendly / Sheets / Brevo)',
-      'Analítica básica',
-      'Diseño base'
+      'App con hasta 7 pantallas y login básico',
+      'Navegación completa entre secciones',
+      'Base de datos en Firebase (para guardar usuarios y datos)',
+      'Publicación en App Web (PWA) + Android APK',
+      '1 integración externa (ejemplo: Calendly para reservas, Google Sheets o Brevo)',
+      'Analítica básica (seguimiento del uso)',
+      'Diseño base (interfaz clara y funcional)',
+      'No incluye el coste de las cuentas de Google Play ni Apple Developer (a cargo del cliente)'
     ],
     integrations: ['Calendly', 'Google Sheets', 'Brevo'],
-    backend: 'Firebase (Firestore + Auth)',
-    publication: 'PWA + Android APK',
-    ctaText: 'Solicitar App Start',
-    ctaLink: '/contacto?plan=app-start'
+    backend: 'Firebase (Firestore + Auth)'
   },
   {
     plan: 'Pro',
-    price: '2.500–6.000 €',
-    delivery: '4–7 semanas',
-    scope: '8–15 pantallas, autenticación social, base de datos con roles',
+    price: '2.500–6.000 € <span class="text-xs">+ IVA</span>',
+    delivery: '3–4 semanas',
     features: [
-      '2–3 integraciones',
-      'Analítica por eventos',
-      'Publicación en stores: Google Play incluida; Apple Developer (99 $/año) a cargo del cliente'
+      'App con hasta 15 pantallas',
+      'Login avanzado (Google, Facebook, Apple, etc.) y roles de usuario',
+      'Base de datos en Firebase + API personalizada (más potencia y flexibilidad)',
+      'Publicación incluida en Google Play y configuración de la cuenta de desarrollador',
+      '2–3 integraciones externas (ejemplo: Stripe para pagos, CRM, Zapier, etc.)',
+      'Analítica avanzada por eventos (qué hace cada usuario dentro de la app)',
+      'Diseño personalizado con mayor nivel de detalle',
+      'Ideal para: startups y empresas que buscan una app completa, escalable y con más control sobre usuarios y datos'
     ],
     integrations: ['Calendly', 'Google Sheets', 'Brevo', 'Stripe', 'WhatsApp API'],
     backend: 'Firebase + Backend personalizado',
-    publication: 'Google Play incluida; Apple Developer (99 $/año) a cargo del cliente',
-    ctaText: 'Solicitar App Pro',
-    ctaLink: '/contacto?plan=app-pro',
     featured: true
   },
   {
     plan: 'Deluxe',
-    price: '6.000–12.000 €',
+    price: '6.000–12.000 € <span class="text-xs">+ IVA</span>',
     delivery: '8–12 semanas',
-    scope: '15–25 pantallas, flujos complejos (reservas + pagos + perfiles), roles avanzados, multidioma',
     features: [
-      'Deep links',
-      'Funciones offline (caché/cola)',
-      '3–6 integraciones',
-      'CI/CD y release quincenal',
-      'Soporte de lanzamiento'
+      'App completa con hasta 25 pantallas y funcionalidades avanzadas (ejemplo: reservas con pagos, perfiles de usuario, roles, multidioma)',
+      'Backend escalable + Firebase para soportar más usuarios y datos',
+      'Publicación incluida en Google Play y Apple Store, con configuración de las cuentas de desarrollador',
+      'Deep links (abrir partes concretas de la app desde enlaces)',
+      'Uso offline (sin conexión, con sincronización posterior)',
+      'Notificaciones avanzadas y segmentadas',
+      '3–6 integraciones externas (ejemplo: pasarelas de pago, CRM, sistemas de reservas)',
+      'Publicaciones frecuentes (cada 2 semanas) con CI/CD configurado',
+      'Diseño premium y a medida para diferenciar tu producto',
+      'Ideal para: empresas y startups en plena fase de crecimiento, que necesitan una app sólida, escalable, con muchas funciones y actualizaciones constantes'
     ],
     integrations: ['Calendly', 'Google Sheets', 'Brevo', 'Stripe', 'WhatsApp API', 'Zapier', 'HubSpot'],
-    backend: 'Backend escalable + Firebase',
-    publication: 'Google Play + App Store (cuentas incluidas)',
-    ctaText: 'Solicitar App Deluxe',
-    ctaLink: '/contacto?plan=app-deluxe'
+    backend: 'Backend escalable + Firebase'
   }
 ]
 
@@ -125,13 +127,13 @@ export const maintenancePlans: MaintenancePlan[] = [
     price: '49,99 €/mes',
     sla: 'hasta 24 h hábiles',
     features: [
-      '👀 Todo lo del plan Start Care',
-      '🛠️ 4 horas de cambios al mes (más margen para ajustes, corrección de errores o pequeños añadidos)',
-      '🔄 Revisiones técnicas mensuales de librerías/SDK (para que la app siempre esté al día con las actualizaciones)',
-      '🏪 Gestión de la ficha en la tienda (Google Play/App Store): textos, imágenes, recursos',
-      '🚑 Correcciones urgentes prioritarias si la app se cae o hay un fallo crítico',
-      '🔒 Revisión de seguridad y reglas de la base de datos (ej. Firebase)',
-      '📊 Informe con métricas y KPIs (uso, estabilidad, rendimiento)',
+      'Todo lo del plan Start Care',
+      '4 horas de cambios al mes (más margen para ajustes, corrección de errores o pequeños añadidos)',
+      'Revisiones técnicas mensuales de librerías/SDK (para que la app siempre esté al día con las actualizaciones)',
+      'Gestión de la ficha en la tienda (Google Play/App Store): textos, imágenes, recursos',
+      'Correcciones urgentes prioritarias si la app se cae o hay un fallo crítico',
+      'Revisión de seguridad y reglas de la base de datos (ej. Firebase)',
+      'Informe con métricas y KPIs (uso, estabilidad, rendimiento)',
       'Pensado para: apps en crecimiento activo, que se actualizan con frecuencia y donde la fiabilidad y seguridad son clave'
     ]
   },

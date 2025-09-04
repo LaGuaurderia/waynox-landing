@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ShieldIcon, ClockIcon, CheckIcon } from 'lucide-react'
+import { ShieldIcon, ClockIcon, CheckIcon, ChevronDownIcon, ChevronUpIcon } from 'lucide-react'
 
 interface MaintenancePlan {
   name: string
@@ -15,6 +15,11 @@ interface CareCardProps {
 }
 
 export const CareCard: React.FC<CareCardProps> = ({ plan, delay = 0 }) => {
+  const [showAllFeatures, setShowAllFeatures] = useState(false)
+  
+  const displayedFeatures = showAllFeatures ? plan.features : plan.features.slice(0, 3)
+  const hasMoreFeatures = plan.features.length > 3
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -78,7 +83,7 @@ export const CareCard: React.FC<CareCardProps> = ({ plan, delay = 0 }) => {
 
       {/* Características */}
       <div className="space-y-1 flex-1">
-        {plan.features.map((feature, index) => {
+        {displayedFeatures.map((feature, index) => {
           const isItalic = feature.startsWith('Pensado para:');
           return (
             <div key={index} className="flex items-start space-x-3">
@@ -95,23 +100,30 @@ export const CareCard: React.FC<CareCardProps> = ({ plan, delay = 0 }) => {
             </div>
           );
         })}
+        {hasMoreFeatures && (
+          <button
+            onClick={() => setShowAllFeatures(!showAllFeatures)}
+            className="mt-3 flex items-center gap-1 text-xs transition-colors"
+            style={{ 
+              color: 'var(--color-accent)',
+              marginLeft: '28px' // Alineado con el texto de las características
+            }}
+          >
+            {showAllFeatures ? (
+              <>
+                <ChevronUpIcon className="w-3 h-3" />
+                Leer menos
+              </>
+            ) : (
+              <>
+                <ChevronDownIcon className="w-3 h-3" />
+                Leer más
+              </>
+            )}
+          </button>
+        )}
       </div>
 
-      {/* CTA */}
-      <div 
-        className="mt-3 pt-3"
-        style={{ borderTopColor: 'var(--color-border)' }}
-      >
-        <button 
-          className="w-full font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-[1.02] active:scale-[0.98]"
-          style={{
-            backgroundColor: 'var(--color-accent)',
-            color: 'white'
-          }}
-        >
-          Contratar {plan.name}
-        </button>
-      </div>
     </motion.div>
   )
 }

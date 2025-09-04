@@ -104,11 +104,8 @@ const Tarifas: React.FC = () => {
                 {/* Header */}
                 <div className="text-center mb-16">
                   <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-                    Apps móviles (Flutter / PWA) — Tarifas 2025
+                    Apps Móviles
                   </h2>
-                  <p className="text-sm text-brand-gray">
-                    Pago: 40% inicio · 60% entrega
-                  </p>
                 </div>
 
                 {/* Plans Grid */}
@@ -168,11 +165,8 @@ const Tarifas: React.FC = () => {
                 {/* Header */}
                 <div className="text-center mb-16">
                   <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-                    Web (Next.js / SEO) — Tarifas 2025
+                    Web (Next.js / SEO)
                   </h2>
-                  <p className="text-sm text-brand-gray">
-                    Pago: 40% inicio · 60% entrega
-                  </p>
                 </div>
 
                 {/* Plans Grid */}

@@ -119,7 +119,7 @@ const Contacto: React.FC = () => {
       <Section className="py-6 sm:py-8 md:py-10">
         <div className="container text-center px-4">
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent leading-tight pb-1">
               Hablemos de tu proyecto
             </h1>
             <p className="text-lg sm:text-xl text-muted-foreground mb-3 md:mb-4 leading-relaxed">
