@@ -96,14 +96,15 @@ export const mobileAppPlans: MobileAppPlan[] = [
 export const maintenancePlans: MaintenancePlan[] = [
   {
     name: 'Lite Care',
-    price: '39 €/mes',
-    sla: '≤72 h hábiles',
+    price: '14,99 €/mes',
+    sla: 'hasta 72 h hábiles',
     features: [
-      'Monitoreo básico (crashes)',
-      '1 h/mes de microtareas',
-      'Actualización de dependencias trimestral',
-      'Backup export (si aplica)',
-      'Soporte por email'
+      'Vigilamos tu app para detectar caídas o errores',
+      '1 hora de cambios al mes (por ejemplo: corregir un texto, ajustar un color, añadir una imagen o icono)',
+      'Revisión técnica cada 6 meses para que todo siga funcionando bien',
+      'Copia de seguridad de la información (si aplica)',
+      'Soporte por email siempre que lo necesites',
+      'Pensado para: negocios pequeños o apps que ya funcionan y solo necesitan estar controladas y con pequeños retoques'
     ]
   },
   {
