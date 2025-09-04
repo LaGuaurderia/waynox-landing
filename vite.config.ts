@@ -26,11 +26,15 @@ export default defineConfig(({ mode }) => {
     build: {
       outDir: 'dist',
       sourcemap: true,
+      chunkSizeWarningLimit: 1000,
       rollupOptions: {
         output: {
           manualChunks: {
             vendor: ['react', 'react-dom'],
             animations: ['framer-motion'],
+            router: ['react-router-dom'],
+            ui: ['lucide-react', 'clsx'],
+            utils: ['date-fns', 'fuse.js'],
           },
         },
       },
