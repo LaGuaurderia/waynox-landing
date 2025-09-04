@@ -84,20 +84,23 @@ export const CareCard: React.FC<CareCardProps> = ({ plan, delay = 0 }) => {
 
       {/* Características */}
       <div className="space-y-1 flex-1">
-        {plan.features.map((feature, index) => (
-          <div key={index} className="flex items-start space-x-3">
-            <CheckIcon 
-              className="w-4 h-4 mt-0.5 flex-shrink-0" 
-              style={{ color: 'var(--color-accent)' }}
-            />
-            <span 
-              className="text-sm leading-relaxed"
-              style={{ color: 'var(--color-text)' }}
-            >
-              {feature}
-            </span>
-          </div>
-        ))}
+        {plan.features.map((feature, index) => {
+          const isItalic = feature.startsWith('Pensado para:');
+          return (
+            <div key={index} className="flex items-start space-x-3">
+              <CheckIcon 
+                className="w-4 h-4 mt-0.5 flex-shrink-0" 
+                style={{ color: 'var(--color-accent)' }}
+              />
+              <span 
+                className={`text-sm leading-relaxed ${isItalic ? 'italic' : ''}`}
+                style={{ color: 'var(--color-text)' }}
+              >
+                {feature}
+              </span>
+            </div>
+          );
+        })}
       </div>
 
       {/* CTA */}
