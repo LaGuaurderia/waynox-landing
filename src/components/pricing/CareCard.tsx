@@ -51,12 +51,6 @@ export const CareCard: React.FC<CareCardProps> = ({ plan, delay = 0 }) => {
           >
             {plan.price}
           </span>
-          <span 
-            className="text-sm ml-1"
-            style={{ color: 'var(--color-text-muted)' }}
-          >
-            /mes
-          </span>
         </div>
       </div>
 

@@ -109,43 +109,45 @@ export const maintenancePlans: MaintenancePlan[] = [
   },
   {
     name: 'Start Care',
-    price: '79 €/mes',
-    sla: '≤48 h hábiles',
+    price: '29,99 €/mes',
+    sla: 'hasta 48 h hábiles',
     features: [
-      'Todo lo de Lite +',
-      '2 h/mes de microtareas',
-      'Build mensual (PWA/Android)',
-      'Actualización bimestral',
-      'Crashlytics y métricas',
-      'Mini-informe mensual'
+      'Todo lo del plan Lite Care',
+      '2 horas de cambios al mes (más margen para ajustes en textos, imágenes, pequeños bugs o detalles de diseño)',
+      'Una actualización al mes de tu app (Android/PWA) para mantenerla al día',
+      'Informe mensual sencillo con lo que se ha hecho y el estado de tu app',
+      'Estadísticas básicas (errores, uso, métricas clave)',
+      'Pensado para: apps que tienen algo más de movimiento, necesitan estar actualizadas con frecuencia y hacer cambios pequeños cada mes'
     ]
   },
   {
     name: 'Pro Care',
-    price: '149 €/mes',
-    sla: '≤24 h hábiles',
+    price: '49,99 €/mes',
+    sla: 'hasta 24 h hábiles',
     features: [
-      'Todo lo de Start +',
-      '4 h/mes de microtareas',
-      'Actualización mensual de libs/SDK',
-      'Gestión de fichas de store (texto/recursos)',
-      'Hotfix prioritarios',
-      'Revisión de seguridad/reglas de Firebase',
-      'Informe con KPIs'
+      '👀 Todo lo del plan Start Care',
+      '🛠️ 4 horas de cambios al mes (más margen para ajustes, corrección de errores o pequeños añadidos)',
+      '🔄 Revisiones técnicas mensuales de librerías/SDK (para que la app siempre esté al día con las actualizaciones)',
+      '🏪 Gestión de la ficha en la tienda (Google Play/App Store): textos, imágenes, recursos',
+      '🚑 Correcciones urgentes prioritarias si la app se cae o hay un fallo crítico',
+      '🔒 Revisión de seguridad y reglas de la base de datos (ej. Firebase)',
+      '📊 Informe con métricas y KPIs (uso, estabilidad, rendimiento)',
+      'Pensado para: apps en crecimiento activo, que se actualizan con frecuencia y donde la fiabilidad y seguridad son clave'
     ]
   },
   {
     name: 'Deluxe Care',
-    price: '249 €/mes',
-    sla: '≤12 h hábiles',
+    price: '119,99 €/mes',
+    sla: 'hasta 12 h hábiles',
     features: [
-      'Todo lo de Pro +',
-      '8 h/mes de microtareas',
-      'Release quincenal (CI/CD)',
-      'Auditoría de rendimiento trimestral',
-      'Experimentos de growth (A/B simple)',
-      'Roadmap call mensual (30\')',
-      'Canal dedicado'
+      'Todo lo del plan Pro Care',
+      '8 horas de cambios al mes (más flexibilidad para mejoras, correcciones o pequeños añadidos)',
+      'Publicaciones cada 2 semanas de nuevas versiones (con CI/CD para no depender de fechas sueltas)',
+      'Revisión de rendimiento trimestral (detectamos qué hace más lenta la app y lo optimizamos)',
+      'Pequeños experimentos de crecimiento (A/B simples, mejoras en la conversión)',
+      'Llamada mensual de roadmap (30 min) para planificar próximos pasos contigo',
+      'Canal directo (Slack o WhatsApp Business) para soporte más ágil',
+      'Pensado para: startups y negocios que están en fase de crecimiento rápido, necesitan cambios constantes y quieren acompañamiento cercano'
     ]
   }
 ]
