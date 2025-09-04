@@ -611,6 +611,7 @@ li {
     min-width: 140px;
     max-width: 180px;
     flex: 1;
+    margin-left: 20px; /* Desplazar el logo hacia la derecha */
   }
   
   .nav-right {
@@ -1075,6 +1076,7 @@ img {
     overflow: visible !important;
     min-width: 140px !important;
     max-width: 180px !important;
+    margin-left: 20px !important; /* Desplazar el logo hacia la derecha */
   }
 }
 
