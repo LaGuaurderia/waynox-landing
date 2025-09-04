@@ -608,12 +608,14 @@ li {
   }
   
   .logo-container {
-    min-width: 120px;
-    max-width: 140px;
+    min-width: 140px;
+    max-width: 180px;
+    flex: 1;
   }
   
   .nav-right {
     gap: 8px;
+    flex-shrink: 0;
   }
   
   .menu-btn {
@@ -639,12 +641,16 @@ li {
 
 /* Asegurar que no haya overflow horizontal */
 .navbar {
-  overflow-x: hidden;
+  overflow-x: visible;
   width: 100%;
 }
 
 .navbar-inner {
   overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 /* Ajustes para pantallas muy pequeñas */
@@ -655,11 +661,12 @@ li {
   }
   
   .logo-container {
-    min-width: 100px;
-    max-width: 140px;
+    min-width: 140px;
+    max-width: 180px;
     position: static;
     left: auto;
     transform: none;
+    flex: 1;
   }
   
   .menu-btn {
@@ -1049,6 +1056,26 @@ img {
   height: auto !important;
   min-height: auto !important;
   max-height: none !important;
+}
+
+/* Mejoras específicas para el logo en móvil */
+@media (max-width: 768px) {
+  .waynox-logo-container {
+    min-width: 120px !important;
+    max-width: 180px !important;
+    font-size: clamp(12px, 3vw, 16px) !important;
+  }
+  
+  .waynox-logo-char {
+    font-size: inherit !important;
+  }
+  
+  /* Asegurar que el logo completo sea visible */
+  .logo-container {
+    overflow: visible !important;
+    min-width: 140px !important;
+    max-width: 180px !important;
+  }
 }
 
 /* Cursor de escritura parpadeante */

@@ -180,11 +180,11 @@ export default function AnimatedLogo({
   return (
     <div
       aria-label="Waynox Studio"
-      className="waynox-logo-container inline-flex items-center font-semibold tracking-wide text-[clamp(14px,1.4vw,20px)] relative"
+      className="waynox-logo-container inline-flex items-center font-semibold tracking-wide text-[clamp(12px,1.2vw,18px)] relative"
       style={{ 
         width: 'auto', 
-        minWidth: '140px', 
-        maxWidth: '200px', 
+        minWidth: '120px', 
+        maxWidth: '180px', 
         justifyContent: 'flex-start',
         flexDirection: 'row',
         flexWrap: 'nowrap',
