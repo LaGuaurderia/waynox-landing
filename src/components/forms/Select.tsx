@@ -20,8 +20,8 @@ const Select: React.FC<SelectProps> = ({ label, id, error, options, className = 
         <select 
           id={selectId} 
           className={`
-            w-full px-4 py-3 rounded-lg border transition-all duration-200 appearance-none
-            bg-background text-foreground
+            w-full px-3 sm:px-4 py-3 rounded-lg border transition-all duration-200 appearance-none
+            bg-background text-foreground text-base
             focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500
             hover:border-border-hover cursor-pointer
             ${error 

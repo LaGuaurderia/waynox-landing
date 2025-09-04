@@ -116,13 +116,13 @@ const Contacto: React.FC = () => {
       <SEO title="Contacto" description="Solicita propuesta o consulta dudas" />
       
       {/* Hero Section */}
-      <Section className="py-8 md:py-10">
-        <div className="container text-center">
+      <Section className="py-6 sm:py-8 md:py-10">
+        <div className="container text-center px-4">
           <div className="max-w-3xl mx-auto">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
               Hablemos de tu proyecto
             </h1>
-            <p className="text-xl text-muted-foreground mb-3 md:mb-4 leading-relaxed">
+            <p className="text-lg sm:text-xl text-muted-foreground mb-3 md:mb-4 leading-relaxed">
               Cuéntanos sobre tu idea y te ayudaremos a hacerla realidad. 
               Nuestro equipo está listo para transformar tu visión en una solución digital excepcional.
             </p>
@@ -131,22 +131,22 @@ const Contacto: React.FC = () => {
       </Section>
 
       {/* Main Contact Section */}
-      <Section className="py-8 md:py-10">
-        <div className="container">
-          <div className="grid lg:grid-cols-2 gap-8 items-start">
+      <Section className="py-6 sm:py-8 md:py-10">
+        <div className="container px-4">
+          <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 items-start">
             
             {/* Formulario de Contacto */}
-            <div className="space-y-6">
-              <div className="space-y-3">
-                <h2 className="text-3xl font-bold">Envíanos un mensaje</h2>
-                <p className="text-muted-foreground text-lg">
+            <div className="space-y-4 sm:space-y-6">
+              <div className="space-y-2 sm:space-y-3">
+                <h2 className="text-2xl sm:text-3xl font-bold">Envíanos un mensaje</h2>
+                <p className="text-muted-foreground text-base sm:text-lg">
                   Completa el formulario y nos pondremos en contacto contigo en menos de 24 horas.
                 </p>
               </div>
 
-              <Card className="p-8 shadow-lg border-0 bg-card/50 backdrop-blur-sm">
-                <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+              <Card className="p-4 sm:p-6 md:p-8 shadow-lg border-0 bg-card/50 backdrop-blur-sm">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <Input 
                       name="nombre" 
                       label="Nombre completo" 
@@ -173,7 +173,7 @@ const Contacto: React.FC = () => {
                     placeholder="+34 600 000 000"
                   />
                   
-                  <div className="grid md:grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                     <Select 
                       name="tipo" 
                       label="Tipo de proyecto" 
@@ -214,10 +214,10 @@ const Contacto: React.FC = () => {
                     rows={6}
                   />
                   
-                  <div className="pt-4 space-y-3">
+                  <div className="pt-2 sm:pt-4 space-y-3">
                     <Button 
                       disabled={loading}
-                      className="w-full md:w-auto px-8 py-3 text-lg font-semibold"
+                      className="w-full sm:w-auto px-6 sm:px-8 py-3 text-base sm:text-lg font-semibold"
                     >
                       {loading ? (
                         <span className="flex items-center gap-2">
@@ -244,19 +244,19 @@ const Contacto: React.FC = () => {
                       onClick={() => setSuccess(null)}
                     >
                       <div 
-                        className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-md w-full text-center shadow-2xl border border-gray-200 dark:border-gray-700"
+                        className="bg-white dark:bg-gray-800 rounded-2xl p-6 sm:p-8 max-w-md w-full text-center shadow-2xl border border-gray-200 dark:border-gray-700"
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <div className="mb-6">
-                          <div className="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <svg className="w-8 h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="mb-4 sm:mb-6">
+                          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4">
+                            <svg className="w-6 h-6 sm:w-8 sm:h-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
                           </div>
-                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
                             ¡Gracias!
                           </h3>
-                          <p className="text-gray-600 dark:text-gray-300 text-lg">
+                          <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg">
                             Hemos recibido tu mensaje y te responderemos muy pronto.
                           </p>
                         </div>
@@ -274,10 +274,10 @@ const Contacto: React.FC = () => {
             </div>
 
             {/* Información de Contacto */}
-            <div className="space-y-8">
-              <div className="space-y-4">
-                <h2 className="text-3xl font-bold">Información de contacto</h2>
-                <p className="text-muted-foreground text-lg">
+            <div className="space-y-6 sm:space-y-8">
+              <div className="space-y-2 sm:space-y-4">
+                <h2 className="text-2xl sm:text-3xl font-bold">Información de contacto</h2>
+                <p className="text-muted-foreground text-base sm:text-lg">
                   Estamos aquí para ayudarte. Contáctanos de la forma que prefieras.
                 </p>
               </div>

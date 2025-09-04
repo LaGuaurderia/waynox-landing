@@ -18,8 +18,8 @@ const Textarea: React.FC<TextareaProps> = ({ label, id, error, className = '', .
       <textarea 
         id={textareaId} 
         className={`
-          w-full px-4 py-3 rounded-lg border transition-all duration-200 resize-none
-          bg-background text-foreground placeholder:text-muted-foreground
+          w-full px-3 sm:px-4 py-3 rounded-lg border transition-all duration-200 resize-none
+          bg-background text-foreground placeholder:text-muted-foreground text-base
           focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500
           hover:border-border-hover
           ${error 

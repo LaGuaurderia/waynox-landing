@@ -18,10 +18,10 @@ const Input: React.FC<InputProps> = ({ label, id, error, className = '', ...prop
       <input 
         id={inputId} 
         className={`
-          w-full px-4 py-3 rounded-lg border transition-all duration-200
+          w-full px-3 sm:px-4 py-3 rounded-lg border transition-all duration-200
           bg-background text-foreground placeholder:text-muted-foreground
           focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500
-          hover:border-border-hover
+          hover:border-border-hover text-base
           ${error 
             ? 'border-red-500 focus:ring-red-500/20 focus:border-red-500' 
             : 'border-border'
