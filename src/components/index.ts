@@ -19,6 +19,7 @@ export { default as ThemeToggle } from './ThemeToggle'
 export { default as Input } from './forms/Input'
 export { default as Select } from './forms/Select'
 export { default as Textarea } from './forms/Textarea'
+export { default as ContactForm } from './forms/ContactForm'
 
 // Transiciones y animaciones
 export { default as LoadingScreen } from './ui/LoadingScreen'

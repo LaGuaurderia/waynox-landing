@@ -5,7 +5,7 @@ export type BlogPostMeta = {
   date: string; // ISO
   author: string;
   tags: string[]; // ej: ["IA", "Formación", "Herramientas"]
-  category: "IA" | "Formación" | "Herramientas" | "Negocio";
+  category: "IA" | "Formación" | "Herramientas" | "Negocio" | "Automatización";
   coverImage: string; // ruta /blog/xxx.jpg
   readingTime?: string;
 }
