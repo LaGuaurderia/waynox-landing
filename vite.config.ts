@@ -17,7 +17,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      port: 3001,
+      port: 3000,
       open: true,
       headers: {
         'X-Content-Type-Options': 'nosniff',
