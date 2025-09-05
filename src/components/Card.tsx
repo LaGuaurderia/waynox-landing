@@ -41,6 +41,7 @@ export const Card: React.FC<CardProps> = ({
       className={clsx(
         'bg-[var(--color-bg)] text-[var(--color-text)] border border-[var(--color-border)] rounded-xl shadow-md overflow-hidden transition-all duration-300',
         'hover:shadow-xl transform-gpu hover:border-[var(--color-border-hover)]',
+        image ? 'relative' : '',
         className
       )}
       variants={variants}
@@ -50,17 +51,21 @@ export const Card: React.FC<CardProps> = ({
       viewport={{ once: true }}
     >
       {image && (
-        <div className="relative overflow-hidden">
+        <div className="absolute inset-0">
           <motion.img
             src={image}
             alt={imageAlt}
-            className="w-full h-40 sm:h-48 object-cover"
+            className="w-full h-full object-cover"
             whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           />
+          {/* Overlay para mejorar el contraste del texto */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
         </div>
       )}
-      <div className="p-4 sm:p-6">
+      <div className={clsx(
+        image ? 'relative z-10 p-4 sm:p-6 h-full flex flex-col justify-end' : 'p-4 sm:p-6'
+      )}>
         {children}
       </div>
     </motion.div>

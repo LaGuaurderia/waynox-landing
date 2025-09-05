@@ -109,11 +109,12 @@ const Home: React.FC = () => {
               transition={{ duration: 0.6, delay: index * 0.15 }}
               viewport={{ once: true }}
               whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.25 } }}
+              className="h-64 sm:h-72"
             >
-              <Card delay={item.delay} image={item.image}>
-                <div className="p-5">
-                  <h3 className="text-[color:var(--color-text)]">{item.title}</h3>
-                  <p className="text-[color:var(--color-text-muted)]">{item.desc}</p>
+              <Card delay={item.delay} image={item.image} className="h-full">
+                <div>
+                  <h3 className="text-white font-bold text-lg sm:text-xl mb-2 drop-shadow-lg">{item.title}</h3>
+                  <p className="text-white/90 text-sm sm:text-base drop-shadow-md">{item.desc}</p>
                 </div>
               </Card>
             </motion.div>
