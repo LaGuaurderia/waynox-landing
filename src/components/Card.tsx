@@ -55,12 +55,12 @@ export const Card: React.FC<CardProps> = ({
           <motion.img
             src={image}
             alt={imageAlt}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover object-top"
             whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
           />
           {/* Overlay para mejorar el contraste del texto */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10" />
         </div>
       )}
       <div className={clsx(

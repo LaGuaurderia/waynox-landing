@@ -1,9 +1,9 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import cover10Img from '../../images/appmovil.png'
-import cover11Img from '../../images/1.1.png'
-import cover12Img from '../../images/1.2.png'
-import cover13Img from '../../images/1.3.png'
+import cover10Img from '../../images/appmovil1.png'
+import cover11Img from '../../images/webpro.png'
+import cover12Img from '../../images/Ecommerce.png'
+import cover13Img from '../../images/appsempresariales.png'
 import Section from '../components/Section'
 import Card from '../components/Card'
 import SEO from '../components/SEO'
@@ -44,33 +44,10 @@ const Home: React.FC = () => {
         </div>
       </Section>
 
-      {/* Qué hacemos */}
-      <Section muted id="servicios">
-        <Reveal delay={0.15}>
-          <motion.div 
-            className="mb-1 text-xs sm:text-sm font-medium uppercase tracking-wider text-[#0EA5E9]"
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            viewport={{ once: true }}
-          >
-            Servicios
-          </motion.div>
-        </Reveal>
-        <Reveal delay={0.2}>
-          <motion.h2
-            className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[color:var(--color-text)]"
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-            viewport={{ once: true }}
-          >
-            Qué hacemos
-          </motion.h2>
-        </Reveal>
-
+      {/* Servicios - Sin títulos */}
+      <Section muted id="servicios" className="pt-0 -mt-8">
         <motion.div
-          className="mt-6 sm:mt-8 md:mt-10 grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
+          className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2"
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
@@ -109,12 +86,12 @@ const Home: React.FC = () => {
               transition={{ duration: 0.6, delay: index * 0.15 }}
               viewport={{ once: true }}
               whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.25 } }}
-              className="h-64 sm:h-72"
+              className="h-80 sm:h-96"
             >
               <Card delay={item.delay} image={item.image} className="h-full">
                 <div>
                   <h3 className="text-white font-bold text-lg sm:text-xl mb-2 drop-shadow-lg">{item.title}</h3>
-                  <p className="text-white/90 text-sm sm:text-base drop-shadow-md">{item.desc}</p>
+                  <p className="text-white/90 text-sm sm:text-base drop-shadow-md font-semibold">{item.desc}</p>
                 </div>
               </Card>
             </motion.div>
@@ -236,7 +213,8 @@ const Home: React.FC = () => {
         </div>
       </Section>
 
-      {/* Testimonios */}
+      {/* Testimonios - OCULTO TEMPORALMENTE */}
+      {/* 
       <Section id="testimonios">
         <Reveal delay={0.15}>
           <motion.div 
@@ -293,6 +271,7 @@ const Home: React.FC = () => {
           </motion.div>
         </motion.div>
       </Section>
+      */}
 
       
     </>
