@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import cover10Img from '../../images/1.0.png'
+import cover10Img from '../../images/appmovil.png'
 import cover11Img from '../../images/1.1.png'
 import cover12Img from '../../images/1.2.png'
 import cover13Img from '../../images/1.3.png'
