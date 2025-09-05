@@ -162,7 +162,7 @@ export const Navbar: React.FC = () => {
                 variant="glow" 
                 size="md" 
                 className="nav-cta text-sm lg:text-base px-4 lg:px-6 py-2 lg:py-3" 
-                onClick={() => navigate('/tarifas')}
+                onClick={() => navigate('/contacto')}
               >
                 <span className="flex items-center gap-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -258,7 +258,7 @@ export const Navbar: React.FC = () => {
                 <Button 
                   variant="gradient"
                   size="md"
-                  onClick={() => { setOpen(false); navigate('/tarifas') }}
+                  onClick={() => { setOpen(false); navigate('/contacto') }}
                   className="w-full justify-center py-3 text-sm"
                 >
                   <span className="flex items-center gap-2">
