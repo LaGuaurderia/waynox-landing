@@ -44,10 +44,11 @@ const ContactForm: React.FC = () => {
     // Validaciones mínimas
     const name = String(fd.get("name") || "").trim();
     const email = String(fd.get("email") || "").trim();
+    const phone = String(fd.get("phone") || "").trim();
     const message = String(fd.get("message") || "").trim();
-    if (!name || !email || !message) {
+    if (!name || !email || !phone || !message) {
       setStatus("error");
-      setErrorMsg("Por favor, completa los campos obligatorios.");
+      setErrorMsg("Por favor, completa todos los campos obligatorios.");
       return;
     }
 
@@ -129,11 +130,12 @@ const ContactForm: React.FC = () => {
         {/* Teléfono */}
         <div className="space-y-2">
           <label className="block text-sm font-medium text-foreground">
-            Teléfono (opcional)
+            Teléfono *
           </label>
           <input 
             name="phone" 
             type="tel"
+            required
             placeholder="+34 600 000 000"
             className="w-full px-3 sm:px-4 py-3 rounded-lg border transition-all duration-200 bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 hover:border-border-hover text-base border-border"
             autoComplete="tel"

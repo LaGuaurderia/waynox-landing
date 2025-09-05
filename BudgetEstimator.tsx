@@ -488,7 +488,7 @@ const BudgetEstimator: React.FC<BudgetEstimatorProps> = ({
               />
             </div>
             <div className="form-group">
-              <label htmlFor="phone">Teléfono</label>
+              <label htmlFor="phone">Teléfono *</label>
               <input
                 type="tel"
                 id="phone"
@@ -497,6 +497,7 @@ const BudgetEstimator: React.FC<BudgetEstimatorProps> = ({
                   ...formData,
                   contact: { ...formData.contact, phone: e.target.value }
                 })}
+                required
               />
             </div>
             <div className="form-group">

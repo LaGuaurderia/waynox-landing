@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import cover10Img from '../../images/appmovil1.png'
 import cover11Img from '../../images/webpro.png'
@@ -10,6 +10,36 @@ import SEO from '../components/SEO'
 import { Reveal, Parallax } from '../components/anim'
 import { staggerContainer } from '../lib/motionPresets'
 
+
+// Componente de animación de escritura
+const TypingAnimation: React.FC<{ text: string; speed?: number }> = ({ text, speed = 100 }) => {
+  const [displayedText, setDisplayedText] = useState('')
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  useEffect(() => {
+    if (currentIndex < text.length) {
+      const timeout = setTimeout(() => {
+        setDisplayedText(prev => prev + text[currentIndex])
+        setCurrentIndex(prev => prev + 1)
+      }, speed)
+
+      return () => clearTimeout(timeout)
+    }
+  }, [currentIndex, text, speed])
+
+  return (
+    <span>
+      {displayedText}
+      <motion.span
+        animate={{ opacity: [1, 0, 1] }}
+        transition={{ duration: 0.8, repeat: Infinity }}
+        className="text-[var(--color-accent)]"
+      >
+        |
+      </motion.span>
+    </span>
+  )
+}
 
 const Home: React.FC = () => {
   return (
@@ -24,16 +54,20 @@ const Home: React.FC = () => {
 
         <div className="relative z-10 flex flex-col items-center gap-4 sm:gap-6 text-center px-4">
           <div className="max-w-4xl mx-auto">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] leading-tight text-center">
-              Del boceto al código
-            </h1>
+            <motion.h1 
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] leading-tight text-center"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <TypingAnimation text="Del boceto al código" speed={120} />
+            </motion.h1>
 
             <motion.p
               className="group mt-3 sm:mt-4 text-lg sm:text-xl text-neutral-700 dark:text-neutral-300 text-center max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 2.5 }}
             >
               <span className="relative inline-block transition-colors duration-200 group-hover:text-[#0EA5E9]">
                 Tecnología accesible con resultados visibles.

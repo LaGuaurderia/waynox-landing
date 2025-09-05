@@ -5,7 +5,7 @@ import { buttonVariants } from '../lib/motionPresets'
 import { useReducedMotion } from '../lib/hooks/useReducedMotion'
 
 type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: 'primary' | 'ghost' | 'link'
+  variant?: 'primary' | 'ghost' | 'link' | 'gradient' | 'glow'
   asChild?: boolean
   size?: 'sm' | 'md' | 'lg'
 }
@@ -26,21 +26,24 @@ export const Button: React.FC<ButtonProps> = ({
     'btn',
     `btn-${variant}`,
     `btn-${size}`,
-    'relative overflow-hidden transition-all duration-200',
+    'relative overflow-hidden transition-all duration-300',
     'focus:outline-none focus:ring-2 focus:ring-offset-2',
+    'group',
     className
   )
 
   const variantClasses = {
-    primary: 'bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] focus:ring-[var(--color-accent)]',
-    ghost: 'bg-transparent text-[var(--color-text)] border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:bg-[var(--color-bg-soft)] focus:ring-[var(--color-accent)]',
-    link: 'bg-transparent text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] underline-offset-4 hover:underline focus:ring-[var(--color-accent)]'
+    primary: 'bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] focus:ring-[var(--color-accent)] shadow-lg hover:shadow-xl',
+    ghost: 'bg-transparent text-[var(--color-text)] border border-[var(--color-border)] hover:border-[var(--color-accent)] hover:bg-[var(--color-bg-soft)] focus:ring-[var(--color-accent)] hover:shadow-md',
+    link: 'bg-transparent text-[var(--color-accent)] hover:text-[var(--color-accent-hover)] underline-offset-4 hover:underline focus:ring-[var(--color-accent)]',
+    gradient: 'bg-gradient-to-r from-[var(--color-accent)] to-[var(--color-accent-hover)] text-white hover:from-[var(--color-accent-hover)] hover:to-[var(--color-accent)] focus:ring-[var(--color-accent)] shadow-lg hover:shadow-xl',
+    glow: 'bg-[var(--color-accent)] text-white hover:bg-[var(--color-accent-hover)] focus:ring-[var(--color-accent)] shadow-lg hover:shadow-2xl hover:shadow-[var(--color-accent)]/25'
   }
 
   const sizeClasses = {
-    sm: 'px-3 py-2 text-sm rounded-md',
-    md: 'px-4 py-2 text-base rounded-lg',
-    lg: 'px-6 py-3 text-lg rounded-xl'
+    sm: 'px-4 py-2 text-sm rounded-2xl font-medium',
+    md: 'px-6 py-3 text-base rounded-3xl font-semibold',
+    lg: 'px-8 py-4 text-lg rounded-full font-bold'
   }
 
   return (
@@ -52,7 +55,12 @@ export const Button: React.FC<ButtonProps> = ({
       whileTap="tap"
       {...(props as any)}
     >
-      {children}
+      
+      {/* Contenido del botón */}
+      <span className="relative z-10 flex items-center justify-center gap-2">
+        {children}
+      </span>
+
     </motion.button>
   )
 }
