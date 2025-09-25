@@ -21,7 +21,7 @@ const Privacidad: React.FC = () => {
             <section>
               <h2>1. Información del Responsable</h2>
               <p><strong>Waynox Studio</strong></p>
-              <p>Email: hola@waynox.es</p>
+              <p>Email: waynoxstudio@gmail.com</p>
               <p>Ubicación: Barcelona, España</p>
               <p>Fecha de última actualización: Enero 2024</p>
             </section>
@@ -101,7 +101,7 @@ const Privacidad: React.FC = () => {
 
             <section>
               <h2>8. Ejercicio de Derechos</h2>
-              <p>Escríbenos a hola@waynox.es o por WhatsApp al +34 621 03 35 28.</p>
+              <p>Escríbenos a waynoxstudio@gmail.com o por WhatsApp al 657281635.</p>
             </section>
 
             <section>

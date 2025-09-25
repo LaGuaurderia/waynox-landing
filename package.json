@@ -17,7 +17,10 @@
     "covers:dry": "tsx scripts/gen-covers.ts --all --dry",
     "covers:data:dry": "tsx scripts/gen-covers-from-data.ts --dry",
     "covers:data": "tsx scripts/gen-covers-from-data.ts",
-    "covers:generate": "tsx scripts/generate-covers.ts"
+    "covers:generate": "tsx scripts/generate-covers.ts",
+    "favicons:generate": "node scripts/generate-advanced-favicons.js",
+    "favicons:setup": "node scripts/setup-complete-favicons.js",
+    "favicons:verify": "node scripts/setup-complete-favicons.js"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",

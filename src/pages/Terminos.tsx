@@ -21,7 +21,7 @@ const Terminos: React.FC = () => {
             <section>
               <h2>1. Identidad del Proveedor</h2>
               <p><strong>Waynox Studio</strong></p>
-              <p>Email: hola@waynox.es</p>
+              <p>Email: waynoxstudio@gmail.com</p>
               <p>Ubicación: Barcelona, España</p>
               <p>Fecha de última actualización: Enero 2024</p>
             </section>
@@ -137,7 +137,7 @@ const Terminos: React.FC = () => {
             <section>
               <h2>15. Contacto</h2>
               <p>
-                Para consultas sobre estos términos, escríbenos a hola@waynox.es o por WhatsApp al +34 621 03 35 28.
+                Para consultas sobre estos términos, escríbenos a waynoxstudio@gmail.com o por WhatsApp al 657281635.
               </p>
             </section>
           </div>
