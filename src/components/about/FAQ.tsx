@@ -42,7 +42,7 @@ const FAQ: React.FC = () => {
                     animate={{
                       backgroundColor: isOpen ? 'var(--bg)' : 'var(--bg2)'
                     }}
-                    transition={{ duration: 0.2 }}
+                    transition={{ duration: 0 }}
                   >
                     {/* Pregunta */}
                     <button
@@ -56,7 +56,7 @@ const FAQ: React.FC = () => {
                       </span>
                       <motion.div
                         animate={{ rotate: isOpen ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
+                        transition={{ duration: 0 }}
                         className="flex-shrink-0 text-[var(--accent)]"
                       >
                         <ChevronDown size={24} />
@@ -73,16 +73,16 @@ const FAQ: React.FC = () => {
                             opacity: 1, 
                             height: 'auto',
                             transition: {
-                              opacity: { duration: 0.3 },
-                              height: { duration: 0.3, ease: [0.2, 0.8, 0.2, 1] }
+                              opacity: { duration: 0 },
+                              height: { duration: 0, ease: [0.2, 0.8, 0.2, 1] }
                             }
                           }}
                           exit={{ 
                             opacity: 0, 
                             height: 0,
                             transition: {
-                              opacity: { duration: 0.2 },
-                              height: { duration: 0.2 }
+                              opacity: { duration: 0 },
+                              height: { duration: 0 }
                             }
                           }}
                           className="overflow-hidden"

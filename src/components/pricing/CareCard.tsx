@@ -24,7 +24,7 @@ export const CareCard: React.FC<CareCardProps> = ({ plan, delay = 0 }) => {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
+      transition={{ duration: 0, delay: 0 }}
       viewport={{ once: true }}
       className="group rounded-xl p-3 transition-all duration-200 border border-neutral-200 dark:border-neutral-800 hover:!border-[#00BFFF] hover:shadow-lg hover:shadow-[#00BFFF]/20 h-full flex flex-col"
       style={{

@@ -16,7 +16,7 @@ const EmptyState: React.FC<EmptyStateProps> = ({ searchTerm, category, tags }) =
       className="text-center py-16 px-6"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0 }}
     >
       <div className="mb-6">
         {hasFilters ? (

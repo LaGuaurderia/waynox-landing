@@ -48,8 +48,8 @@ export const StaggeredHeading: React.FC<StaggeredHeadingProps> = ({
             }
           }}
           transition={{
-            duration: 0.6,
-            delay: delay + (index * staggerDelay),
+            duration: 0,
+            delay: 0,
             ease: [0.25, 0.46, 0.45, 0.94]
           }}
           style={{ 

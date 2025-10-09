@@ -59,7 +59,7 @@ export const PriceCard: React.FC<PriceCardProps> = ({
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.2, delay }}
+      transition={{ duration: 0, delay: 0 }}
       viewport={{ once: true }}
       className={`group relative h-full flex flex-col rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-white/60 dark:bg-neutral-900/40 p-6 text-neutral-800 dark:text-neutral-200 transition-all duration-200 hover:!border-[#00BFFF] hover:shadow-lg hover:shadow-[#00BFFF]/20`}
     >

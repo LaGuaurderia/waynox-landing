@@ -50,7 +50,7 @@ export const AnchorNav: React.FC<AnchorNavProps> = ({ items, className = '' }) =
     <motion.nav
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0 }}
       className={`hidden lg:block fixed left-6 top-1/2 transform -translate-y-1/2 z-40 ${className}`}
     >
               <div className="bg-brand-white/95 backdrop-blur-sm border border-brand-gray rounded-2xl p-4 shadow-xl">

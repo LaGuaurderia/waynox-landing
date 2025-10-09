@@ -56,7 +56,7 @@ export const StickyTOC: React.FC<StickyTOCProps> = ({ items, className = '' }) =
     <motion.div
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0 }}
       className={`hidden lg:block ${className}`}
     >
       <div className="sticky top-24 space-y-2">

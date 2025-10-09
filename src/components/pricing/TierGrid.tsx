@@ -13,7 +13,7 @@ export const TierGrid: React.FC<TierGridProps> = ({ plans }) => {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0 }}
         viewport={{ once: true }}
         className="grid grid-cols-1 gap-6 max-w-4xl mx-auto"
       >
@@ -22,7 +22,7 @@ export const TierGrid: React.FC<TierGridProps> = ({ plans }) => {
             key={plan.plan}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: index * 0.1 }}
+            transition={{ duration: 0, delay: 0 }}
             viewport={{ once: true }}
             className="relative"
           >

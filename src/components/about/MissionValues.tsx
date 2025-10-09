@@ -25,7 +25,7 @@ const MissionValues: React.FC = () => {
               <motion.div 
                 className="bg-[var(--bg)] p-8 rounded-2xl border border-[var(--line)] hover:border-[var(--accent)] transition-colors duration-300"
                 whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0 }}
               >
                 <div className="text-6xl mb-4">🎯</div>
                 <h3 className="text-2xl font-bold text-[var(--text)] mb-4">Misión</h3>
@@ -39,7 +39,7 @@ const MissionValues: React.FC = () => {
               <motion.div 
                 className="bg-[var(--bg)] p-8 rounded-2xl border border-[var(--line)] hover:border-[var(--accent)] transition-colors duration-300"
                 whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0 }}
               >
                 <div className="text-6xl mb-4">🔮</div>
                 <h3 className="text-2xl font-bold text-[var(--text)] mb-4">Visión</h3>
@@ -70,7 +70,7 @@ const MissionValues: React.FC = () => {
                 <motion.div 
                   className="bg-[var(--bg)] p-6 rounded-xl border border-[var(--line)] hover:border-[var(--accent)] transition-all duration-300 group"
                   whileHover={{ y: -5, scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0 }}
                 >
                   <div className="text-4xl mb-4 group-hover:scale-110 transition-transform duration-300">
                     {value.icon}

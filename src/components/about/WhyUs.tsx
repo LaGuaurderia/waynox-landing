@@ -27,7 +27,7 @@ const WhyUs: React.FC = () => {
                 <motion.div 
                   className="bg-[var(--bg2)] p-8 rounded-2xl border border-[var(--line)] hover:border-[var(--accent)] transition-all duration-300 group"
                   whileHover={{ y: -5, scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0 }}
                 >
                   <div className="flex items-start gap-4">
                     {/* Icono del punto */}
@@ -65,7 +65,7 @@ const WhyUs: React.FC = () => {
               <motion.div 
                 className="text-center"
                 whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0 }}
               >
                 <div className="text-4xl font-bold text-[var(--accent)] mb-2">95%</div>
                 <p className="text-[var(--muted)] text-sm">Clientes satisfechos</p>
@@ -74,7 +74,7 @@ const WhyUs: React.FC = () => {
               <motion.div 
                 className="text-center"
                 whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0 }}
               >
                 <div className="text-4xl font-bold text-[var(--accent)] mb-2">6</div>
                 <p className="text-[var(--muted)] text-sm">Semanas promedio</p>
@@ -83,7 +83,7 @@ const WhyUs: React.FC = () => {
               <motion.div 
                 className="text-center"
                 whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0 }}
               >
                 <div className="text-4xl font-bold text-[var(--accent)] mb-2">24/7</div>
                 <p className="text-[var(--muted)] text-sm">Soporte disponible</p>

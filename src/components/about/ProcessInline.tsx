@@ -30,7 +30,7 @@ const ProcessInline: React.FC = () => {
                   <motion.div 
                     className="text-center group"
                     whileHover={{ y: -5 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0 }}
                   >
                     {/* Icono del paso */}
                     <div className="relative mb-6">

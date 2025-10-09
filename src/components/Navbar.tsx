@@ -16,7 +16,6 @@ const links = [
 export const Navbar: React.FC = () => {
   const [open, setOpen] = useState(false)
   const [scrollProgress, setScrollProgress] = useState(0)
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
 
   const location = useLocation()
   const navigate = useNavigate()
@@ -48,7 +47,6 @@ export const Navbar: React.FC = () => {
       }
     } else {
       document.body.style.overflow = ''
-      setActiveDropdown(null)
     }
   }, [open])
 
@@ -98,7 +96,7 @@ export const Navbar: React.FC = () => {
         style={{ scaleX: scrollProgress / 100 }}
         initial={{ scaleX: 0 }}
         animate={{ scaleX: scrollProgress / 100 }}
-        transition={{ duration: 0.1 }}
+        transition={{ duration: 0 }}
       />
       
       <header 
@@ -114,43 +112,66 @@ export const Navbar: React.FC = () => {
           </div>
 
           {/* Navegación central - Solo visible en desktop */}
-          <nav className="nav-links" aria-label="Enlaces principales">
-            {links.map((link) => (
-              <div
+          <nav className="nav-links relative" aria-label="Enlaces principales">
+            {links.map((link, index) => (
+              <motion.div
                 key={link.to}
-                className="relative"
+                className="relative group/nav"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05, duration: 0.4, ease: "easeOut" }}
               >
                 <NavLink 
                   to={link.to} 
-                  className={({ isActive }) => `nav-link group relative flex items-center justify-center px-4 lg:px-6 py-3 lg:py-4 rounded-lg transition-all duration-300 text-sm lg:text-base font-medium ${isActive ? 'active text-brand-blue bg-brand-blue/10 shadow-md' : 'text-brand-gray-light hover:text-white hover:bg-brand-blue/20 hover:shadow-lg'}`}
+                  className={({ isActive }) => `nav-link group relative flex items-center justify-center px-4 lg:px-6 py-3 lg:py-4 rounded-xl transition-all duration-300 text-sm lg:text-base font-semibold border-0 ${isActive ? 'active text-white' : 'text-[var(--color-text-muted)] hover:scale-105'}`}
                   aria-label={`Ir a ${link.label}`}
                 >
-                  {/* Efecto de fondo animado */}
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-brand-blue/0 via-brand-blue/10 to-brand-blue/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
-                  {/* Efecto de brillo en hover */}
-                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-500" />
-                  
-                  {/* Contenido del enlace */}
-                  <span className="relative z-10 flex items-center gap-2">
-                    {link.label}
-                    {link.to === location.pathname && (
-                      <div className="w-2 h-2 bg-brand-blue rounded-full animate-pulse" />
-                    )}
-                  </span>
-                  
-                  {/* Indicador de página activa */}
+                  {/* Fondo activo deslizante con animación */}
                   {link.to === location.pathname && (
-                    <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-brand-blue to-brand-blue/60 rounded-full" />
+                    <motion.div 
+                      layoutId="activeBackground"
+                      className="absolute inset-0 rounded-xl bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] border-0"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
                   )}
                   
-                  {/* Efecto de partículas en hover */}
-                  <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-brand-blue/60 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-particle-1" />
-                    <div className="absolute top-1/3 right-1/4 w-0.5 h-0.5 bg-brand-blue/80 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-particle-2" />
+                  {/* Fondo con gradiente en hover - limpio y sutil */}
+                  <div className="absolute inset-0 rounded-xl bg-[var(--color-accent)] opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                  
+                  {/* Efecto de brillo deslizante mejorado */}
+                  <div className="absolute inset-0 rounded-xl overflow-hidden">
+                    <motion.div 
+                      className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent"
+                      initial={{ x: '-100%', opacity: 0 }}
+                      whileHover={{ x: '100%', opacity: 1 }}
+                      transition={{ duration: 0.6, ease: "easeInOut" }}
+                    />
                   </div>
+                  
+                  {/* Contenido del enlace */}
+                  <span className={`relative z-10 flex items-center gap-2 transition-all duration-200 group-hover:text-white ${link.to === location.pathname ? 'text-white' : ''}`}>
+                    {link.label}
+                  </span>
+                  
+                  {/* Indicador inferior deslizante para página activa */}
+                  {link.to === location.pathname && (
+                    <motion.div 
+                      layoutId="activeIndicator"
+                      className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-0.5 bg-white rounded-full"
+                      style={{ width: '70%' }}
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  
+                  {/* Indicador inferior en hover */}
+                  <motion.div 
+                    className="absolute -bottom-1 left-1/2 -translate-x-1/2 h-0.5 bg-white/60 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ width: 0 }}
+                    whileHover={{ width: '60%' }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                  />
                 </NavLink>
-              </div>
+              </motion.div>
             ))}
           </nav>
 
@@ -218,40 +239,66 @@ export const Navbar: React.FC = () => {
                 </div>
               </div>
               
-              {links.map((link) => (
-                <div
+              {links.map((link, index) => (
+                <motion.div
                   key={link.to}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ 
+                    delay: index * 0.08, 
+                    duration: 0.4,
+                    type: "spring",
+                    stiffness: 100
+                  }}
                 >
                   <NavLink 
                     to={link.to} 
-                    className={({ isActive }) => `nav-link-mobile group relative flex items-center justify-center py-4 px-4 rounded-lg transition-all duration-300 ${isActive ? 'active bg-brand-blue/20 text-brand-blue border border-brand-blue/30 shadow-md' : 'hover:bg-brand-blue/10 hover:text-white hover:shadow-lg'}`} 
+                    className={({ isActive }) => `nav-link-mobile group relative flex items-center justify-center py-4 px-4 rounded-xl transition-all duration-300 text-base font-semibold border-0 ${isActive ? 'active text-white' : 'text-[var(--color-text)] hover:scale-[1.02]'}`} 
                     onClick={() => setOpen(false)}
                     aria-label={`Ir a ${link.label}`}
                   >
-                    {/* Efecto de fondo animado */}
-                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-brand-blue/0 via-brand-blue/10 to-brand-blue/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Fondo activo deslizante con animación */}
+                    {link.to === location.pathname && (
+                      <motion.div 
+                        layoutId="activeMobileBackground"
+                        className="absolute inset-0 rounded-xl bg-gradient-to-br from-[var(--color-accent)] to-[var(--color-accent-hover)] border-0"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
                     
-                    {/* Efecto de brillo en hover */}
-                    <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-shimmer transition-opacity duration-500" />
+                    {/* Fondo con gradiente en hover - limpio */}
+                    <div className="absolute inset-0 rounded-xl bg-[var(--color-accent)] opacity-0 group-hover:opacity-100 transition-all duration-300" />
+                    
+                    {/* Efecto de brillo deslizante mejorado */}
+                    <div className="absolute inset-0 rounded-xl overflow-hidden">
+                      <motion.div 
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent"
+                        initial={{ x: '-100%', opacity: 0 }}
+                        whileHover={{ x: '100%', opacity: 1 }}
+                        transition={{ duration: 0.6, ease: "easeInOut" }}
+                      />
+                    </div>
                     
                     {/* Contenido del enlace */}
-                    <span className="relative z-10 flex items-center gap-3 text-sm font-medium">
-                      {link.label}
-                      {link.to === location.pathname && (
-                        <div className="flex items-center gap-2">
-                          <div className="w-2 h-2 bg-brand-blue rounded-full animate-pulse" />
-                          <span className="text-brand-blue text-base">●</span>
-                        </div>
-                      )}
+                    <span className={`relative z-10 flex items-center gap-3 transition-all duration-200 group-hover:text-white ${link.to === location.pathname ? 'text-white' : ''}`}>
+                      <motion.span
+                        className="flex items-center gap-3"
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        {link.label}
+                      </motion.span>
                     </span>
                     
-                    {/* Efecto de partículas en hover */}
-                    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                      <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-brand-blue/60 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-particle-1" />
-                      <div className="absolute top-1/3 right-1/4 w-0.5 h-0.5 bg-brand-blue/80 rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-particle-2" />
-                    </div>
+                    {/* Indicador lateral deslizante para página activa */}
+                    {link.to === location.pathname && (
+                      <motion.div 
+                        layoutId="activeMobileIndicator"
+                        className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-1/2 bg-white rounded-full"
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
                   </NavLink>
-                </div>
+                </motion.div>
               ))}
               
               <div style={{ marginTop: 16 }}>

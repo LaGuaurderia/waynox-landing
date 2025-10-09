@@ -36,7 +36,7 @@ const MainLayout: React.FC = () => {
       <motion.div
         className="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-500 z-50 origin-left"
         style={{ scaleX: scrollProgress / 100 }}
-        transition={{ duration: 0.1 }}
+        transition={{ duration: 0 }}
       />
       
       <ScrollToTop />

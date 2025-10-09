@@ -61,7 +61,7 @@ export const MagneticCTA: React.FC<MagneticCTAProps> = ({
     animate: {
       x: magneticOffset.x,
       y: magneticOffset.y,
-      transition: { duration: 0.2 }
+      transition: { duration: 0 }
     }
   };
 

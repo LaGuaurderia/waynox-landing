@@ -26,7 +26,7 @@ const TeamGrid: React.FC = () => {
                 <motion.div 
                   className="bg-[var(--bg2)] p-8 rounded-2xl border border-[var(--line)] hover:border-[var(--accent)] transition-all duration-300 group"
                   whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0 }}
                 >
                   {/* Foto del miembro */}
                   <div className="flex justify-center mb-6">

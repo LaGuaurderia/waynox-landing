@@ -12,7 +12,7 @@ export const FeatureItem: React.FC<FeatureItemProps> = ({ text, className = '' }
     <motion.div
       initial={{ opacity: 0, x: -8 }}
       whileInView={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0 }}
       viewport={{ once: true }}
       className={`flex items-start space-x-3 py-2 ${className}`}
     >

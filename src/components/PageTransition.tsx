@@ -25,7 +25,7 @@ const PageTransition: React.FC<PageTransitionProps> = ({ children, pathname }) =
   const pageTransition = {
     type: 'tween',
     ease: 'easeInOut',
-    duration: 0.3
+    duration: 0
   }
 
   return (

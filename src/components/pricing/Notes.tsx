@@ -12,7 +12,7 @@ export const Notes: React.FC<NotesProps> = ({ items, title = "Notas importantes"
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0 }}
       viewport={{ once: true }}
       className="rounded-2xl p-6 lg:p-8"
       style={{
@@ -50,7 +50,7 @@ export const Notes: React.FC<NotesProps> = ({ items, title = "Notas importantes"
             key={index}
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
+            transition={{ duration: 0, delay: 0 }}
             viewport={{ once: true }}
             className="flex items-start space-x-3"
           >

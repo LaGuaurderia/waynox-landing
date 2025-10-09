@@ -62,7 +62,7 @@ export const CardTilt: React.FC<CardTiltProps> = ({
       animate={{
         rotateX: tilt.x,
         rotateY: tilt.y,
-        transition: { duration: 0.2, ease: [0.2, 0.8, 0.2, 1] }
+        transition: { duration: 0, ease: [0.2, 0.8, 0.2, 1] }
       }}
       style={{
         transformStyle: 'preserve-3d',

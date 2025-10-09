@@ -63,7 +63,7 @@ const Tarifas: React.FC = () => {
             className="text-3xl lg:text-4xl font-bold mb-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0 }}
           >
             Tarifas y Planes 2025
           </motion.h1>
@@ -71,7 +71,7 @@ const Tarifas: React.FC = () => {
             className="group mt-4 text-lg lg:text-xl text-brand-gray text-center max-w-3xl mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0, delay: 0 }}
           >
             <span className="relative inline-block transition-colors duration-200 group-hover:text-[#0EA5E9]">
               Paquetes cerrados con tiempos realistas y soporte continuo
@@ -96,7 +96,7 @@ const Tarifas: React.FC = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0 }}
           >
             {/* Apps Móviles Section */}
             <section className="bg-brand-black text-[var(--color-text)] pt-8 pb-16 lg:pt-12 lg:pb-24">
@@ -157,7 +157,7 @@ const Tarifas: React.FC = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 20 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0 }}
           >
             {/* Web Section */}
             <section className="bg-brand-black text-[var(--color-text)] pt-8 pb-16 lg:pt-12 lg:pb-24">
@@ -234,7 +234,7 @@ const Tarifas: React.FC = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0 }}
             viewport={{ once: true }}
             className="max-w-3xl mx-auto"
           >

@@ -76,9 +76,9 @@ const PageLoadingScreen: React.FC<PageLoadingScreenProps> = ({
             exit={{ 
               opacity: 0, 
               scale: 0.95,
-              transition: { duration: 0.6, ease: "easeInOut" }
+              transition: { duration: 0, ease: "easeInOut" }
             }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0 }}
             aria-hidden={shouldShowContent}
           >
             <div className="text-center">
@@ -86,7 +86,7 @@ const PageLoadingScreen: React.FC<PageLoadingScreenProps> = ({
                 className="text-3xl md:text-5xl font-bold text-white leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                transition={{ duration: 0, ease: "easeOut" }}
                 role="status"
                 aria-live="polite"
               >
@@ -95,7 +95,7 @@ const PageLoadingScreen: React.FC<PageLoadingScreenProps> = ({
                   <motion.span
                     className="inline-block w-1 h-10 bg-white ml-1"
                     animate={{ opacity: [1, 0] }}
-                    transition={{ duration: 0.5, repeat: Infinity }}
+                    transition={{ duration: 0, repeat: Infinity }}
                   />
                 )}
               </motion.div>
@@ -107,7 +107,7 @@ const PageLoadingScreen: React.FC<PageLoadingScreenProps> = ({
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.4, delay: 0.1 }}
+        transition={{ duration: 0, delay: 0 }}
       >
         {children}
       </motion.div>

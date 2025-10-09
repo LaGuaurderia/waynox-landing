@@ -29,8 +29,8 @@ export const Card: React.FC<CardProps> = ({
       opacity: 1, 
       y: 0,
       transition: { 
-        duration: 0.6, 
-        delay,
+        duration: 0, 
+        delay: 0,
         ease: [0.25, 0.46, 0.45, 0.94]
       }
     }
@@ -51,13 +51,14 @@ export const Card: React.FC<CardProps> = ({
       viewport={{ once: true }}
     >
       {image && (
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 overflow-hidden">
           <motion.img
             src={image}
             alt={imageAlt}
             className="w-full h-full object-cover object-top"
-            whileHover={prefersReducedMotion ? {} : { scale: 1.05 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            initial={{ scale: 1 }}
+            whileHover={prefersReducedMotion ? {} : { scale: 1.1 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
           />
           {/* Overlay para mejorar el contraste del texto */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10" />

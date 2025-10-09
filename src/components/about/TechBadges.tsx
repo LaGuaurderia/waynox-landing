@@ -36,7 +36,7 @@ const TechBadges: React.FC = () => {
                   <motion.div 
                     className="bg-[var(--bg2)] p-6 rounded-xl border border-[var(--line)] hover:border-[var(--accent)] transition-all duration-300 group text-center"
                     whileHover={{ y: -5, scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0 }}
                   >
                     <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
                       {tech.icon}
@@ -113,7 +113,7 @@ const TechBadges: React.FC = () => {
                   <motion.div 
                     className="bg-[var(--bg2)] p-4 rounded-lg border border-[var(--line)] hover:border-[var(--accent)] transition-colors duration-300 text-center"
                     whileHover={{ y: -3 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0 }}
                   >
                     <div className="text-3xl mb-2">{partner.logo}</div>
                     <h4 className="font-semibold text-[var(--text)] text-sm mb-1">

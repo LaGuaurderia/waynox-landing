@@ -25,7 +25,7 @@ export const Section: React.FC<SectionProps> = ({
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay }}
+            transition={{ duration: 0, delay: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
@@ -45,7 +45,7 @@ export const Section: React.FC<SectionProps> = ({
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: delay + 0.2 }}
+          transition={{ duration: 0, delay: 0 }}
           viewport={{ once: true }}
         >
           {children}

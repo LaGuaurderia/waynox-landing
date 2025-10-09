@@ -38,8 +38,8 @@ export const Reveal: React.FC<RevealProps> = ({
       visible: {
         opacity: 1,
         transition: {
-          duration: 0.8,
-          delay,
+          duration: 0,
+          delay: 0,
           ease: [0.25, 0.46, 0.45, 0.94],
         },
       },

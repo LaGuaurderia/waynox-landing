@@ -23,7 +23,7 @@ const Nosotros: React.FC = () => {
               className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[color:var(--color-text)]"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0 }}
             >
               Somos Waynox Studio
             </motion.h1>
@@ -31,7 +31,7 @@ const Nosotros: React.FC = () => {
               className="mt-3 text-[color:var(--color-text-muted)] text-lg leading-relaxed"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0, delay: 0 }}
             >
               Un estudio digital independiente que crea apps y webs con estrategia, diseño y código. Trabajamos con pymes y startups que buscan soluciones claras, rápidas y sostenibles.
             </motion.p>
@@ -43,7 +43,7 @@ const Nosotros: React.FC = () => {
       {/* 2) MANIFIESTO: NUESTRA ESENCIA */}
       <Section className="py-10">
         <div className="container">
-          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.3 }}>
+          <motion.div initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0 }}>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[color:var(--color-text)]">Nuestra esencia</h2>
             <p className="mt-2 text-[color:var(--color-text-muted)]">Principios que nos definen como estudio.</p>
           </motion.div>
@@ -82,7 +82,7 @@ const Nosotros: React.FC = () => {
             initial={useReducedMotion() ? {} : { opacity: 0, y: 8 }}
             whileInView={useReducedMotion() ? {} : { opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.24, delay: 0.2 }}
+            transition={{ duration: 0, delay: 0 }}
           >
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[color:var(--color-text)]">Tecnologías que usamos</h2>
             <p className="mt-2 text-[color:var(--color-text-muted)]">Frameworks y servicios con los que construimos tus apps y webs.</p>
@@ -112,13 +112,13 @@ const Nosotros: React.FC = () => {
       {/* 6) CIERRE + CTA */}
       <Section className="py-12">
         <div className="container text-center">
-          <motion.h3 className="text-2xl md:text-3xl font-bold text-[color:var(--color-text)]" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45 }}>
+          <motion.h3 className="text-2xl md:text-3xl font-bold text-[color:var(--color-text)]" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0 }}>
             ¿Te gusta nuestro enfoque?
           </motion.h3>
-          <motion.p className="mt-2 text-[color:var(--color-text-muted)]" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: 0.05 }}>
+          <motion.p className="mt-2 text-[color:var(--color-text-muted)]" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0, delay: 0 }}>
             Hagamos realidad tu proyecto con un plan claro y sostenible.
           </motion.p>
-          <motion.div className="mt-5 flex flex-wrap items-center justify-center gap-3" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.45, delay: 0.1 }}>
+          <motion.div className="mt-5 flex flex-wrap items-center justify-center gap-3" initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0, delay: 0 }}>
             <Button onClick={() => (window.location.href = '/contacto')}>Solicita información</Button>
           </motion.div>
         </div>

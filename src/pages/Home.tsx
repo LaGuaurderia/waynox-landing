@@ -32,7 +32,7 @@ const TypingAnimation: React.FC<{ text: string; speed?: number }> = ({ text, spe
       {displayedText}
       <motion.span
         animate={{ opacity: [1, 0, 1] }}
-        transition={{ duration: 0.8, repeat: Infinity }}
+        transition={{ duration: 0, repeat: Infinity }}
         className="text-[var(--color-accent)]"
       >
         |
@@ -58,7 +58,7 @@ const Home: React.FC = () => {
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[var(--color-text)] leading-tight text-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              transition={{ duration: 0, delay: 0 }}
             >
               <TypingAnimation text="Del boceto al código" speed={120} />
             </motion.h1>
@@ -67,7 +67,7 @@ const Home: React.FC = () => {
               className="group mt-3 sm:mt-4 text-lg sm:text-xl text-neutral-700 dark:text-neutral-300 text-center max-w-2xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 2.5 }}
+              transition={{ duration: 0, delay: 0 }}
             >
               <span className="relative inline-block transition-colors duration-200 group-hover:text-[#0EA5E9]">
                 Tecnología accesible con resultados visibles.
@@ -117,9 +117,9 @@ const Home: React.FC = () => {
               key={item.title}
               initial={{ opacity: 0, y: 40, scale: 0.95 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
+              transition={{ duration: 0, delay: 0 }}
               viewport={{ once: true }}
-              whileHover={{ y: -8, scale: 1.02, transition: { duration: 0.25 } }}
+              whileHover={{ y: -8, scale: 1.02, transition: { duration: 0 } }}
               className="h-80 sm:h-96"
             >
               <Card delay={item.delay} image={item.image} className="h-full">
@@ -140,7 +140,7 @@ const Home: React.FC = () => {
             className="mb-1 text-xs sm:text-sm font-medium uppercase tracking-wider text-[#0EA5E9]"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0 }}
             viewport={{ once: true }}
           >
             Proceso
@@ -151,7 +151,7 @@ const Home: React.FC = () => {
             className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[color:var(--color-text)]"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0, ease: [0.25, 0.46, 0.45, 0.94] }}
             viewport={{ once: true }}
           >
             Cómo trabajamos
@@ -165,10 +165,10 @@ const Home: React.FC = () => {
 
         <div className="mt-6 sm:mt-8 grid grid-cols-1 md:grid-cols-2 gap-x-8 lg:gap-x-12 gap-y-6 sm:gap-y-8">
           {[
-            { n: '01', t: 'Descubrimiento', d: 'Definimos objetivos y hoja de ruta.' },
-            { n: '02', t: 'Diseño', d: 'Experiencia visual y funcional clara.' },
-            { n: '03', t: 'Desarrollo', d: 'Código sólido, escalable y eficiente.' },
-            { n: '04', t: 'Lanzamiento', d: 'Publicación, optimización y soporte.' },
+            { n: '01', t: 'Contrato de Confidencialidad', d: 'Establecemos legalmente la protección de toda la información e ideas del proyecto.' },
+            { n: '02', t: 'Estructura Gratuita', d: 'Creamos y entregamos un esquema básico sin coste para definir el alcance técnico.' },
+            { n: '03', t: 'Inicio del Proyecto', d: 'Arranque oficial: se asignan recursos, se planifica el desarrollo y se establece el roadmap.' },
+            { n: '04', t: 'Lanzamiento', d: 'Publicación final, QA/pruebas y optimización, con soporte y seguimiento post-lanzamiento.' },
           ].map((it, idx) => (
             <motion.div
               key={it.n}
@@ -177,7 +177,7 @@ const Home: React.FC = () => {
               initial={{ opacity: 0, y: 8 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.25, delay: idx * 0.1 }}
+              transition={{ duration: 0, delay: 0 }}
             >
               <div className="flex items-baseline gap-3">
                 <span className="font-mono text-xs text-neutral-500 dark:text-neutral-400">{it.n}</span>
@@ -203,7 +203,7 @@ const Home: React.FC = () => {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.35 }}
+            transition={{ duration: 0 }}
           >
             Por qué elegir Waynox Studio
           </motion.h2>
@@ -212,7 +212,7 @@ const Home: React.FC = () => {
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.35, delay: 0.05 }}
+            transition={{ duration: 0, delay: 0 }}
           >
             Diferenciales que marcan la diferencia.
           </motion.p>
@@ -255,7 +255,7 @@ const Home: React.FC = () => {
             className="mb-1 text-xs sm:text-sm font-medium uppercase tracking-wider text-[#0EA5E9]"
             initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0 }}
             viewport={{ once: true }}
           >
             Opiniones
@@ -266,7 +266,7 @@ const Home: React.FC = () => {
             className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[color:var(--color-text)]"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0, ease: [0.25, 0.46, 0.45, 0.94] }}
             viewport={{ once: true }}
           >
             Testimonios
@@ -284,9 +284,9 @@ const Home: React.FC = () => {
             className="rounded-lg border border-[#0EA5E9]/30 p-5 text-center"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0, delay: 0 }}
             viewport={{ once: true }}
-            whileHover={{ y: -4, scale: 1.01, transition: { duration: 0.2 } }}
+            whileHover={{ y: -4, scale: 1.01, transition: { duration: 0 } }}
           >
             <p className="italic text-[color:var(--color-text)]">"Excelente partner tecnológico, lanzamos en tiempo y forma."</p>
             <strong className="mt-2 inline-block text-[color:var(--color-text)]/80">— Cliente A</strong>
@@ -296,9 +296,9 @@ const Home: React.FC = () => {
             className="rounded-lg border border-[#0EA5E9]/30 p-5 text-center"
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.25 }}
+            transition={{ duration: 0, delay: 0 }}
             viewport={{ once: true }}
-            whileHover={{ y: -4, scale: 1.01, transition: { duration: 0.2 } }}
+            whileHover={{ y: -4, scale: 1.01, transition: { duration: 0 } }}
           >
             <p className="italic text-[color:var(--color-text)]">"Rápidos, claros y con foco en negocio."</p>
             <strong className="mt-2 inline-block text-[color:var(--color-text)]/80">— Cliente B</strong>

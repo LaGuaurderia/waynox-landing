@@ -21,7 +21,7 @@ const CTAWide: React.FC = () => {
                 className="text-4xl md:text-6xl font-bold text-[var(--text)] mb-6 leading-tight"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ duration: 0, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 {pageTexts.cta.title}
               </motion.h2>
@@ -30,7 +30,7 @@ const CTAWide: React.FC = () => {
                 className="text-xl md:text-2xl text-[var(--muted)] max-w-3xl mx-auto leading-relaxed"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+                transition={{ duration: 0, delay: 0, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 {pageTexts.cta.subtitle}
               </motion.p>
@@ -43,7 +43,7 @@ const CTAWide: React.FC = () => {
               <motion.div 
                 className="text-center group"
                 whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0 }}
               >
                 <div className="w-16 h-16 mx-auto bg-[var(--accent)] rounded-full flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform duration-300">
                   <MessageCircle size={32} />
@@ -59,7 +59,7 @@ const CTAWide: React.FC = () => {
               <motion.div 
                 className="text-center group"
                 whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0 }}
               >
                 <div className="w-16 h-16 mx-auto bg-[var(--accent)] rounded-full flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Calendar size={32} />
@@ -75,7 +75,7 @@ const CTAWide: React.FC = () => {
               <motion.div 
                 className="text-center group"
                 whileHover={{ y: -5 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0 }}
               >
                 <div className="w-16 h-16 mx-auto bg-[var(--accent)] rounded-full flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform duration-300">
                   <Users size={32} />

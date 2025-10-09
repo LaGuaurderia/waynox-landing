@@ -136,7 +136,7 @@
   
   /* Optimizar transiciones */
   * {
-    transition-duration: 0.2s;
+    transition-duration: 0s;
   }
   
   /* Mejorar el rendimiento de scroll */

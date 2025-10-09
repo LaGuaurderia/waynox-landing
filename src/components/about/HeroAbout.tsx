@@ -21,7 +21,7 @@ const HeroAbout: React.FC = () => {
               className="text-5xl md:text-7xl font-bold text-[var(--text)] mb-6 leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               {pageTexts.hero.title}
             </motion.h1>
@@ -32,7 +32,7 @@ const HeroAbout: React.FC = () => {
               className="text-xl md:text-2xl text-[var(--muted)] mb-12 max-w-3xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0, delay: 0, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               {pageTexts.hero.subtitle}
             </motion.p>
@@ -43,7 +43,7 @@ const HeroAbout: React.FC = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center items-center"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+              transition={{ duration: 0, delay: 0, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <Link to="/contacto">
                 <Button size="lg" className="bg-[var(--accent)] hover:bg-[var(--accent-hover)] text-black font-semibold px-8 py-4 text-lg">
@@ -69,13 +69,13 @@ const HeroAbout: React.FC = () => {
       <motion.div 
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+        transition={{ duration: 0, repeat: Infinity, ease: "easeInOut" }}
       >
         <div className="w-6 h-10 border-2 border-[var(--accent)] rounded-full flex justify-center">
           <motion.div 
             className="w-1 h-3 bg-[var(--accent)] rounded-full mt-2"
             animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            transition={{ duration: 0, repeat: Infinity, ease: "easeInOut" }}
           />
         </div>
       </motion.div>

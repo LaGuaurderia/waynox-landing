@@ -17,7 +17,7 @@ export const FloatingCTA: React.FC<FloatingCTAProps> = ({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 1 }}
+      transition={{ duration: 0, delay: 0 }}
       className={`lg:hidden fixed bottom-6 right-6 z-50 ${className}`}
     >
       <motion.button

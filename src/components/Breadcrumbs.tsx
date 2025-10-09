@@ -64,7 +64,7 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({
       aria-label="Breadcrumb"
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0 }}
     >
       <ol className="flex items-center gap-2 text-sm">
         {breadcrumbs.map((item, index) => (

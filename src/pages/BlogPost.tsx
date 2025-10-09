@@ -65,7 +65,7 @@ const BlogPost: React.FC = () => {
           className="mb-8"
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0 }}
         >
           <button
             onClick={() => navigate('/blog')}
@@ -86,7 +86,7 @@ const BlogPost: React.FC = () => {
             className="lg:flex-1 lg:max-w-4xl prose prose-invert prose-lg max-w-none"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.6 }}
+            transition={{ delay: 0, duration: 0 }}
           >
             {/* Aquí iría el contenido MDX renderizado */}
             <div 

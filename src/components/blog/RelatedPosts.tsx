@@ -18,7 +18,7 @@ const RelatedPosts: React.FC<RelatedPostsProps> = ({ posts }) => {
         className="text-2xl font-bold text-white mb-6"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0 }}
       >
         Artículos relacionados
       </motion.h2>

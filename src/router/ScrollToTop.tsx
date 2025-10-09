@@ -22,7 +22,7 @@ const ScrollToTop = () => {
     if (lenisRef.current && !prefersReducedMotion) {
       // Usar Lenis para scroll suave
       lenisRef.current.scrollTo(0, {
-        duration: 1.5,
+        duration: 0,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
       })
     } else {

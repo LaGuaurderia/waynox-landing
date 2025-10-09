@@ -23,7 +23,7 @@ export const FAQ: React.FC<FAQProps> = ({ items, title = "Preguntas Frecuentes" 
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0 }}
       viewport={{ once: true }}
       className="space-y-4"
     >
@@ -40,7 +40,7 @@ export const FAQ: React.FC<FAQProps> = ({ items, title = "Preguntas Frecuentes" 
             key={index}
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
+            transition={{ duration: 0, delay: 0 }}
             viewport={{ once: true }}
             className="border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden bg-white/60 dark:bg-neutral-900/40 shadow-sm hover:border-[#00BFFF] transition-colors duration-200"
           >
@@ -53,7 +53,7 @@ export const FAQ: React.FC<FAQProps> = ({ items, title = "Preguntas Frecuentes" 
               <span className="text-[var(--color-text)] font-medium pr-4 text-sm lg:text-base">{item.question}</span>
               <motion.div
                 animate={{ rotate: openIndex === index ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0 }}
               >
                 <ChevronDownIcon className="w-4 h-4 lg:w-5 lg:h-5 text-brand-blue flex-shrink-0" />
               </motion.div>
@@ -65,7 +65,7 @@ export const FAQ: React.FC<FAQProps> = ({ items, title = "Preguntas Frecuentes" 
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: 'auto', opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
-                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                  transition={{ duration: 0, ease: 'easeInOut' }}
                   className="overflow-hidden"
                   id={`faq-answer-${index}`}
                   role="region"

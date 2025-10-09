@@ -5,6 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ELIMINAR TODAS LAS TRANSICIONES Y ANIMACIONES LENTAS */
+* {
+    transition-duration: 0s !important;
+    animation-duration: 0s !important;
+}
+
 /* Variables de tema Waynox - Marca Azul Eléctrico, Negro y Blanco */
 :root {
   /* Colores principales de marca */
@@ -1794,13 +1800,13 @@ input:focus, textarea:focus, select:focus {
 .transition-all {
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 200ms;
+  transition-duration: 0ms;
 }
 
 .transition-colors {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
   transition-timing-function: cubic-bezir(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
+  transition-duration: 0ms;
 }
 
 /* Cursor */

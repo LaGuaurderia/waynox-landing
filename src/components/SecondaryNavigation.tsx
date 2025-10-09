@@ -64,7 +64,7 @@ export const SecondaryNavigation: React.FC<SecondaryNavigationProps> = ({
       className={`secondary-nav ${sticky ? 'sticky top-72' : ''} ${className}`}
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
+      transition={{ duration: 0 }}
     >
       <div className="container">
         {/* Botón para colapsar/expandir en móvil */}
@@ -84,14 +84,14 @@ export const SecondaryNavigation: React.FC<SecondaryNavigationProps> = ({
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
+              transition={{ duration: 0 }}
             >
               {items.map((item, index) => (
                 <motion.div
                   key={item.id}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
+                  transition={{ duration: 0, delay: 0 }}
                 >
                   <button
                     onClick={() => scrollToSection(item.id)}

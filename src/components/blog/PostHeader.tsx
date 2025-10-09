@@ -14,7 +14,7 @@ const PostHeader: React.FC<PostHeaderProps> = ({ post }) => {
       className="mb-12"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
+      transition={{ duration: 0 }}
     >
       {/* Imagen destacada */}
       <div className="relative mb-8 overflow-hidden rounded-2xl aspect-video">

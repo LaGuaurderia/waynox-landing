@@ -14,7 +14,7 @@ export const useSmoothScroll = () => {
 
     // Inicializar Lenis con configuración más visible
     lenisRef.current = new Lenis({
-      duration: 1.8, // Duración más larga para que sea más visible
+      duration: 0, // Duración más larga para que sea más visible
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -8 * t)), // Easing más suave y visible
       orientation: 'vertical',
       gestureOrientation: 'vertical',
@@ -47,7 +47,7 @@ export const useSmoothScroll = () => {
           const targetElement = document.querySelector(href)
           if (targetElement && lenisRef.current) {
             lenisRef.current.scrollTo(targetElement as HTMLElement, {
-              duration: 2.0, // Duración más larga para el efecto
+              duration: 0, // Duración más larga para el efecto
               easing: (t) => Math.min(1, 1.001 - Math.pow(2, -8 * t))
             })
           }

@@ -45,14 +45,14 @@ const SimpleTypingEffect: React.FC<SimpleTypingEffectProps> = ({
         className="text-3xl md:text-5xl font-bold text-white leading-tight"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
+        transition={{ duration: 0, ease: "easeOut" }}
       >
         {displayText}
         {showCursor && (
           <motion.span
             className="inline-block w-1 h-10 bg-white ml-1"
             animate={{ opacity: [1, 0] }}
-            transition={{ duration: 0.5, repeat: Infinity }}
+            transition={{ duration: 0, repeat: Infinity }}
           />
         )}
       </motion.div>

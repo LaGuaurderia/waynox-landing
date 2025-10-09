@@ -53,7 +53,7 @@ npm run favicons:verify
 {
   "name": "Waynox Studio",
   "short_name": "Waynox",
-  "description": "Desarrollamos soluciones web y móviles que impulsan tu negocio",
+  "description": "Ingeniería de software a precios competitivos. Desarrollo de Apps Nativas y Webs escalables con código de vanguardia. Máxima eficiencia y el mejor valor para tu inversión.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

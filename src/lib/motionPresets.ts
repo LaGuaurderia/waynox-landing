@@ -18,7 +18,7 @@ export const fadeInUp: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0,
       ease: easings.smooth,
     },
   },
@@ -31,7 +31,7 @@ export const fadeIn: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      duration: 0.5,
+      duration: 0,
       ease: easings.smooth,
     },
   },
@@ -46,7 +46,7 @@ export const scaleIn: Variants = {
     opacity: 1,
     scale: 1,
     transition: {
-      duration: 0.5,
+      duration: 0,
       ease: easings.spring,
     },
   },
@@ -61,7 +61,7 @@ export const slideInLeft: Variants = {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.6,
+      duration: 0,
       ease: easings.smooth,
     },
   },
@@ -76,7 +76,7 @@ export const slideInRight: Variants = {
     opacity: 1,
     x: 0,
     transition: {
-      duration: 0.6,
+      duration: 0,
       ease: easings.smooth,
     },
   },
@@ -87,8 +87,8 @@ export const staggerContainer: Variants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.1,
+      staggerChildren: 0,
+      delayChildren: 0,
     },
   },
 }
@@ -98,11 +98,11 @@ export const buttonVariants: Variants = {
   initial: { scale: 1 },
   hover: { 
     scale: 1.02,
-    transition: { duration: 0.2, ease: easings.smooth }
+    transition: { duration: 0, ease: easings.smooth }
   },
   tap: { 
     scale: 0.98,
-    transition: { duration: 0.1, ease: easings.smooth }
+    transition: { duration: 0, ease: easings.smooth }
   },
 }
 
@@ -115,7 +115,7 @@ export const cardVariants: Variants = {
   hover: { 
     y: -4,
     boxShadow: '0 10px 25px -3px rgba(0, 0, 0, 0.1)',
-    transition: { duration: 0.3, ease: easings.smooth }
+    transition: { duration: 0, ease: easings.smooth }
   },
 }
 
@@ -130,6 +130,6 @@ export const navbarVariants: Variants = {
     backgroundColor: 'rgba(255, 255, 255, 0.95)',
     backdropFilter: 'blur(10px)',
     boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)',
-    transition: { duration: 0.3, ease: easings.smooth }
+    transition: { duration: 0, ease: easings.smooth }
   },
 }

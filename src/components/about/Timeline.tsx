@@ -33,14 +33,14 @@ const Timeline: React.FC = () => {
                       index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                     }`}
                     whileHover={{ y: -5 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0 }}
                   >
                     {/* Contenido del evento */}
                     <div className={`flex-1 ${index % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
                       <motion.div 
                         className="bg-[var(--bg)] p-6 rounded-xl border border-[var(--line)] hover:border-[var(--accent)] transition-colors duration-300"
                         whileHover={{ scale: 1.02 }}
-                        transition={{ duration: 0.3 }}
+                        transition={{ duration: 0 }}
                       >
                         <div className="text-2xl font-bold text-[var(--accent)] mb-2">
                           {event.year}
@@ -76,7 +76,7 @@ const Timeline: React.FC = () => {
               <motion.div 
                 className="inline-flex items-center gap-3 px-6 py-3 bg-[var(--bg)] border border-[var(--line)] rounded-full text-[var(--muted)]"
                 whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0 }}
               >
                 <div className="w-3 h-3 bg-[var(--accent)] rounded-full animate-pulse" />
                 <span className="text-sm font-medium">

@@ -38,7 +38,7 @@ export const TimelineStep: React.FC<TimelineStepProps> = ({
         className="absolute left-4 top-0 w-4 h-4 bg-blue-500 rounded-full border-4 border-white shadow-lg"
         initial={{ scale: 0, opacity: 0 }}
         animate={isInView ? { scale: 1, opacity: 1 } : { scale: 0, opacity: 0 }}
-        transition={{ delay: 0.2, duration: 0.3 }}
+        transition={{ delay: 0, duration: 0 }}
       />
       
       {/* Contenido */}

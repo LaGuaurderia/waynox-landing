@@ -27,7 +27,7 @@ const SocialProof: React.FC = () => {
                 <motion.div 
                   className="bg-[var(--bg)] p-6 rounded-2xl border border-[var(--line)] hover:border-[var(--accent)] transition-all duration-300 group"
                   whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ duration: 0.3 }}
+                  transition={{ duration: 0 }}
                 >
                   {/* Comillas decorativas */}
                   <div className="text-4xl text-[var(--accent)] mb-4 opacity-60">
@@ -95,7 +95,7 @@ const SocialProof: React.FC = () => {
                   <motion.div 
                     className="bg-[var(--bg)] p-6 rounded-xl border border-[var(--line)] hover:border-[var(--accent)] transition-all duration-300 text-center group"
                     whileHover={{ y: -5, scale: 1.05 }}
-                    transition={{ duration: 0.3 }}
+                    transition={{ duration: 0 }}
                   >
                     <div className="text-4xl mb-3 group-hover:scale-110 transition-transform duration-300">
                       {client.logo}

@@ -62,7 +62,7 @@ export const CounterUp: React.FC<CounterUpProps> = ({
       className={className}
       initial={{ opacity: 0, scale: 0.8 }}
       animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-      transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
+      transition={{ duration: 0, ease: [0.2, 0.8, 0.2, 1] }}
       style={{ willChange: 'opacity, transform' }}
     >
       {prefix}{count}{suffix}

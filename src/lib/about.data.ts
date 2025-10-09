@@ -117,28 +117,28 @@ export const companyValues: Value[] = [
 // Proceso de trabajo
 export const processSteps: ProcessStep[] = [
   {
-    id: 'descubrimiento',
-    title: 'Descubrimiento',
-    description: 'Análisis de necesidades y definición de objetivos',
-    icon: '🔍'
+    id: 'confidencialidad',
+    title: 'Contrato de Confidencialidad',
+    description: 'Establecemos legalmente la protección de toda la información e ideas del proyecto.',
+    icon: '🔒'
   },
   {
-    id: 'diseno',
-    title: 'Diseño',
-    description: 'Wireframes, prototipos y diseño visual',
-    icon: '🎨'
+    id: 'estructura',
+    title: 'Estructura Gratuita',
+    description: 'Creamos y entregamos un esquema básico sin coste para definir el alcance técnico.',
+    icon: '📋'
   },
   {
-    id: 'desarrollo',
-    title: 'Desarrollo',
-    description: 'Codificación con metodologías ágiles',
-    icon: '💻'
+    id: 'inicio',
+    title: 'Inicio del Proyecto',
+    description: 'Arranque oficial: se asignan recursos, se planifica el desarrollo y se establece el roadmap.',
+    icon: '🚀'
   },
   {
     id: 'lanzamiento',
     title: 'Lanzamiento',
-    description: 'Despliegue, testing y puesta en producción',
-    icon: '🚀'
+    description: 'Publicación final, QA/pruebas y optimización, con soporte y seguimiento post-lanzamiento.',
+    icon: '✨'
   }
 ]
 

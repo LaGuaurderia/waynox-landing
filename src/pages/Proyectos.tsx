@@ -173,7 +173,7 @@ const Proyectos: React.FC = () => {
                         borderRadius: '6px'
                       }}
                       whileHover={{ scale: 1.05, y: -1 }}
-                      transition={{ duration: 0.2 }}
+                      transition={{ duration: 0 }}
                     >
                       {tag}
                     </motion.span>

@@ -86,9 +86,9 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
             exit={{ 
               opacity: 0, 
               scale: 0.95,
-              transition: { duration: 0.7, ease: "easeInOut" }
+              transition: { duration: 0, ease: "easeInOut" }
             }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0 }}
             aria-hidden={shouldShowContent}
           >
             <div className="text-center">
@@ -96,7 +96,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
                 className="text-4xl md:text-6xl font-bold text-white leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, ease: "easeOut" }}
+                transition={{ duration: 0, ease: "easeOut" }}
                 role="status"
                 aria-live="polite"
               >
@@ -106,7 +106,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
                   <motion.span
                     className="inline-block w-1 h-12 bg-white ml-1"
                     animate={{ opacity: [1, 0] }}
-                    transition={{ duration: 0.5, repeat: Infinity }}
+                    transition={{ duration: 0, repeat: Infinity }}
                   />
                 )}
               </motion.div>
@@ -119,7 +119,7 @@ const LoadingScreen: React.FC<LoadingScreenProps> = ({
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          transition={{ duration: 0, delay: 0 }}
         >
           {children}
         </motion.div>
